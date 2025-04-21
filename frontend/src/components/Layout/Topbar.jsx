@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-21 20:11:01
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-21 20:33:54
+ * @LastEditTime: 2025-04-21 20:48:07
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Layout/Topbar.jsx
  */
 import React from "react";
@@ -59,7 +59,7 @@ const Topbar = () => {
           <div className="text-sm hidden md:block ">
             {/* face time */}
             <a href="tel:+123456789" className="hover:text-blue-300">
-              123-456-789
+              +(61)123-456-789
             </a>
           </div>
         </div>
