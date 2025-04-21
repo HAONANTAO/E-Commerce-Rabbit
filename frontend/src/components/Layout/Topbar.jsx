@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-21 20:11:01
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-21 20:25:03
+ * @LastEditTime: 2025-04-21 20:27:49
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Layout/Topbar.jsx
  */
 import React from "react";
@@ -14,7 +14,7 @@ const Topbar = () => {
     <>
       <div className="bg-[#ea2e0e] text-white">
         {/* container + mx-auto = 自动响应式宽度 + 水平居中 */}
-        <div className="container mx-auto">
+        <div className="container mx-auto flex justify-between items-center py-3 px-4">
           {/* clickable icons and routes */}
           <div className="flex items-center space-x-4">
             <a
@@ -57,7 +57,9 @@ const Topbar = () => {
           </div>
           <div className="text-sm">
             {/* face time */}
-            <a href="tel:+123456789">123456789</a>
+            <a href="tel:+123456789" className="hover:text-blue-300">
+              123-456-789
+            </a>
           </div>
         </div>
       </div>
