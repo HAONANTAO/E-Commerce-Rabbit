@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-21 20:11:01
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-21 20:19:43
+ * @LastEditTime: 2025-04-21 20:25:03
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Layout/Topbar.jsx
  */
 import React from "react";
@@ -15,24 +15,49 @@ const Topbar = () => {
       <div className="bg-[#ea2e0e] text-white">
         {/* container + mx-auto = 自动响应式宽度 + 水平居中 */}
         <div className="container mx-auto">
+          {/* clickable icons and routes */}
           <div className="flex items-center space-x-4">
-            {/* TODO:clickable icons and routes */}
-            <a href="#" className="hover:text-gray-300">
+            <a
+              href="https://facebook.com/"
+              target="_blank"
+              // safety 安全性优化
+              rel="noopener noreferrer"
+              className="hover:text-gray-300">
               {/* Meta（Facebook 母公司）品牌 logo。 */}
               <TbBrandMeta className="h-5 w-5" />
             </a>
-            <a href="#" className="hover:text-gray-300">
+            <a
+              href="https://www.instagram.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-gray-300">
               {/* Instagram logo。 */}
               <IoLogoInstagram className="h-4 w-4" />
             </a>
-            <a href="#" className="hover:text-gray-300">
+            <a
+              href="https://twitter.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-gray-300">
               {/* Twitter  logo。 */}
               <FaTwitter className="h-4 w-4" />
             </a>
-            <a href="#" className="hover:text-gray-300">
+            <a
+              href="https://weixin.qq.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-gray-300">
               {/* wechat logo。 */}
               <IoLogoWechat className="h-4 w-4" />
             </a>
+          </div>
+
+          <div className="text-sm text-center">
+            <span>We Ship worldwide - Fast and Reliable Shipping!</span>
+          </div>
+          <div className="text-sm">
+            {/* face time */}
+            <a href="tel:+123456789">123456789</a>
           </div>
         </div>
       </div>
