@@ -1,0 +1,43 @@
+/*
+ * @Date: 2025-04-21 20:11:01
+ * @LastEditors: 陶浩南 taoaaron5@gmail.com
+ * @LastEditTime: 2025-04-21 20:19:43
+ * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Layout/Topbar.jsx
+ */
+import React from "react";
+import { TbBrandMeta } from "react-icons/tb";
+import { IoLogoInstagram } from "react-icons/io5";
+import { FaTwitter } from "react-icons/fa";
+import { IoLogoWechat } from "react-icons/io5";
+const Topbar = () => {
+  return (
+    <>
+      <div className="bg-[#ea2e0e] text-white">
+        {/* container + mx-auto = 自动响应式宽度 + 水平居中 */}
+        <div className="container mx-auto">
+          <div className="flex items-center space-x-4">
+            {/* TODO:clickable icons and routes */}
+            <a href="#" className="hover:text-gray-300">
+              {/* Meta（Facebook 母公司）品牌 logo。 */}
+              <TbBrandMeta className="h-5 w-5" />
+            </a>
+            <a href="#" className="hover:text-gray-300">
+              {/* Instagram logo。 */}
+              <IoLogoInstagram className="h-4 w-4" />
+            </a>
+            <a href="#" className="hover:text-gray-300">
+              {/* Twitter  logo。 */}
+              <FaTwitter className="h-4 w-4" />
+            </a>
+            <a href="#" className="hover:text-gray-300">
+              {/* wechat logo。 */}
+              <IoLogoWechat className="h-4 w-4" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Topbar;
