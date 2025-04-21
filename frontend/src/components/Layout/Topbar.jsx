@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-21 20:11:01
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-21 20:32:29
+ * @LastEditTime: 2025-04-21 20:33:54
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Layout/Topbar.jsx
  */
 import React from "react";
@@ -12,7 +12,7 @@ import { IoLogoWechat } from "react-icons/io5";
 const Topbar = () => {
   return (
     <>
-      <div className="bg-[#ea2e0e] text-white">
+      <div className="bg-e-red text-white">
         {/* container + mx-auto = 自动响应式宽度 + 水平居中 */}
         <div className="container mx-auto flex justify-between items-center py-3 px-4">
           {/* clickable icons and routes */}
