@@ -4,7 +4,7 @@ import Userlayout from "./components/Layout/Userlayout";
 /*
  * @Date: 2025-04-20 21:08:35
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-20 21:56:28
+ * @LastEditTime: 2025-04-22 21:27:16
  * @FilePath: /E-Commerce-Rabbit/frontend/src/App.jsx
  */
 export default function App() {
@@ -17,7 +17,7 @@ export default function App() {
             {/* User Layout */}
           </Route>
           <Route>{/* Admin Layout */}</Route>
-        </Routes> 
+        </Routes>
       </BrowserRouter>
     </>
   );
