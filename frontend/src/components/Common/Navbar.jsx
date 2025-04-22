@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-21 20:49:04
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-22 21:34:58
+ * @LastEditTime: 2025-04-22 21:41:06
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Common/Navbar.jsx
  */
 import React from "react";
@@ -55,7 +55,10 @@ const Navbar = () => {
 
           <button className="relative hover:text-black">
             <HiOutlineShoppingBag className="w-6 h-6 text-gray-700"></HiOutlineShoppingBag>
-            <span className="absolute text-white e-red">5</span>
+            {/* !TODO:responsive display according to the items in the bags */}
+            <span className="absolute -top-1  px-2 py-0.5 text-xs text-white rounded-full bg-e-red">
+              5
+            </span>
           </button>
         </div>
       </nav>
