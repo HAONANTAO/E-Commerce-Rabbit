@@ -1,16 +1,13 @@
 /*
  * @Date: 2025-04-21 20:49:04
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-22 21:41:06
+ * @LastEditTime: 2025-04-22 21:45:26
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Common/Navbar.jsx
  */
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  HiOutlineUser,
-  HiOutlineShoppingBag,
-  // HiBars3BottomRight,
-} from "react-icons/hi";
+import { HiOutlineUser, HiOutlineShoppingBag } from "react-icons/hi";
+import { HiBars3BottomRight } from "react-icons/hi2";
 const Navbar = () => {
   return (
     <>
@@ -59,6 +56,13 @@ const Navbar = () => {
             <span className="absolute -top-1  px-2 py-0.5 text-xs text-white rounded-full bg-e-red">
               5
             </span>
+          </button>
+
+          {/* TODO:Search icons */}
+
+          {/* 拓展按键 只在小屏幕展示 */}
+          <button className="md:hidden">
+            <HiBars3BottomRight className="w-6 h-6 text-gray-700"></HiBars3BottomRight>
           </button>
         </div>
       </nav>
