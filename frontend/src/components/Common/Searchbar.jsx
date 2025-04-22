@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-22 21:46:46
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-22 22:01:29
+ * @LastEditTime: 2025-04-22 22:08:56
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Common/Searchbar.jsx
  */
 import React from "react";
@@ -18,7 +18,13 @@ const Searchbar = () => {
   };
   return (
     <>
-      <div>
+      {/* transition-all 所有可动画属性添加平滑过渡效果 */}
+      <div
+        className={`flex justify-center items-center w-full transition-all duration-300 ${
+          isOpen
+            ? "absolute top-0 -left-4 w-full bg-blue-400 h-24 z-999"
+            : "w-auto"
+        }`}>
         {isOpen ? (
           <form className="flex relative justify-center items-center w-full">
             <div className="relative w-1/2">
