@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-22 21:46:46
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-23 21:29:27
+ * @LastEditTime: 2025-04-23 21:34:22
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Common/Searchbar.jsx
  */
 import React from "react";
@@ -35,6 +35,7 @@ const Searchbar = () => {
             <div className="relative w-1/2">
               <input
                 type="text"
+                onChange={(e) => setSearchTerms(e.target.value)}
                 placeholder=" Search..."
                 value={searchTerms}
                 // outline-none 表示移除元素在获得焦点时浏览器默认添加的轮廓线
