@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-23 21:51:05
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-23 22:02:11
+ * @LastEditTime: 2025-04-23 22:25:43
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Layout/CartDrawer.jsx
  */
 import { useState } from "react";
@@ -21,7 +21,25 @@ const CartDrawer = ({ isOpen, toggleDrawer }) => {
             <IoMdClose className="w-6 h-6 text-gray-600 hover:text-gray-700"></IoMdClose>
           </button>
         </div>
-        CartDrawer
+        {/* Cart contents with scrolling */}
+        <div className="overflow-y-auto flex-grow p-4">
+          <h2 className="mb-4 text-xl font-semibold">Your Cart</h2>
+          {/* components for cart contents */}
+          {/* 添加测试内容 */}
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].map((item) => (
+            <div key={item} className="p-4 mb-4 rounded border">
+              测试商品 {item}
+            </div>
+          ))}
+        </div>
+
+        {/* checkout button fixed at bottom */}
+        {/* sticky 为了可以在很多内容的时候
+        这个结账区域会"粘住"在视图底部，不会随着内容滚动而消失*/}
+        <div className="sticky bottom-0 p-4 bg-white">
+          <button>Checkout</button>
+          <p>Shipping, taxes, and discount codes calculated at checkout</p>
+        </div>
       </div>
       ;
     </>
