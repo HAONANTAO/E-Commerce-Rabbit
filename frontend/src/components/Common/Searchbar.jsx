@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-22 21:46:46
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-23 21:34:22
+ * @LastEditTime: 2025-04-23 21:40:58
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Common/Searchbar.jsx
  */
 import React from "react";
@@ -12,12 +12,19 @@ const Searchbar = () => {
   const [searchTerms, setSearchTerms] = React.useState("");
   // 搜索展开框
   const [isOpen, setIsOpen] = React.useState(false);
-  // 关闭搜索框
-  const handleCloseSearch = () => {
+
+  // 搜索函数
+  const handleSearch = (e) => {
+    e.preventDefault();
+    console.log(searchTerms);
+
+    // 点击完清空并跳转搜索结果
     setIsOpen(false);
     setSearchTerms("");
   };
-  // 搜索函数
+
+  // 切换搜索框
+
   const handleSearchToggle = () => {
     setIsOpen(!isOpen);
   };
@@ -31,7 +38,9 @@ const Searchbar = () => {
             : "w-auto"
         }`}>
         {isOpen ? (
-          <form className="flex relative justify-center items-center w-full">
+          <form
+            onSubmit={handleSearch}
+            className="flex relative justify-center items-center w-full">
             <div className="relative w-1/2">
               <input
                 type="text"
@@ -51,7 +60,7 @@ const Searchbar = () => {
             {/* close button */}
             <button
               className="absolute right-1 top-1/3 text-gray-600 transform -translate-x-1/2 hover:text-gray-800"
-              onClick={handleCloseSearch}>
+              onClick={handleSearchToggle}>
               <HiMiniXMark></HiMiniXMark>
             </button>
           </form>
