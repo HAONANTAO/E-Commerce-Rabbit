@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-22 21:46:46
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-23 21:40:58
+ * @LastEditTime: 2025-04-23 21:49:45
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Common/Searchbar.jsx
  */
 import React from "react";
@@ -17,6 +17,8 @@ const Searchbar = () => {
   const handleSearch = (e) => {
     e.preventDefault();
     console.log(searchTerms);
+
+    // TODO: 搜索功能
 
     // 点击完清空并跳转搜索结果
     setIsOpen(false);

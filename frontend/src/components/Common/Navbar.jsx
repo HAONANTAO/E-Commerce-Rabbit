@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { HiOutlineUser, HiOutlineShoppingBag } from "react-icons/hi";
 import { HiBars3BottomRight } from "react-icons/hi2";
 import Searchbar from "./Searchbar";
+import CartDrawer from "../Layout/CartDrawer";
 const Navbar = () => {
   return (
     <>
@@ -69,6 +70,7 @@ const Navbar = () => {
           </button>
         </div>
       </nav>
+      <CartDrawer />
     </>
   );
 };
