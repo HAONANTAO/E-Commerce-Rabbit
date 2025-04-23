@@ -1,16 +1,21 @@
 /*
  * @Date: 2025-04-21 20:49:04
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-23 21:31:01
+ * @LastEditTime: 2025-04-23 22:03:14
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Common/Navbar.jsx
  */
 import React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { HiOutlineUser, HiOutlineShoppingBag } from "react-icons/hi";
 import { HiBars3BottomRight } from "react-icons/hi2";
 import Searchbar from "./Searchbar";
 import CartDrawer from "../Layout/CartDrawer";
 const Navbar = () => {
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const toggleCartDrawer = () => {
+    setIsCartOpen(!isCartOpen);
+  };
   return (
     <>
       <nav className="container flex justify-between items-center px-6 py-4 mx-auto">
@@ -52,9 +57,11 @@ const Navbar = () => {
             <HiOutlineUser className="w-6 h-6 text-gray-700"></HiOutlineUser>
           </Link>
 
-          <button className="relative hover:text-black">
+          <button
+            onClick={toggleCartDrawer}
+            className="relative hover:text-black">
             <HiOutlineShoppingBag className="w-6 h-6 text-gray-700"></HiOutlineShoppingBag>
-            {/* !TODO:responsive display according to the items in the bags */}
+            {/* TODO:responsive display according to the items in the bags  */}
             <span className="absolute -top-1  px-2 py-0.5 text-xs text-white rounded-full bg-e-red">
               5
             </span>
@@ -70,7 +77,7 @@ const Navbar = () => {
           </button>
         </div>
       </nav>
-      <CartDrawer />
+      <CartDrawer isOpen={isCartOpen} toggleDrawer={toggleCartDrawer} />
     </>
   );
 };

@@ -1,17 +1,13 @@
 /*
  * @Date: 2025-04-23 21:51:05
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-23 21:58:37
+ * @LastEditTime: 2025-04-23 22:02:11
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Layout/CartDrawer.jsx
  */
 import { useState } from "react";
 import { IoMdClose } from "react-icons/io";
 // 购物车列表
-const CartDrawer = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const toggleDrawer = () => {
-    setIsOpen(!isOpen);
-  };
+const CartDrawer = ({ isOpen, toggleDrawer }) => {
   return (
     <>
       {/* transform transition-transform 让你可以对元素使用例如旋转、缩放、位移、倾斜等效果 然后加上过渡动画 */}
