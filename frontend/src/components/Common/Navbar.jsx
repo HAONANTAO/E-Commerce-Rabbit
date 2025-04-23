@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-21 20:49:04
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-22 21:46:55
+ * @LastEditTime: 2025-04-23 21:31:01
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Common/Navbar.jsx
  */
 import React from "react";
@@ -59,8 +59,10 @@ const Navbar = () => {
             </span>
           </button>
 
-          {/* TODO:Search icons */}
+          {/* Search bar */}
+
           <Searchbar />
+
           {/* 拓展按键 只在小屏幕展示 */}
           <button className="md:hidden">
             <HiBars3BottomRight className="w-6 h-6 text-gray-700"></HiBars3BottomRight>

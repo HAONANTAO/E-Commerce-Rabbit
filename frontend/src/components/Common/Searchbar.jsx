@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-22 21:46:46
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-23 21:14:51
+ * @LastEditTime: 2025-04-23 21:29:27
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Common/Searchbar.jsx
  */
 import React from "react";
@@ -48,7 +48,9 @@ const Searchbar = () => {
               </button>
             </div>
             {/* close button */}
-            <button className="hover:text-gray-800" onClick={handleCloseSearch}>
+            <button
+              className="absolute right-1 top-1/3 text-gray-600 transform -translate-x-1/2 hover:text-gray-800"
+              onClick={handleCloseSearch}>
               <HiMiniXMark></HiMiniXMark>
             </button>
           </form>
