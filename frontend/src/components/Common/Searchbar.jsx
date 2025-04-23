@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-22 21:46:46
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-22 22:08:56
+ * @LastEditTime: 2025-04-23 20:41:39
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Common/Searchbar.jsx
  */
 import React from "react";
@@ -22,7 +22,7 @@ const Searchbar = () => {
       <div
         className={`flex justify-center items-center w-full transition-all duration-300 ${
           isOpen
-            ? "absolute top-0 -left-4 w-full bg-blue-400 h-24 z-999"
+            ? "absolute top-0 -left-4 w-full bg-white  h-24 z-999"
             : "w-auto"
         }`}>
         {isOpen ? (
@@ -35,13 +35,19 @@ const Searchbar = () => {
                 // outline-none 表示移除元素在获得焦点时浏览器默认添加的轮廓线
                 className="px-4 py-2 pr-12 pl-2 w-full bg-gray-100 rounded-full focus:outline-none placeholder:text-gray-700"
               />
+              {/* search icon */}
+              <button
+                type="submit"
+                className="absolute right-2 top-1/2 text-gray-600 transform -translate-y-1/2 hover:text-gray-700">
+                <HiMagnifyingGlass className="w-6 h-6 text-gray-700 hover:text-gray-800"></HiMagnifyingGlass>
+              </button>
             </div>
           </form>
         ) : (
           <button
             className="relative hover:text-black"
             onClick={handleSearchToggle}>
-            <HiMagnifyingGlass className="w-6 h-6 text-gray-700"></HiMagnifyingGlass>
+            <HiMagnifyingGlass className="w-6 h-6 text-gray-700 hover:text-gray-800"></HiMagnifyingGlass>
           </button>
         )}
       </div>
