@@ -1,11 +1,11 @@
 /*
  * @Date: 2025-04-25 18:31:40
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-25 18:54:56
+ * @LastEditTime: 2025-04-25 19:04:05
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Cart/CartContent.jsx
  */
 import React from "react";
-
+import { RiDeleteBin3Line } from "react-icons/ri";
 const CartContent = () => {
   const cartProducts = [
     {
@@ -42,6 +42,8 @@ const CartContent = () => {
                 alt={product.name}
                 className="object-cover w-20 h-24 rounded"
               />
+
+              {/* main body */}
               <div className="ml-4">
                 <h3>{product.name}</h3>
                 <p className="text-sm text-gray-500">
@@ -59,6 +61,16 @@ const CartContent = () => {
                   </button>
                 </div>
               </div>
+            </div>
+
+            {/* amount of price */}
+            <div className="flex flex-col">
+              {/* 会根据当前**用户的本地语言设置（locale）**来格式化数字 */}
+              <p className="font-medium">$ {product.price.toLocaleString()}</p>
+              {/* delete button */}
+              <button>
+                <RiDeleteBin3Line className="mt-2 w-6 h-6 text-red-600" />
+              </button>
             </div>
           </div>
         ))}

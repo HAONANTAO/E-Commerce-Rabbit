@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-23 21:51:05
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-25 18:32:59
+ * @LastEditTime: 2025-04-25 19:03:21
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Layout/CartDrawer.jsx
  */
 
@@ -12,8 +12,9 @@ const CartDrawer = ({ isOpen, toggleDrawer }) => {
   return (
     <>
       {/* transform transition-transform 让你可以对元素使用例如旋转、缩放、位移、倾斜等效果 然后加上过渡动画 */}
+      {/* medium size固定大小显示cart */}
       <div
-        className={`fixed top-0 right-0 w-3/4 sm:w-1/2 md:w-1/4  h-full bg-white shadow-lg  duration-300 flex flex-col z-999 ${
+        className={`fixed top-0 right-0 w-3/4 sm:w-1/2 md:w-[30rem]  h-full bg-white shadow-lg  duration-300 flex flex-col z-999 ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}>
         {/* close button */}
