@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-21 20:49:04
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-23 22:03:14
+ * @LastEditTime: 2025-04-25 19:12:25
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Common/Navbar.jsx
  */
 import React from "react";
@@ -11,10 +11,16 @@ import { HiOutlineUser, HiOutlineShoppingBag } from "react-icons/hi";
 import { HiBars3BottomRight } from "react-icons/hi2";
 import Searchbar from "./Searchbar";
 import CartDrawer from "../Layout/CartDrawer";
+import { IoMdClose } from "react-icons/io";
 const Navbar = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const toggleCartDrawer = () => {
     setIsCartOpen(!isCartOpen);
+  };
+  // 给小屏按钮显示cart点击的
+  const [navDrawerOpen, setNavDrawerOpen] = useState(false);
+  const toggleNavDrawer = () => {
+    setNavDrawerOpen(!navDrawerOpen);
   };
   return (
     <>
@@ -72,12 +78,29 @@ const Navbar = () => {
           <Searchbar />
 
           {/* 拓展按键 只在小屏幕展示 */}
-          <button className="md:hidden">
+          <button onClick={toggleNavDrawer} className="md:hidden">
             <HiBars3BottomRight className="w-6 h-6 text-gray-700"></HiBars3BottomRight>
           </button>
         </div>
       </nav>
       <CartDrawer isOpen={isCartOpen} toggleDrawer={toggleCartDrawer} />
+
+      {/* mobile navigation  */}
+      <div
+        className={`fixed top-0 left-0 w-3/4 sm:w-1/2 3 h-full bg-white  shadow-lg transform transition-transform duration-300 z-999 ${
+          navDrawerOpen ? "translate-x-0" : "-translate-x-full"
+        }`}>
+        <div className="flex justify-end p-4">
+          <button>
+            <IoMdClose
+              onClick={() => {
+                setNavDrawerOpen(false);
+              }}
+              className="w-6 h-6 text-gray-600"
+            />
+          </button>
+        </div>
+      </div>
     </>
   );
 };
