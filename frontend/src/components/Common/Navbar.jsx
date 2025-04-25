@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-21 20:49:04
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-25 19:21:33
+ * @LastEditTime: 2025-04-25 19:26:29
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Common/Navbar.jsx
  */
 import React from "react";

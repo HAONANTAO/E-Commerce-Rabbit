@@ -44,7 +44,6 @@ const CartDrawer = ({ isOpen, toggleDrawer }) => {
           </p>
         </div>
       </div>
-      ;
     </>
   );
 };
