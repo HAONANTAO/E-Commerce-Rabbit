@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-21 20:49:04
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-25 19:12:25
+ * @LastEditTime: 2025-04-25 19:21:33
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Common/Navbar.jsx
  */
 import React from "react";
@@ -88,6 +88,7 @@ const Navbar = () => {
       {/* mobile navigation  */}
       <div
         className={`fixed top-0 left-0 w-3/4 sm:w-1/2 3 h-full bg-white  shadow-lg transform transition-transform duration-300 z-999 ${
+          // navDrawerisopen就在原地 不open就往左侧划出去
           navDrawerOpen ? "translate-x-0" : "-translate-x-full"
         }`}>
         <div className="flex justify-end p-4">
@@ -99,6 +100,39 @@ const Navbar = () => {
               className="w-6 h-6 text-gray-600"
             />
           </button>
+        </div>
+        {/* contents */}
+        <div className="p-4">
+          <h2 className="mb-4 text-xl font-semibold">Menu</h2>
+          {/* H5语义化标签 */}
+          <nav className="space-y-4">
+            {/* 导航标签 */}
+            {/* block为了横向显示 */}
+            <Link
+              to="#"
+              onClick={toggleNavDrawer}
+              className="block text-gray-600 hover:text-black">
+              Men
+            </Link>
+            <Link
+              to="#"
+              onClick={toggleNavDrawer}
+              className="block text-gray-600 hover:text-black">
+              Women
+            </Link>
+            <Link
+              to="#"
+              onClick={toggleNavDrawer}
+              className="block text-gray-600 hover:text-black">
+              TopWear
+            </Link>
+            <Link
+              to="#"
+              onClick={toggleNavDrawer}
+              className="block text-gray-600 hover:text-black">
+              BottomWear
+            </Link>
+          </nav>
         </div>
       </div>
     </>
