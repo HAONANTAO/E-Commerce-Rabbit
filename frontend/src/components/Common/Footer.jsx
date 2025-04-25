@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-25 19:25:13
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-25 20:14:58
+ * @LastEditTime: 2025-04-25 20:28:02
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Common/Footer.jsx
  */
 import React from "react";
@@ -46,10 +46,10 @@ const Footer = () => {
           </div>
 
           {/* grid2 */}
-          {/* shopping links */}
+          {/* Shopping links */}
           <div>
             <h3 className="mb-4 text-lg text-gray-800">Shop</h3>
-            <ul className="space-x-2 text-gray-600">
+            <ul className="space-y-2 text-gray-600">
               <li>
                 <Link to="#" className="transition-colors hover:text-gray-500">
                   Men's Top Wear
@@ -74,7 +74,32 @@ const Footer = () => {
           </div>
 
           {/* grid3 */}
-          <div>3</div>
+          {/* Support links */}
+          <div>
+            <h3 className="mb-4 text-lg text-gray-800">Support</h3>
+            <ul className="space-y-2 text-gray-600">
+              <li>
+                <Link to="#" className="transition-colors hover:text-gray-500">
+                  Contact Us
+                </Link>
+              </li>
+              <li>
+                <Link to="#" className="transition-colors hover:text-gray-500">
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link to="#" className="transition-colors hover:text-gray-500">
+                  FAQs
+                </Link>
+              </li>
+              <li>
+                <Link to="#" className="transition-colors hover:text-gray-500">
+                  Features
+                </Link>
+              </li>
+            </ul>
+          </div>
           {/* grid4 */}
           <div>4</div>
         </div>
