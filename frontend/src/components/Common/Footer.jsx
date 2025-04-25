@@ -1,27 +1,32 @@
 /*
  * @Date: 2025-04-25 19:25:13
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-25 20:07:36
+ * @LastEditTime: 2025-04-25 20:14:58
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Common/Footer.jsx
  */
 import React from "react";
-
+import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <>
       <footer className="py-12 border-t">
         {/* mobile grids小屏1列 大屏4列 */}
+
         <div className="container grid grid-cols-1 gap-8 px-4 mx-auto md:grid-cols-4 lg:px-0">
+          {/* grid1 */}
           <div>
             <h3 className="mb-4 text-lg text-gray-800">NewsLetter</h3>
             <p className="mb-4 text-gray-500">
               Be the first one who knows about the latest products,exclusive
               offers and more.
             </p>
-            <p> Sign up and get 10% off on your first order</p>
+            <p className="mb-6 text-sm font-medium text-gray-600">
+              {" "}
+              Sign up and get 10% off on your first order
+            </p>
 
             {/* Newsletter form */}
-            <form className="flex mt-2">
+            <form className="flex">
               <input
                 type="email"
                 placeholder="enter your email..."
@@ -39,6 +44,39 @@ const Footer = () => {
               </button>
             </form>
           </div>
+
+          {/* grid2 */}
+          {/* shopping links */}
+          <div>
+            <h3 className="mb-4 text-lg text-gray-800">Shop</h3>
+            <ul className="space-x-2 text-gray-600">
+              <li>
+                <Link to="#" className="transition-colors hover:text-gray-500">
+                  Men's Top Wear
+                </Link>
+              </li>
+              <li>
+                <Link to="#" className="transition-colors hover:text-gray-500">
+                  Women's Top Wear
+                </Link>
+              </li>
+              <li>
+                <Link to="#" className="transition-colors hover:text-gray-500">
+                  Men's Bottom Wear
+                </Link>
+              </li>
+              <li>
+                <Link to="#" className="transition-colors hover:text-gray-500">
+                  Women's Bottom Wear
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* grid3 */}
+          <div>3</div>
+          {/* grid4 */}
+          <div>4</div>
         </div>
       </footer>
       ;
