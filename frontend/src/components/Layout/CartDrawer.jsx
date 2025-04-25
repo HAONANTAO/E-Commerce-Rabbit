@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-23 21:51:05
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-23 22:25:43
+ * @LastEditTime: 2025-04-25 18:30:23
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Layout/CartDrawer.jsx
  */
 import { useState } from "react";
@@ -37,8 +37,14 @@ const CartDrawer = ({ isOpen, toggleDrawer }) => {
         {/* sticky 为了可以在很多内容的时候
         这个结账区域会"粘住"在视图底部，不会随着内容滚动而消失*/}
         <div className="sticky bottom-0 p-4 bg-white">
-          <button>Checkout</button>
-          <p>Shipping, taxes, and discount codes calculated at checkout</p>
+          <button className="py-3 w-full font-semibold text-white bg-black rounded-lg transition hover:bg-gray-800">
+            Checkout
+          </button>
+          {/* 「字母之间的间距（letter-spacing）」，
+          而 tracking-tighter 就是：让字母之间更紧凑！ */}
+          <p className="mt-2 text-sm font-normal tracking-tighter text-center text-gray-600">
+            Shipping, taxes, and discount codes calculated at checkout
+          </p>
         </div>
       </div>
       ;
