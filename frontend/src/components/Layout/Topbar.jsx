@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-21 20:11:01
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-21 20:48:07
+ * @LastEditTime: 2025-04-25 20:35:28
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Layout/Topbar.jsx
  */
 import React from "react";
@@ -12,12 +12,13 @@ import { IoLogoWechat } from "react-icons/io5";
 const Topbar = () => {
   return (
     <>
-      <div className="bg-e-red text-white">
+      <div className="text-white bg-e-red">
         {/* container + mx-auto = 自动响应式宽度 + 水平居中 */}
-        <div className="container mx-auto flex justify-between items-center py-3 px-4">
+        <div className="container flex justify-between items-center px-4 py-3 mx-auto">
           {/* clickable icons and routes */}
+          
           {/* 自适应 小屏隐藏 */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden items-center space-x-4 md:flex">
             <a
               href="https://facebook.com/"
               target="_blank"
@@ -25,7 +26,7 @@ const Topbar = () => {
               rel="noopener noreferrer"
               className="hover:text-gray-300">
               {/* Meta（Facebook 母公司）品牌 logo。 */}
-              <TbBrandMeta className="h-5 w-5" />
+              <TbBrandMeta className="w-5 h-5" />
             </a>
             <a
               href="https://www.instagram.com/"
@@ -33,7 +34,7 @@ const Topbar = () => {
               rel="noopener noreferrer"
               className="hover:text-gray-300">
               {/* Instagram logo。 */}
-              <IoLogoInstagram className="h-4 w-4" />
+              <IoLogoInstagram className="w-4 h-4" />
             </a>
             <a
               href="https://twitter.com/"
@@ -41,7 +42,7 @@ const Topbar = () => {
               rel="noopener noreferrer"
               className="hover:text-gray-300">
               {/* Twitter  logo。 */}
-              <FaTwitter className="h-4 w-4" />
+              <FaTwitter className="w-4 h-4" />
             </a>
             <a
               href="https://weixin.qq.com/"
@@ -49,14 +50,14 @@ const Topbar = () => {
               rel="noopener noreferrer"
               className="hover:text-gray-300">
               {/* wechat logo。 */}
-              <IoLogoWechat className="h-4 w-4" />
+              <IoLogoWechat className="w-4 h-4" />
             </a>
           </div>
           {/* flex-grow为了小屏居中显示 */}
-          <div className="text-sm text-center flex-grow">
+          <div className="flex-grow text-sm text-center">
             <span>We Ship worldwide - Fast and Reliable Shipping!</span>
           </div>
-          <div className="text-sm hidden md:block ">
+          <div className="hidden text-sm md:block">
             {/* face time */}
             <a href="tel:+123456789" className="hover:text-blue-300">
               +(61)123-456-789

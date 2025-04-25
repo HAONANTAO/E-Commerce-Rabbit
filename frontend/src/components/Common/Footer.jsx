@@ -1,11 +1,15 @@
 /*
  * @Date: 2025-04-25 19:25:13
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-25 20:28:02
+ * @LastEditTime: 2025-04-25 20:45:04
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Common/Footer.jsx
  */
 import React from "react";
+import { IoLogoInstagram } from "react-icons/io5";
+import { RiTwitterXLine } from "react-icons/ri";
+import { TbBrandMeta } from "react-icons/tb";
 import { Link } from "react-router-dom";
+import { FiPhoneCall } from "react-icons/fi";
 const Footer = () => {
   return (
     <>
@@ -100,11 +104,52 @@ const Footer = () => {
               </li>
             </ul>
           </div>
+
           {/* grid4 */}
-          <div>4</div>
+          {/* Follow us */}
+          <div>
+            <h3 className="mb-4 text-lg text-gray-800">Follow Us</h3>
+            <div className="flex items-center mb-6 space-x-4">
+              {/* noopener: 新页面无法访问父页面。
+              noreferrer: 不发送来源页面的 URL 信息。 */}
+              <a
+                href="https://www.facebook.com"
+                target="_blank"
+                rel="noopner noreferrer">
+                {/* facebooks */}
+                <TbBrandMeta className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.facebook.com"
+                target="_blank"
+                rel="noopner noreferrer">
+                {/* facebooks */}
+                <IoLogoInstagram className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.facebook.com"
+                target="_blank"
+                rel="noopner noreferrer">
+                {/* facebooks */}
+                <RiTwitterXLine className="w-5 h-5" />
+              </a>
+            </div>
+
+            {/* call us */}
+            <p className="text-gray-500">Call Us</p>
+            <p>
+              <FiPhoneCall className="inline-block mr-2" />
+              0123-456-789
+            </p>
+          </div>
+
+          {/* footer bottom */}
+          <div className="container px-4 pt-6 mx-auto mt-12 border-t border-gray-200 lg:px-0">
+            {/* option+G */}
+            <p>© 2025,CompileTab. All Rights Reserved</p>
+          </div>
         </div>
       </footer>
-      ;
     </>
   );
 };
