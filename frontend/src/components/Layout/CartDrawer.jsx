@@ -1,11 +1,12 @@
 /*
  * @Date: 2025-04-23 21:51:05
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-25 18:30:23
+ * @LastEditTime: 2025-04-25 18:32:59
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Layout/CartDrawer.jsx
  */
-import { useState } from "react";
+
 import { IoMdClose } from "react-icons/io";
+import CartContent from "../Cart/CartContent";
 // 购物车列表
 const CartDrawer = ({ isOpen, toggleDrawer }) => {
   return (
@@ -25,12 +26,7 @@ const CartDrawer = ({ isOpen, toggleDrawer }) => {
         <div className="overflow-y-auto flex-grow p-4">
           <h2 className="mb-4 text-xl font-semibold">Your Cart</h2>
           {/* components for cart contents */}
-          {/* 添加测试内容 */}
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].map((item) => (
-            <div key={item} className="p-4 mb-4 rounded border">
-              测试商品 {item}
-            </div>
-          ))}
+          <CartContent />
         </div>
 
         {/* checkout button fixed at bottom */}
