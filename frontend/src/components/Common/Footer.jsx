@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-25 19:25:13
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-25 19:54:32
+ * @LastEditTime: 2025-04-25 20:07:36
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Common/Footer.jsx
  */
 import React from "react";
@@ -21,7 +21,7 @@ const Footer = () => {
             <p> Sign up and get 10% off on your first order</p>
 
             {/* Newsletter form */}
-            <form className="flex">
+            <form className="flex mt-2">
               <input
                 type="email"
                 placeholder="enter your email..."
@@ -32,6 +32,11 @@ const Footer = () => {
                 className="p-3 w-full text-sm rounded-l-md border-t border-b border-l border-gray-300 transition-all focus:outline-none focus:ring-2 focus:ring-gray-500"
                 required
               />
+              <button
+                type="submit"
+                className="px-6 py-3 text-sm text-white bg-black rounded-r-md transition-all hover:bg-gray-800">
+                Subscribe
+              </button>
             </form>
           </div>
         </div>
