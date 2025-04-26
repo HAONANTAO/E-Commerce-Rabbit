@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-26 19:06:23
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-26 19:13:31
+ * @LastEditTime: 2025-04-26 19:14:37
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/GenderCollectionSection.jsx
  */
 import React from "react";
@@ -25,6 +25,25 @@ const GenderCollectionSection = () => {
             </h2>
             <Link
               to="/collections/all?gender=women"
+              className="text-gray-900 underline">
+              Shop Now
+            </Link>
+          </div>
+        </div>
+
+        {/* mensCollection  */}
+        <div className="relative flex-1">
+          <img
+            src={mensCollectionImage}
+            alt="mensCollectionImage"
+            className="w-full h-[700px] object-cover"
+          />
+          <div className="absolute bottom-8 left-8 p-4 bg-white bg-opacity-90">
+            <h2 className="mb-1 text-2xl font-bold text-gray-900">
+              Man's Collection
+            </h2>
+            <Link
+              to="/collections/all?gender=man"
               className="text-gray-900 underline">
               Shop Now
             </Link>
