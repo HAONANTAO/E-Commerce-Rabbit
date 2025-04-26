@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-26 19:23:01
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-26 20:22:51
+ * @LastEditTime: 2025-04-26 20:31:53
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/NewArrivals.jsx
  */
 import React, { useEffect, useRef, useState } from "react";
@@ -21,8 +21,9 @@ const NewArrivals = () => {
 
   // 滚动实现
   const scroll = (direction) => {
-    // 滚动距离一下是300px
-    const scrollAmount = direction === "left" ? -300 : 300;
+    // 滚动距离一下是300px,是left就是往左边移动
+    const scrollAmount = direction === "left" ? -350 : 350;
+
     // 滚动实现
     scrollRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
   };
@@ -47,9 +48,10 @@ const NewArrivals = () => {
       // 获取左边滚动的距离，只要大于0 说明可以滚动
       setCanScrollLeft(scrollContainer.scrollLeft > 0);
 
-      //  整个内容宽度只要大于左边滚动的距离加上可视宽度，只要大于0 说明可以滚动
+      //  整个内容宽度只要大于左边滚动的距离加上可视宽度，只要大于0 说明可以滚动(但是肯呢个空几个px所以+100)
       setCanScrollRight(
-        scrollContainer.scrollWidth > leftScroll + scrollContainer.clientWidth,
+        scrollContainer.scrollWidth >
+          scrollContainer.scrollLeft + scrollContainer.clientWidth + 100,
       );
     }
   };
@@ -79,13 +81,22 @@ const NewArrivals = () => {
         {/* scroll button */}
         <div className="flex absolute right-0 bottom-[-20px] space-x-2">
           <button
-            onClick={scroll("left")}
-            className="p-2 text-black bg-white rounded border">
+            disabled={!canScrollLeft}
+            onClick={() => scroll("left")}
+            className={`p-2  rounded border ${
+              canScrollLeft
+                ? "text-black bg-white"
+                : "bg-gray-200 text-gray-400 cursor-not-allowed"
+            }`}>
             <FiChevronLeft className="text-2xl" />
           </button>
           <button
-            onClick={scroll("right")}
-            className="p-2 text-black bg-white rounded border">
+            onClick={() => scroll("right")}
+            className={`p-2  rounded border ${
+              canScrollRight
+                ? "text-black bg-white"
+                : "bg-gray-200 text-gray-400 cursor-not-allowed"
+            }`}>
             <FiChevronRight className="text-2xl" />
           </button>
         </div>
