@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-26 18:34:57
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-26 18:35:00
+ * @LastEditTime: 2025-04-26 18:55:51
  * @FilePath: /E-Commerce-Rabbit/frontend/src/pages/Home.jsx
  */
 import React from "react";
@@ -13,7 +13,6 @@ const Home = () => {
       <div>
         <Hero />
       </div>
-      ;
     </>
   );
 };
