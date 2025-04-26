@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-26 19:06:23
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-26 19:14:37
+ * @LastEditTime: 2025-04-26 19:17:12
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/GenderCollectionSection.jsx
  */
 import React from "react";
@@ -10,8 +10,8 @@ import womensCollectionImage from "../../assets/womens-collection.webp";
 import { Link } from "react-router-dom";
 const GenderCollectionSection = () => {
   return (
-    <section className="py-16px-4 lg:px-0">
-      <div className="container flex flex-col gap-8 mx-auto md:flex-row">
+    <section className="mt-12 py-16px-4 lg:px-0">
+      <div className="container flex flex-col gap-6 mx-auto md:flex-row">
         {/* womensCollection  */}
         <div className="relative flex-1">
           <img
