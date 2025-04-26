@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-26 19:23:01
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-26 20:31:53
+ * @LastEditTime: 2025-04-26 20:53:38
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/NewArrivals.jsx
  */
 import React, { useEffect, useRef, useState } from "react";
@@ -42,6 +42,7 @@ const NewArrivals = () => {
       scrollLeft: scrollContainer.scrollLeft,
       clientWidth: scrollContainer.clientWidth,
       containerScrollWidth: scrollContainer.scrollWidth,
+      offsetLeft: scrollContainer.offsetLeft,
     });
 
     if (scrollContainer) {
@@ -68,6 +69,37 @@ const NewArrivals = () => {
     }
   }, []);
 
+  // 鼠标按下 记录位置
+  const handleMouseDown = (e) => {
+    const scrollContainer = scrollRef.current;
+    setIsDragging(true);
+    // 1. e.pageX ：- 鼠标在整个页面上的水平位置坐标- 从页面左边缘开始计算
+    // 2. scrollRef.current.offsetLeft ：- 滚动容器左边缘距离页面左边的距离
+    setStartX(e.pageX - scrollRef.current.offsetLeft);
+    // 记录当前滚动位置，为了在mouseMove中做滚动拖拽
+    setScrollLeft(scrollContainer.scrollLeft);
+  };
+
+  // 移动鼠标 实行拖拽滚动
+  const handleMouseMove = (e) => {
+    const scrollContainer = scrollRef.current;
+    if (!isDragging) return;
+    // 终止点
+    const x = e.pageX - scrollRef.current.offsetLeft;
+    // - 当你向右拖动时（walk 为正数），内容向左滚动（scrollLeft 减小）
+    // - 当你向左拖动时（walk 为负数），内容向右滚动（scrollLeft 增大）
+    // 计算鼠标移动的距离
+    const walk = x - startX;
+    // 设置滚动位置
+    scrollContainer.scrollLeft = scrollLeft - walk;
+  };
+  // 抬起鼠标
+  const handleMouseUp = () => {
+    // 结束移动
+    setIsDragging(false);
+  };
+  // 鼠标离开
+  const handleMouseLeave = () => {};
   return (
     <section>
       {/* top section */}
@@ -105,7 +137,12 @@ const NewArrivals = () => {
       {/* scroll contents */}
       <div
         ref={scrollRef}
-        className="container flex overflow-x-scroll relative mx-auto space-x-6">
+        className="container flex overflow-x-scroll relative mx-auto space-x-6"
+        // 按下鼠标和移动鼠标
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseLeave}>
         {newProducts.map((product, index) => (
           <div
             key={product._id}
@@ -114,6 +151,7 @@ const NewArrivals = () => {
               src={product.images[0].url}
               alt={product.images[0].altText || product.name}
               className="w-full h-[500px] object-cover rounded-lg"
+              draggable={false}
             />
             {/* backdrop-blur-md 磨砂玻璃效果*/}
             <div className="absolute right-0 bottom-0 left-0 p-4 text-white bg-opacity-50 rounded-b-lg backdrop-blur-md">
