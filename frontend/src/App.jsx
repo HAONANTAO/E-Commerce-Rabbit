@@ -4,7 +4,7 @@ import Userlayout from "./components/Layout/Userlayout";
 /*
  * @Date: 2025-04-20 21:08:35
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-22 22:04:56
+ * @LastEditTime: 2025-04-26 18:36:31
  * @FilePath: /E-Commerce-Rabbit/frontend/src/App.jsx
  */
 export default function App() {
@@ -17,8 +17,10 @@ export default function App() {
           v7_relativeSplatPath: true,
         }}>
         <Routes>
+          {/* User Layout */}
           <Route path="/" element={<Userlayout />}>
-            {/* User Layout */}
+            {/* index 在 React Router 中是一个特殊的属性，表示这是父路由的默认子路由。 */}
+            <Route index element={<>Home</>} />
           </Route>
           <Route>{/* Admin Layout */}</Route>
         </Routes>
