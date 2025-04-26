@@ -72,7 +72,7 @@ export const newProducts = [
     price: 120,
     images: [
       {
-        url: "https://picsum.photos/500/500?random=7",
+        url: "https://picsum.photos/500/500?random=8",
         altText: "Stylish Jacket",
       },
     ],

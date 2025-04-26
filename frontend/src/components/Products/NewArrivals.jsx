@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-26 19:23:01
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-26 20:02:10
+ * @LastEditTime: 2025-04-26 20:22:51
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/NewArrivals.jsx
  */
 import React, { useEffect, useRef, useState } from "react";
@@ -15,33 +15,56 @@ const NewArrivals = () => {
   // x位置滚动初始位置
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
+  // 初始化只可以往右边滚动
   const [canScrollRight, setCanScrollRight] = useState(true);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
 
-  // 获取滚动容器
-  const scrollContainer = scrollRef.current;
+  // 滚动实现
+  const scroll = (direction) => {
+    // 滚动距离一下是300px
+    const scrollAmount = direction === "left" ? -300 : 300;
+    // 滚动实现
+    scrollRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+  };
 
-  // updateScrollButtons
   // 按钮显示状态
   const updateScrollButtons = () => {
+    // 获取滚动容器
+    const scrollContainer = scrollRef.current;
+
+    // 打印滚动信息
     // scrollLeft- 元素已经滚动的水平距离 -从左边缘开始计算;
     // clientWidth ：-元素的可视宽度;
     // scrollWidth ：-元素的总内容宽度;
-
+    // {scrollLeft: 0, clientWidth: 1536, containerScrollWidth: 3370}
     console.log({
-      scrollLeft: container.scrollLeft,
-      clientWidth: container.clientWidth,
-      containerScrollWidth: container.scrollWidth,
+      scrollLeft: scrollContainer.scrollLeft,
+      clientWidth: scrollContainer.clientWidth,
+      containerScrollWidth: scrollContainer.scrollWidth,
     });
+
+    if (scrollContainer) {
+      // 获取左边滚动的距离，只要大于0 说明可以滚动
+      setCanScrollLeft(scrollContainer.scrollLeft > 0);
+
+      //  整个内容宽度只要大于左边滚动的距离加上可视宽度，只要大于0 说明可以滚动
+      setCanScrollRight(
+        scrollContainer.scrollWidth > leftScroll + scrollContainer.clientWidth,
+      );
+    }
   };
 
   // 初始化滚动位置
   useEffect(() => {
-    if (container) {
+    // 获取滚动容器
+    const scrollContainer = scrollRef.current;
+
+    if (scrollContainer) {
       // 监听事件
       scrollContainer.addEventListener("scroll", updateScrollButtons);
       updateScrollButtons();
     }
-  }, {});
+  }, []);
 
   return (
     <section>
@@ -55,10 +78,14 @@ const NewArrivals = () => {
 
         {/* scroll button */}
         <div className="flex absolute right-0 bottom-[-20px] space-x-2">
-          <button className="p-2 text-black bg-white rounded border">
+          <button
+            onClick={scroll("left")}
+            className="p-2 text-black bg-white rounded border">
             <FiChevronLeft className="text-2xl" />
           </button>
-          <button className="p-2 text-black bg-white rounded border">
+          <button
+            onClick={scroll("right")}
+            className="p-2 text-black bg-white rounded border">
             <FiChevronRight className="text-2xl" />
           </button>
         </div>
