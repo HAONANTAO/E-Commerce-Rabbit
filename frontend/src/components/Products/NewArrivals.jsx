@@ -1,14 +1,48 @@
 /*
  * @Date: 2025-04-26 19:23:01
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-26 19:50:18
+ * @LastEditTime: 2025-04-26 20:02:10
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/NewArrivals.jsx
  */
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { newProducts } from "../../utils/mockdb";
 import { Link } from "react-router-dom";
 const NewArrivals = () => {
+  // 点击按钮滚动
+  const scrollRef = useRef(null);
+  const [isDragging, setIsDragging] = React.useState(false);
+  // x位置滚动初始位置
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  // 获取滚动容器
+  const scrollContainer = scrollRef.current;
+
+  // updateScrollButtons
+  // 按钮显示状态
+  const updateScrollButtons = () => {
+    // scrollLeft- 元素已经滚动的水平距离 -从左边缘开始计算;
+    // clientWidth ：-元素的可视宽度;
+    // scrollWidth ：-元素的总内容宽度;
+
+    console.log({
+      scrollLeft: container.scrollLeft,
+      clientWidth: container.clientWidth,
+      containerScrollWidth: container.scrollWidth,
+    });
+  };
+
+  // 初始化滚动位置
+  useEffect(() => {
+    if (container) {
+      // 监听事件
+      scrollContainer.addEventListener("scroll", updateScrollButtons);
+      updateScrollButtons();
+    }
+  }, {});
+
   return (
     <section>
       {/* top section */}
@@ -31,7 +65,9 @@ const NewArrivals = () => {
       </div>
 
       {/* scroll contents */}
-      <div className="container flex overflow-x-scroll relative mx-auto space-x-6">
+      <div
+        ref={scrollRef}
+        className="container flex overflow-x-scroll relative mx-auto space-x-6">
         {newProducts.map((product, index) => (
           <div
             key={product._id}
@@ -39,6 +75,7 @@ const NewArrivals = () => {
             <img
               src={product.images[0].url}
               alt={product.images[0].altText || product.name}
+              className="w-full h-[500px] object-cover rounded-lg"
             />
             {/* backdrop-blur-md 磨砂玻璃效果*/}
             <div className="absolute right-0 bottom-0 left-0 p-4 text-white bg-opacity-50 rounded-b-lg backdrop-blur-md">
