@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-26 19:23:01
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-26 20:53:38
+ * @LastEditTime: 2025-04-27 11:25:35
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/NewArrivals.jsx
  */
 import React, { useEffect, useRef, useState } from "react";
@@ -101,7 +101,7 @@ const NewArrivals = () => {
   // 鼠标离开
   const handleMouseLeave = () => {};
   return (
-    <section>
+    <section className="px-4 py-16 lg:px-0">
       {/* top section */}
       <div className="container relative mx-auto mt-10 text-center">
         <h2 className="mb-4 text-3xl font-bold">Explore New Arrivals</h2>
@@ -137,7 +137,11 @@ const NewArrivals = () => {
       {/* scroll contents */}
       <div
         ref={scrollRef}
-        className="container flex overflow-x-scroll relative mx-auto space-x-6"
+        // 1. cursor-grab ：默认状态（未拖拽时）显示一个"抓取"手型光标
+        // cursor-grabbing ：拖拽状态（正在拖拽时）显示一个"抓住"手型光标
+        className={`${
+          isDragging ? "cursor-grabbing" : "cursor-grab"
+        } container flex overflow-x-scroll relative mx-auto space-x-6`}
         // 按下鼠标和移动鼠标
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
