@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-27 11:33:34
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-27 21:27:41
+ * @LastEditTime: 2025-04-27 21:28:52
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/ProductDetails.jsx
  */
 import React, { useEffect, useState } from "react";
@@ -104,7 +104,7 @@ const ProductDetails = () => {
               {/* line-through会在文本上添加一条删除线。原价 */}
               <p className="mb-1 text-lg text-gray-600 line-through">
                 {selectedProducts.originalPrice &&
-                  `${selectedProducts.originalPrice}`}
+                  `$ ${selectedProducts.originalPrice}`}
               </p>
               <p className="mb-2 text-xl text-gray-500">
                 ${selectedProducts.price}
@@ -182,7 +182,7 @@ const ProductDetails = () => {
                     : "hover:bg-gray-900"
                 } px-6 py-2 mb-4 w-full text-white bg-black rounded`}
                 disabled={isButtonDisabled}>
-                ADD TO CART
+                {isButtonDisabled ? "Adding ..." : "ADD TO CART"}
               </button>
 
               {/* Characteristics */}
