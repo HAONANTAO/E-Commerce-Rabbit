@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-27 11:33:34
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-27 20:39:33
+ * @LastEditTime: 2025-04-27 20:43:55
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/ProductDetails.jsx
  */
 import React from "react";
@@ -104,7 +104,21 @@ const ProductDetails = () => {
                 </div>
               </div>
 
-              
+              {/* quantity */}
+              <div className="mb-6">
+                <p className="text-gray-700">Quantity:</p>
+                <div className="flex items-center mt-2 space-x-4">
+                  <button className="px-2 py-1 text-lg bg-gray-200 rounded">
+                    -
+                  </button>
+                  <span className="text-lg">1</span>
+                  <button className="px-2 py-1 text-lg bg-gray-200 rounded">
+                    +
+                  </button>
+                </div>
+              </div>
+
+              {/* add to cart */}
             </div>
           </div>
         </div>
