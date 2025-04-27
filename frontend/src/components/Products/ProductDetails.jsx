@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-27 11:33:34
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-27 21:23:46
+ * @LastEditTime: 2025-04-27 21:27:41
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/ProductDetails.jsx
  */
 import React, { useEffect, useState } from "react";
@@ -31,9 +31,21 @@ const ProductDetails = () => {
   // 加入购物车
   const handleAddToCart = () => {
     if (!selectSize || !selectColor) {
-      toast.error("Please Select Size and Color before adding to cart!");
+      toast.error("Please Select Size and Color before adding to cart!", {
+        duration: 1000,
+      });
       return;
     }
+    // 都选了就可以计入购物车
+    // 先按钮不可用
+    setIsButtonDisabled(true);
+    // 过段时间回复按钮功能
+    setTimeout(() => {
+      toast.success("Added to cart!", {
+        duration: 1000,
+      });
+      setIsButtonDisabled(false);
+    }, 1000);
   };
 
   return (
@@ -164,7 +176,12 @@ const ProductDetails = () => {
               {/* add to cart */}
               <button
                 onClick={() => handleAddToCart()}
-                className="px-6 py-2 mb-4 w-full text-white bg-black rounded">
+                className={`${
+                  isButtonDisabled
+                    ? "cursor-not-allowed opacity-50"
+                    : "hover:bg-gray-900"
+                } px-6 py-2 mb-4 w-full text-white bg-black rounded`}
+                disabled={isButtonDisabled}>
                 ADD TO CART
               </button>
 
