@@ -1,3 +1,5 @@
+// 测试数据
+
 // new arrivals mock data
 export const newProducts = [
   {
@@ -78,3 +80,20 @@ export const newProducts = [
     ],
   },
 ];
+
+export const selectedProducts = {
+  name: "Stylish Jacket",
+  price: 120,
+  originalPrice: 150,
+  description: "This is a stylish jacket",
+  brand: "Nike",
+  material: "Cotton",
+  sizes: ["S", "M", "L"],
+  colors: ["Red", "Blue", "Green"],
+  images: [
+    {
+      url: "https://picsum.photos/500/500?random=1",
+      altText: "Stylish Jacket",
+    },
+  ],
+};
