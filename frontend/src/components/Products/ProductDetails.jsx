@@ -202,6 +202,12 @@ const ProductDetails = () => {
                 </table>
               </div>
             </div>
+
+            <div className="mt-20">
+              <h2 className="mb-4 text-2xl font-medium text-center">
+                You May Also Like...
+              </h2>
+            </div>
           </div>
         </div>
       </div>
