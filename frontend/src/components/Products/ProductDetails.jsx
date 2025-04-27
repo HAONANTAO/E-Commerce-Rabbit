@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-27 11:33:34
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-27 11:45:15
+ * @LastEditTime: 2025-04-27 20:14:18
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/ProductDetails.jsx
  */
 import React from "react";
@@ -20,9 +20,21 @@ const ProductDetails = () => {
                     src={image.url}
                     alt={image.altText || `thumbnails ${index}`}
                     key={index}
+                    className="object-cover w-20 h-20 rounded-lg border cursor-pointer"
                   />
                 </div>
               ))}
+            </div>
+
+            {/* main image */}
+            <div className="md:w-1/2">
+              <div className="mb-4">
+                <img
+                  src={selectedProducts.images[0].url}
+                  alt="Main Product"
+                  className="object-cover w-full h-auto rounded-lg"
+                />
+              </div>
             </div>
           </div>
         </div>
