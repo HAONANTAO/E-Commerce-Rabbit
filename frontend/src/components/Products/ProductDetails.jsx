@@ -1,11 +1,12 @@
 /*
  * @Date: 2025-04-27 11:33:34
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-27 21:17:20
+ * @LastEditTime: 2025-04-27 21:23:46
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/ProductDetails.jsx
  */
 import React, { useEffect, useState } from "react";
 import { selectedProducts } from "../../utils/mockdb";
+import { toast } from "sonner";
 const ProductDetails = () => {
   const [imgUrl, setImgUrl] = useState("");
   const [selectSize, setSelectSize] = useState("");
@@ -18,6 +19,7 @@ const ProductDetails = () => {
     }
   }, [selectedProducts]);
 
+  // 数量加减
   const handleQuantityChange = (action) => {
     if (action === "increment") {
       setQuantity((prevQuantity) => prevQuantity + 1);
@@ -25,6 +27,15 @@ const ProductDetails = () => {
       setQuantity((prevQuantity) => prevQuantity - 1);
     }
   };
+
+  // 加入购物车
+  const handleAddToCart = () => {
+    if (!selectSize || !selectColor) {
+      toast.error("Please Select Size and Color before adding to cart!");
+      return;
+    }
+  };
+
   return (
     <>
       <div className="p-6">
@@ -151,7 +162,9 @@ const ProductDetails = () => {
               </div>
 
               {/* add to cart */}
-              <button className="px-6 py-2 mb-4 w-full text-white bg-black rounded">
+              <button
+                onClick={() => handleAddToCart()}
+                className="px-6 py-2 mb-4 w-full text-white bg-black rounded">
                 ADD TO CART
               </button>
 
