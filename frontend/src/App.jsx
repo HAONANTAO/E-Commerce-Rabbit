@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Userlayout from "./components/Layout/UserLayout";
 import Home from "./pages/Home";
-
+import { Toaster } from "sonner";
 /*
  * @Date: 2025-04-20 21:08:35
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-26 18:54:55
+ * @LastEditTime: 2025-04-27 21:20:57
  * @FilePath: /E-Commerce-Rabbit/frontend/src/App.jsx
  */
 export default function App() {
@@ -17,6 +17,7 @@ export default function App() {
           v7_startTransition: true,
           v7_relativeSplatPath: true,
         }}>
+        <Toaster position="top-center" richColors /> {/* 添加 Toaster 组件 */}
         <Routes>
           {/* User Layout */}
           <Route path="/" element={<Userlayout />}>
