@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-27 11:33:34
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-27 20:43:55
+ * @LastEditTime: 2025-04-27 20:50:40
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/ProductDetails.jsx
  */
 import React from "react";
@@ -119,6 +119,26 @@ const ProductDetails = () => {
               </div>
 
               {/* add to cart */}
+              <button className="px-6 py-2 mb-4 w-full text-white bg-black rounded">
+                ADD TO CART
+              </button>
+
+              {/* Characteristics */}
+              <div className="mt-10 text-gray-700">
+                <h3 className="mb-4 text-xl font-bold">Characteristics</h3>
+                <table className="w-full text-sm text-left text-gray-600">
+                  <tbody>
+                    <tr>
+                      <td className="py-1">Brand</td>
+                      <td className="py-1">{selectedProducts.brand}</td>
+                    </tr>
+                    <tr>
+                      <td className="py-1">Material</td>
+                      <td className="py-1">{selectedProducts.material}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
