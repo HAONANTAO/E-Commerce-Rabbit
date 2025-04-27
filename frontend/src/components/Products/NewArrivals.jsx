@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-26 19:23:01
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-27 11:25:35
+ * @LastEditTime: 2025-04-27 11:29:06
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/NewArrivals.jsx
  */
 import React, { useEffect, useRef, useState } from "react";
@@ -28,7 +28,7 @@ const NewArrivals = () => {
     scrollRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
   };
 
-  // 按钮显示状态
+  // 按钮显示状态 获取位置信息
   const updateScrollButtons = () => {
     // 获取滚动容器
     const scrollContainer = scrollRef.current;
@@ -66,6 +66,11 @@ const NewArrivals = () => {
       // 监听事件
       scrollContainer.addEventListener("scroll", updateScrollButtons);
       updateScrollButtons();
+      // 最佳实践！- 组件从页面中移除时（比如切换路由）- 组件重新渲染，导致 useEffect 需要重新执行时卸载
+      return () => {
+        // 移除事件
+        scrollContainer.removeEventListener("scroll", updateScrollButtons);
+      };
     }
   }, []);
 
@@ -100,6 +105,7 @@ const NewArrivals = () => {
   };
   // 鼠标离开
   const handleMouseLeave = () => {};
+
   return (
     <section className="px-4 py-16 lg:px-0">
       {/* top section */}
