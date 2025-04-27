@@ -95,5 +95,13 @@ export const selectedProducts = {
       url: "https://picsum.photos/500/500?random=1",
       altText: "Stylish Jacket",
     },
+    {
+      url: "https://picsum.photos/500/500?random=2",
+      altText: "Stylish Jacket",
+    },
+    {
+      url: "https://picsum.photos/500/500?random=3",
+      altText: "Stylish Jacket",
+    },
   ],
 };
