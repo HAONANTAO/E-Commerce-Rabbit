@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-27 11:33:34
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-27 21:02:40
+ * @LastEditTime: 2025-04-27 21:06:24
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/ProductDetails.jsx
  */
 import React, { useEffect, useState } from "react";
@@ -25,7 +25,9 @@ const ProductDetails = () => {
                   src={image.url}
                   alt={image.altText || `thumbnails ${index}`}
                   key={index}
-                  className="object-cover w-20 h-20 rounded-lg border cursor-pointer"
+                  className={`${
+                    imgUrl === image.url ? "border-black" : "border-gray-300"
+                  } object-cover w-20 h-20 rounded-lg border cursor-pointer`}
                   onClick={() => setImgUrl(image.url)}
                 />
               ))}
@@ -49,7 +51,10 @@ const ProductDetails = () => {
                   src={image.url}
                   alt={image.altText || `thumbnails ${index}`}
                   key={index}
-                  className="object-cover w-20 h-20 rounded-lg border cursor-pointer"
+                  onClick={() => setImgUrl(image.url)}
+                  className={`${
+                    imgUrl === image.url ? "border-black" : "border-gray-300"
+                  } object-cover w-20 h-20 rounded-lg border cursor-pointer`}
                 />
               ))}
             </div>
