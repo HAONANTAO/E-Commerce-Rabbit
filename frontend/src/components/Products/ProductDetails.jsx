@@ -1,13 +1,17 @@
 /*
  * @Date: 2025-04-27 11:33:34
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-27 21:06:24
+ * @LastEditTime: 2025-04-27 21:09:40
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/ProductDetails.jsx
  */
 import React, { useEffect, useState } from "react";
 import { selectedProducts } from "../../utils/mockdb";
 const ProductDetails = () => {
   const [imgUrl, setImgUrl] = useState("");
+  const [selectSize, setSelectSize] = useState("");
+  const [selectColor, setSelectColor] = useState("");
+  const [quantity, setQuantity] = useState(1);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   useEffect(() => {
     if (selectedProducts?.images?.length > 0) {
       setImgUrl(selectedProducts.images[0].url);
@@ -86,8 +90,13 @@ const ProductDetails = () => {
                 <div className="flex gap-2 mt-2">
                   {selectedProducts.colors.map((col, index) => (
                     <button
+                      onClick={() => setSelectColor(col)}
                       key={index}
-                      className={` w-8 h-8 rounded-full border`}
+                      className={`${
+                        selectColor === col
+                          ? "border-4 border-black "
+                          : "border-gray-300"
+                      } w-8 h-8 rounded-full border`}
                       // 因为背景颜色是动态的
                       style={{
                         backgroundColor: col.toLowerCase(),
