@@ -27,6 +27,10 @@ const ProductGrid = ({ products }) => {
                     className="object-cover w-full h-full rounded-lg"
                   />
                 </div>
+                <h3 className="mb-2 text-sm">{product.name}</h3>
+                <p className="text-sm font-medium tracking-tighter text-gray-500">
+                  $ {product.price}
+                </p>
               </div>
             </Link>
           </>
