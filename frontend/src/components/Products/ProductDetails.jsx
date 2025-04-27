@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-27 11:33:34
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-27 20:14:18
+ * @LastEditTime: 2025-04-27 20:16:51
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/ProductDetails.jsx
  */
 import React from "react";
@@ -35,6 +35,20 @@ const ProductDetails = () => {
                   className="object-cover w-full h-auto rounded-lg"
                 />
               </div>
+            </div>
+
+            {/* mobile thumbnails */}
+            <div className="flex overscroll-x-contain mb-4 space-x-4 md:hidden">
+              {selectedProducts.images.map((image, index) => (
+                <div>
+                  <img
+                    src={image.url}
+                    alt={image.altText || `thumbnails ${index}`}
+                    key={index}
+                    className="object-cover w-20 h-20 rounded-lg border cursor-pointer"
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </div>
