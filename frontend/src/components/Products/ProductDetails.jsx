@@ -1,19 +1,18 @@
 /*
  * @Date: 2025-04-27 11:33:34
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-27 20:53:06
+ * @LastEditTime: 2025-04-27 21:02:40
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/ProductDetails.jsx
  */
-import React, { useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { selectedProducts } from "../../utils/mockdb";
 const ProductDetails = () => {
-  const MainImageRef = useRef(null);
-  const handleMainImageChange = (e) => {
-    const mainImg = MainImageRef.current;
-    // 当用户点击缩略图时，将缩略图的src属性设置为main image的src属性
-
-    mainImg.src = e.target.src;
-  };
+  const [imgUrl, setImgUrl] = useState("");
+  useEffect(() => {
+    if (selectedProducts?.images?.length > 0) {
+      setImgUrl(selectedProducts.images[0].url);
+    }
+  }, [selectedProducts]);
   return (
     <>
       <div className="p-6">
@@ -22,15 +21,13 @@ const ProductDetails = () => {
             {/* left thumbnails缩略图 */}
             <div className="hidden flex-col mr-6 space-y-4 md:flex">
               {selectedProducts.images.map((image, index) => (
-                <div>
-                  <img
-                    src={image.url}
-                    alt={image.altText || `thumbnails ${index}`}
-                    key={index}
-                    className="object-cover w-20 h-20 rounded-lg border cursor-pointer"
-                    onClick={handleMainImageChange}
-                  />
-                </div>
+                <img
+                  src={image.url}
+                  alt={image.altText || `thumbnails ${index}`}
+                  key={index}
+                  className="object-cover w-20 h-20 rounded-lg border cursor-pointer"
+                  onClick={() => setImgUrl(image.url)}
+                />
               ))}
             </div>
 
@@ -38,8 +35,7 @@ const ProductDetails = () => {
             <div className="md:w-1/2">
               <div className="mb-4">
                 <img
-                  ref={MainImageRef}
-                  src={selectedProducts.images[0].url}
+                  src={imgUrl}
                   alt="Main Product"
                   className="object-cover w-full h-auto rounded-lg"
                 />
@@ -49,14 +45,12 @@ const ProductDetails = () => {
             {/* mobile thumbnails */}
             <div className="flex overscroll-x-contain mb-4 space-x-4 md:hidden">
               {selectedProducts.images.map((image, index) => (
-                <div>
-                  <img
-                    src={image.url}
-                    alt={image.altText || `thumbnails ${index}`}
-                    key={index}
-                    className="object-cover w-20 h-20 rounded-lg border cursor-pointer"
-                  />
-                </div>
+                <img
+                  src={image.url}
+                  alt={image.altText || `thumbnails ${index}`}
+                  key={index}
+                  className="object-cover w-20 h-20 rounded-lg border cursor-pointer"
+                />
               ))}
             </div>
 
@@ -86,16 +80,14 @@ const ProductDetails = () => {
                 <p className="text-gray-700">Color:</p>
                 <div className="flex gap-2 mt-2">
                   {selectedProducts.colors.map((col, index) => (
-                    <div>
-                      <button
-                        key={index}
-                        className={` w-8 h-8 rounded-full border`}
-                        // 因为背景颜色是动态的
-                        style={{
-                          backgroundColor: col.toLowerCase(),
-                          filter: "brightness(0.7)",
-                        }}></button>
-                    </div>
+                    <button
+                      key={index}
+                      className={` w-8 h-8 rounded-full border`}
+                      // 因为背景颜色是动态的
+                      style={{
+                        backgroundColor: col.toLowerCase(),
+                        filter: "brightness(0.7)",
+                      }}></button>
                   ))}
                 </div>
               </div>
@@ -105,11 +97,9 @@ const ProductDetails = () => {
                 <p className="text-gray-700">Size:</p>
                 <div className="flex gap-2 mt-2">
                   {selectedProducts.sizes.map((size, index) => (
-                    <div>
-                      <button key={index} className="px-4 py-2 rounded border">
-                        {size}
-                      </button>
-                    </div>
+                    <button key={index} className="px-4 py-2 rounded border">
+                      {size}
+                    </button>
                   ))}
                 </div>
               </div>
