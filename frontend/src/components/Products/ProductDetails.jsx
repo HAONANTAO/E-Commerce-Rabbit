@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-27 11:33:34
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-27 21:12:03
+ * @LastEditTime: 2025-04-27 21:17:20
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/ProductDetails.jsx
  */
 import React, { useEffect, useState } from "react";
@@ -17,6 +17,14 @@ const ProductDetails = () => {
       setImgUrl(selectedProducts.images[0].url);
     }
   }, [selectedProducts]);
+
+  const handleQuantityChange = (action) => {
+    if (action === "increment") {
+      setQuantity((prevQuantity) => prevQuantity + 1);
+    } else if (action === "decrement" && quantity > 1) {
+      setQuantity((prevQuantity) => prevQuantity - 1);
+    }
+  };
   return (
     <>
       <div className="p-6">
@@ -127,11 +135,16 @@ const ProductDetails = () => {
               <div className="mb-6">
                 <p className="text-gray-700">Quantity:</p>
                 <div className="flex items-center mt-2 space-x-4">
-                  <button className="px-2 py-1 text-lg bg-gray-200 rounded">
+                  <button
+                    onClick={() => handleQuantityChange("decrement")}
+                    disabled={quantity === 0}
+                    className="px-2 py-1 text-lg bg-gray-200 rounded">
                     -
                   </button>
-                  <span className="text-lg">1</span>
-                  <button className="px-2 py-1 text-lg bg-gray-200 rounded">
+                  <span className="text-lg">{quantity}</span>
+                  <button
+                    onClick={() => handleQuantityChange("increment")}
+                    className="px-2 py-1 text-lg bg-gray-200 rounded">
                     +
                   </button>
                 </div>
