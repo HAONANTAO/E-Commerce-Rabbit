@@ -13,6 +13,7 @@ export default function App() {
     <>
       {/* react-router-dom */}
       <BrowserRouter
+        // 提前启用 v7 的新功能，取消控制台warning
         future={{
           v7_startTransition: true,
           v7_relativeSplatPath: true,

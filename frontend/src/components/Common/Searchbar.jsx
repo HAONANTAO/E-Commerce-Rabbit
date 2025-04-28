@@ -16,7 +16,7 @@ const Searchbar = () => {
   // 搜索函数
   const handleSearch = (e) => {
     e.preventDefault();
-    console.log(searchTerms);
+    // console.log(searchTerms);
 
     // TODO: 搜索功能
 

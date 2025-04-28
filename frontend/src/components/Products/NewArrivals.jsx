@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-26 19:23:01
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-27 11:29:06
+ * @LastEditTime: 2025-04-28 19:03:59
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/NewArrivals.jsx
  */
 import React, { useEffect, useRef, useState } from "react";
@@ -38,12 +38,12 @@ const NewArrivals = () => {
     // clientWidth ：-元素的可视宽度;
     // scrollWidth ：-元素的总内容宽度;
     // {scrollLeft: 0, clientWidth: 1536, containerScrollWidth: 3370}
-    console.log({
-      scrollLeft: scrollContainer.scrollLeft,
-      clientWidth: scrollContainer.clientWidth,
-      containerScrollWidth: scrollContainer.scrollWidth,
-      offsetLeft: scrollContainer.offsetLeft,
-    });
+    // console.log({
+    //   scrollLeft: scrollContainer.scrollLeft,
+    //   clientWidth: scrollContainer.clientWidth,
+    //   containerScrollWidth: scrollContainer.scrollWidth,
+    //   offsetLeft: scrollContainer.offsetLeft,
+    // });
 
     if (scrollContainer) {
       // 获取左边滚动的距离，只要大于0 说明可以滚动
