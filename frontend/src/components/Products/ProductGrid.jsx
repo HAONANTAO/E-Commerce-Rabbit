@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-27 21:31:26
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-27 21:47:04
+ * @LastEditTime: 2025-04-28 19:10:32
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/ProductGrid.jsx
  */
 import React from "react";
@@ -37,7 +37,6 @@ const ProductGrid = ({ products }) => {
           </Link>
         ))}
       </div>
-      ;
     </>
   );
 };
