@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const FeatureCollection = () => {
   return (
     <>
@@ -19,6 +19,13 @@ const FeatureCollection = () => {
               Discover high-quality clothing that suits your style and
               personality.Designed to make you feel confident and comfortable.
             </p>
+            {/* TODO */}
+            {/* Link其实就是一个按钮的样式 */}
+            <Link
+              to="/collections/all"
+              className="px-6 py-3 text-lg text-white bg-black rounded-lg hover:bg-gray-800">
+              Shop Now
+            </Link>
           </div>
         </div>
       </section>
