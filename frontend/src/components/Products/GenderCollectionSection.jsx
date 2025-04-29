@@ -1,12 +1,12 @@
 /*
  * @Date: 2025-04-26 19:06:23
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-26 19:17:12
+ * @LastEditTime: 2025-04-29 20:27:59
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/GenderCollectionSection.jsx
  */
 import React from "react";
-import mensCollectionImage from "../../assets/mens-collection.webp";
-import womensCollectionImage from "../../assets/womens-collection.webp";
+import mensCollectionImage from "@/assets/mens-collection.webp";
+import womensCollectionImage from "@/assets/womens-collection.webp";
 import { Link } from "react-router-dom";
 const GenderCollectionSection = () => {
   return (

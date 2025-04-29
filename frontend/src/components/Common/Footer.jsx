@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-25 19:25:13
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-25 20:49:42
+ * @LastEditTime: 2025-04-29 20:23:05
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Common/Footer.jsx
  */
 import React from "react";
@@ -148,7 +148,7 @@ const Footer = () => {
         <div className="container px-4 pt-6 mx-auto mt-12 border-t border-gray-200 lg:px-0">
           {/* option+G */}
           <p className="text-sm tracking-tighter text-center text-gray-500">
-            © 2025,CompileTab. All Rights Reserved
+            © 2025 copyright. All Rights Reserved
           </p>
         </div>
       </footer>

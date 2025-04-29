@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import featured from "@/assets/featured.webp";
 const FeatureCollection = () => {
   return (
     <>
       <section className="px-4 py-16 lg:px-0">
-        {/* flex-col-reverse 因为从右边写起来*/}
+        {/* flex-col-reverse mobile version 先图片*/}
         <div className="container flex flex-col-reverse items-center mx-auto bg-green-50 rounded-3xl lg:flex-row">
           {/* left content */}
           <div className="p-8 text-center lg:w-1/2 lg:text-left">
@@ -26,6 +27,11 @@ const FeatureCollection = () => {
               className="px-6 py-3 text-lg text-white bg-black rounded-lg hover:bg-gray-800">
               Shop Now
             </Link>
+          </div>
+
+          {/* right component */}
+          <div className="lg:w-1/2">
+            <img src={featured} alt="" />
           </div>
         </div>
       </section>
