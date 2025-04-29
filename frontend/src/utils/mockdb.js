@@ -201,3 +201,41 @@ export const topWearsWomen = [
     ],
   },
 ];
+
+// mock data for the myorderpage
+export const myOrders = [
+  {
+    _id: 1,
+    name: "Stylish Jacket1",
+    createdAt: "2021-01-01",
+    shippingAddress: {
+      city: "New York",
+      country: "USA",
+    },
+    orderItems: [
+      {
+        name: "Stylish Jacket",
+        image: "https://picsum.photos/500/500?random=1",
+      },
+    ],
+    totalPrice: 120,
+    isPaid: true,
+  },
+  {
+    _id: 2,
+    name: "Stylish Jacket2",
+    createdAt: "2021-02-01",
+    shippingAddress: {
+      city: "New York",
+      country: "USA",
+    },
+    orderItems: [
+      {
+        name: "Stylish Jacket2",
+        image: "https://picsum.photos/500/500?random=2",
+      },
+    ],
+    totalPrice: 123,
+    isPaid: true,
+  },
+];
