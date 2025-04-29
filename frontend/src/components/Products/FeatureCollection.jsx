@@ -31,7 +31,11 @@ const FeatureCollection = () => {
 
           {/* right component */}
           <div className="lg:w-1/2">
-            <img src={featured} alt="" />
+            <img
+              src={featured}
+              alt="Feature Collection"
+              className="object-contain w-full h-full lg:rounded-tr-3xl lg:rounded-br-3xl"
+            />
           </div>
         </div>
       </section>
