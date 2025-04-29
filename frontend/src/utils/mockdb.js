@@ -236,6 +236,6 @@ export const myOrders = [
       },
     ],
     totalPrice: 123,
-    isPaid: true,
+    isPaid: false,
   },
 ];
