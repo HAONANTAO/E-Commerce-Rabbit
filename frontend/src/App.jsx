@@ -3,10 +3,11 @@ import Userlayout from "@/components/Layout/UserLayout";
 import Home from "./pages/Home";
 import { Toaster } from "sonner";
 import Login from "@/components/Products/Login";
+import Register from "@/components/Products/Register";
 /*
  * @Date: 2025-04-20 21:08:35
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-29 21:00:50
+ * @LastEditTime: 2025-04-29 21:11:56
  * @FilePath: /E-Commerce-Rabbit/frontend/src/App.jsx
  */
 export default function App() {
@@ -27,6 +28,7 @@ export default function App() {
             后面的子路由默认outlet，index是默认的首页面 */}
             <Route index element={<Home />} />
             <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
           </Route>
           <Route>{/* Admin Layout */}</Route>
         </Routes>
