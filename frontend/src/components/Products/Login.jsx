@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-29 20:44:35
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-29 21:11:45
+ * @LastEditTime: 2025-04-29 21:28:57
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/Login.jsx
  */
 /*
@@ -17,12 +17,18 @@ import LoginImage from "@/assets/login.webp";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(email, password);
+  };
   return (
     <>
       <div className="flex">
-        <div className="flex flex-col justify-center p-8 w-full md:w-1/2 md:p-12">
+        <div className="flex flex-col justify-center items-center p-8 w-full md:w-1/2 md:p-12">
           {/* 主页面 */}
-          <form className="p-8 w-full max-w-md bg-white rounded-lg border shadow-sm">
+          <form
+            className="p-8 w-full max-w-md bg-white rounded-lg border shadow-sm"
+            onSubmit={handleSubmit}>
             <div className="flex justify-center mb-6">
               <h2 className="text-xl font-medium">Rabbit</h2>
             </div>
@@ -37,7 +43,7 @@ const Login = () => {
             <div className="mb-4">
               {/* 用于为表单控件（如输入框、复选框等）创建说明标签。 */}
 
-              <label for="" className="block mb-2 text-sm font-semibold">
+              <label htmlFor="" className="block mb-2 text-sm font-semibold">
                 Email
               </label>
               <input
@@ -51,7 +57,7 @@ const Login = () => {
             </div>
             {/* password */}
             <div className="mb-4">
-              <label for="" className="block mb-2 text-sm font-semibold">
+              <label htmlFor="" className="block mb-2 text-sm font-semibold">
                 Password
               </label>
               <input
