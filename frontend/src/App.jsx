@@ -4,10 +4,11 @@ import Home from "./pages/Home";
 import { Toaster } from "sonner";
 import Login from "@/components/Products/Login";
 import Register from "@/components/Products/Register";
+import Profile from "@/pages/Profile";
 /*
  * @Date: 2025-04-20 21:08:35
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-29 21:11:56
+ * @LastEditTime: 2025-04-29 21:31:07
  * @FilePath: /E-Commerce-Rabbit/frontend/src/App.jsx
  */
 export default function App() {
@@ -29,6 +30,8 @@ export default function App() {
             <Route index element={<Home />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
+            <Route path="profile" element={<Profile />}></Route>
+            <Route>404</Route>
           </Route>
           <Route>{/* Admin Layout */}</Route>
         </Routes>
