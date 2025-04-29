@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-21 20:49:04
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-25 19:26:29
+ * @LastEditTime: 2025-04-29 22:20:45
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Common/Navbar.jsx
  */
 import React from "react";
@@ -35,7 +35,7 @@ const Navbar = () => {
         {/* center navigation links */}
         <div className="hidden space-x-4 md:flex">
           <Link
-            to="#"
+            to="/collections/all"
             className="text-sm font-medium text-gray-700 uppercase hover:text-black">
             Men
           </Link>
