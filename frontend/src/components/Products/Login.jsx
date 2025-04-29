@@ -1,11 +1,12 @@
 /*
  * @Date: 2025-04-29 20:44:35
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-29 20:54:00
+ * @LastEditTime: 2025-04-29 21:11:05
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/Login.jsx
  */
 import React, { useState } from "react";
-
+import { Link } from "react-router-dom";
+import LoginImage from "@/assets/login.webp";
 // 登录页面
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -56,7 +57,32 @@ const Login = () => {
                 placeholder="Enter your password..."
               />
             </div>
+
+            {/*   SignIn button */}
+            <button
+              className="p-2 w-full font-semibold text-white bg-black rounded-lg transition hover:bg-gray-700"
+              type="submit">
+              SignIn
+            </button>
+            <p className="mt-6 text-sm text-center">
+              Don't have an account?{"     "}
+              <Link to="/register" className="text-blue-500">
+                Register
+              </Link>
+            </p>
+            {/* TODO: */}
           </form>
+        </div>
+
+        {/* mobile version hidden */}
+        <div className="hidden w-1/2 bg-gray-800 md:block">
+          <div className="flex flex-col justify-center items-center h-full">
+            <img
+              src={LoginImage}
+              alt="Login to account"
+              className="h-[750px] w-full object-cover"
+            />
+          </div>
         </div>
       </div>
     </>
