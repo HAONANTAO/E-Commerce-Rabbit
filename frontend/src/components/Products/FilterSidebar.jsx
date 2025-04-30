@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-30 20:08:25
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-30 21:20:35
+ * @LastEditTime: 2025-04-30 21:26:24
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/FilterSidebar.jsx
  */
 import React, { useEffect, useState } from "react";
@@ -155,7 +155,28 @@ const FilterSidebar = () => {
       </div>
 
       {/* Price Range filter */}
-      
+      <div className="mb-8">
+        <label for="" className="block mb-2 font-medium text-gray-600">
+          Price Range
+        </label>
+        {/* 范围 */}
+        {/* 如果不使用 appearance-none ：
+        - Chrome 会显示蓝色的滑块
+        - Firefox 会显示灰色的滑块
+        - Safari 会有自己的样式
+        使用后：移除所有默认样式 */}
+        <input
+          type="range"
+          name="priceRange"
+          min={0}
+          max={100}
+          className="w-full h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer"
+        />
+        <div className="flex justify-between mt-2 text-gray-600">
+          <span>$0</span>
+          <span>${priceRange[1]}</span>
+        </div>
+      </div>
     </div>
   );
 };
