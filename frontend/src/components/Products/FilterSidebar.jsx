@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-30 20:08:25
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-30 21:57:31
+ * @LastEditTime: 2025-04-30 22:01:31
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/FilterSidebar.jsx
  */
 import React, { useEffect, useState } from "react";
@@ -72,7 +72,7 @@ const FilterSidebar = () => {
 
     console.log(params);
     // 跳转路由URL
-    // 2C = ","
+    // %2C = ","
     //localhost:5173/collections/all?category=Top+Wear&gender=&color=&size=XS%2CS&material=&brand=&minPrice=0&maxPrice=100
     http: navigate(`?${params.toString()}`);
   };
@@ -106,6 +106,7 @@ const FilterSidebar = () => {
             <input
               type="radio"
               name="category"
+              checked={filter.category === category}
               value={category}
               onChange={handleFilterChange}
               className="mr-2 w-4 h-4 text-blue-500 border-gray-300 focus:ring-blue-400"
@@ -123,6 +124,7 @@ const FilterSidebar = () => {
             {/* 单选框 */}
             <input
               type="radio"
+              checked={filter.gender === gender}
               name="gender"
               value={gender}
               onChange={handleFilterChange}
@@ -141,11 +143,18 @@ const FilterSidebar = () => {
           {colors.map((color, index) => (
             <button
               key={color}
+              type="button"
               name="color"
               value={color}
               onClick={handleFilterChange}
-              className="w-8 h-8 rounded-full border border-gray-300 transition cursor-pointer hover:scale-105"
-              style={{ backgroundColor: color.toLowerCase() }}></button>
+              // - 添加白色内边框 border-2 border-white 添加蓝色外轮廓 outline outline-2 outline-blue-500
+              className={`w-8 h-8 rounded-full transition cursor-pointer hover:scale-105 ${
+                filter.color === color
+                  ? "border-2 border-white outline outline-2 outline-blue-500"
+                  : "border border-gray-300"
+              }`}
+              style={{ backgroundColor: color.toLowerCase() }}
+            />
           ))}
         </div>
       </div>
@@ -158,6 +167,7 @@ const FilterSidebar = () => {
             {/* 多选框 */}
             <input
               type="checkbox"
+              checked={filter.size.includes(size)}
               name="size"
               value={size}
               onChange={handleFilterChange}
@@ -176,6 +186,7 @@ const FilterSidebar = () => {
             {/* 多选框 */}
             <input
               type="checkbox"
+              checked={filter.material.includes(material)}
               name="material"
               value={material}
               onChange={handleFilterChange}
@@ -194,6 +205,7 @@ const FilterSidebar = () => {
             {/* 多选框 */}
             <input
               type="checkbox"
+              checked={filter.brand.includes(brand)}
               name="brand"
               value={brand}
               onChange={handleFilterChange}
