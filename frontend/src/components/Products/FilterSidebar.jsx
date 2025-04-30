@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-30 20:08:25
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-30 20:47:46
+ * @LastEditTime: 2025-04-30 20:56:41
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/FilterSidebar.jsx
  */
 import React, { useEffect, useState } from "react";
@@ -42,12 +42,35 @@ const FilterSidebar = () => {
       color: params.color || "",
       size: params.size ? params.size.split(",") : [],
       material: params.material ? params.material.split(",") : [],
-      brand: params.brand? params.brand.split(",") : [],
+      brand: params.brand ? params.brand.split(",") : [],
       minPrice: params.minPrice || 0,
       maxPrice: params.maxPrice || 100,
     });
-  }, []);
-  return <div>FilterSidebar FilterSidebar</div>;
+    setPriceRange([0, params.maxPrice || 100]);
+  }, [searchParams]);
+  return (
+    <div className="p-4">
+      <h3 className="mb-4 text-xl font-medium text-gray-800">Filter</h3>
+
+      {/* Category part */}
+      <div className="mb-6">
+        <label htmlFor="" className="block mb-2 font-medium text-gray-600">
+          Category
+        </label>
+        {categories.map((category, index) => (
+          <div key={category} className="flex items-center mb-1">
+            {/* 单选框 */}
+            <input
+              type="radio"
+              name="category"
+              className="mr-2 w-4 h-4 text-blue-500 border-gray-300 focus:ring-blue-400"
+            />
+            <span className="text-gray-700">{category}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default FilterSidebar;
