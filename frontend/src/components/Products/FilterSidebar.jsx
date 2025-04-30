@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-30 20:08:25
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-30 22:01:31
+ * @LastEditTime: 2025-04-30 22:04:00
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/FilterSidebar.jsx
  */
 import React, { useEffect, useState } from "react";
@@ -147,11 +147,9 @@ const FilterSidebar = () => {
               name="color"
               value={color}
               onClick={handleFilterChange}
-              // - 添加白色内边框 border-2 border-white 添加蓝色外轮廓 outline outline-2 outline-blue-500
-              className={`w-8 h-8 rounded-full transition cursor-pointer hover:scale-105 ${
-                filter.color === color
-                  ? "border-2 border-white outline outline-2 outline-blue-500"
-                  : "border border-gray-300"
+              //出现一个蓝色的发光轮廓
+              className={`w-8 h-8 rounded-full transition cursor-pointer hover:scale-105 border border-gray-300 ${
+                filter.color === color ? "ring-2 ring-blue-500" : ""
               }`}
               style={{ backgroundColor: color.toLowerCase() }}
             />
