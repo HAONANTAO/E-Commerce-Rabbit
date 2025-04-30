@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-29 22:17:20
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-30 20:14:43
+ * @LastEditTime: 2025-04-30 20:18:41
  * @FilePath: /E-Commerce-Rabbit/frontend/src/pages/CollectionPage.jsx
  */
 import React, { useEffect, useRef, useState } from "react";
@@ -27,6 +27,10 @@ const CollectionPage = () => {
   useEffect(() => {
     // add event listener for clicks
     document.addEventListener("mousedown", handleClickOutside);
+    // 返回清理函数
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
   useEffect(() => {
     // 模拟后端拿数据
@@ -39,12 +43,16 @@ const CollectionPage = () => {
       {/* mobile filter button */}
       <button
         type="button"
+        onClick={toggleSidebar}
         className="flex justify-center items-center px-2 border lg:hidden">
         <FaFilter className="mr-2" />
       </button>
 
       {/* filter sidebar */}
-      <div ref={SidebarRef}>
+      <div
+        ref={SidebarRef}
+        // translate-x-0 会在关闭的时候回到原位
+        className={`${isSidebarOpen ? "translate-x-0" : "translate-x-full"}`}>
         <FilterSidebar />
       </div>
     </div>
