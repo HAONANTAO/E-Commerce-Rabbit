@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-30 20:08:25
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-30 20:56:41
+ * @LastEditTime: 2025-04-30 21:14:40
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/FilterSidebar.jsx
  */
 import React, { useEffect, useState } from "react";
@@ -52,7 +52,7 @@ const FilterSidebar = () => {
     <div className="p-4">
       <h3 className="mb-4 text-xl font-medium text-gray-800">Filter</h3>
 
-      {/* Category part */}
+      {/* Category filter */}
       <div className="mb-6">
         <label htmlFor="" className="block mb-2 font-medium text-gray-600">
           Category
@@ -68,6 +68,39 @@ const FilterSidebar = () => {
             <span className="text-gray-700">{category}</span>
           </div>
         ))}
+      </div>
+
+      {/* gender filter */}
+      <div className="mb-6">
+        <label htmlFor="" className="block mb-2 font-medium text-gray-600">
+          Gender
+        </label>
+        {genders.map((gender, index) => (
+          <div key={gender} className="flex items-center mb-1">
+            {/* 单选框 */}
+            <input
+              type="radio"
+              name="gender"
+              className="mr-2 w-4 h-4 text-blue-500 border-gray-300 focus:ring-blue-400"
+            />
+            <span className="text-gray-700">{gender}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* colors filter */}
+      <div className="mb-6">
+        <label className="block mb-2 font-medium text-gray-600">Color</label>
+        {/* flex-wrap : 允许项目在空间不足时换行 */}
+        <div className="flex flex-wrap gap-2">
+          {colors.map((color, index) => (
+            <button
+              key={color}
+              name="color"
+              className="w-8 h-8 rounded-full border border-gray-300 transition cursor-pointer hover:scale-105"
+              style={{ backgroundColor: color.toLowerCase() }}></button>
+          ))}
+        </div>
       </div>
     </div>
   );
