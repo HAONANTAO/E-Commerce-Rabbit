@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-29 22:17:20
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-30 20:18:41
+ * @LastEditTime: 2025-04-30 20:28:53
  * @FilePath: /E-Commerce-Rabbit/frontend/src/pages/CollectionPage.jsx
  */
 import React, { useEffect, useRef, useState } from "react";
@@ -41,19 +41,31 @@ const CollectionPage = () => {
   return (
     <div className="flex flex-col lg:flex-row">
       {/* mobile filter button */}
+
       <button
         type="button"
         onClick={toggleSidebar}
         className="flex justify-center items-center px-2 border lg:hidden">
-        <FaFilter className="mr-2" />
+        <FaFilter className="mr-2" /> Filters
       </button>
 
       {/* filter sidebar */}
       <div
         ref={SidebarRef}
         // translate-x-0 会在关闭的时候回到原位
-        className={`${isSidebarOpen ? "translate-x-0" : "translate-x-full"}`}>
+        // 在侧边栏中使用 inset-y-0 的作用： 让侧边栏垂直方向撑满整个视口
+
+        // - 小屏幕时：侧边栏可以滑入滑出（通过 translate-x-full 控制）
+        // - 大屏幕时：侧边栏永远在左侧不会被隐藏不受 isSidebarOpen 状态影响
+        className={`${
+          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+        } fixed inset-y-0 z-999 left-0 w-64 bg-white overflow-y-auto  transition-transform duration-300 lg:static lg:translate-x-0`}>
         <FilterSidebar />
+      </div>
+      <div className="flex-grow p-4">
+        <h2 className="mb-4 text-2xl uppercase">All Collection</h2>
+
+        {/* sortBy options */}
       </div>
     </div>
   );
