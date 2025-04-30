@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-30 20:08:25
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-30 21:26:24
+ * @LastEditTime: 2025-04-30 21:43:16
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/FilterSidebar.jsx
  */
 import React, { useEffect, useState } from "react";
@@ -29,6 +29,28 @@ const FilterSidebar = () => {
   });
   const [priceRange, setPriceRange] = useState([0, 100]);
 
+  const handleFilterChange = (e) => {
+    // 解构赋值
+    const { name, value, checked, type } = e.target;
+    // {name: 'category', value: 'Top Wear', checked: true, type: 'radio'}
+
+    let newFilter = { ...filter };
+    // 多选框有多个数值存下来
+    if (type === "checkbox") {
+      if (checked) {
+        newFilter[name] = [...newFilter[name], value];
+      } else {
+        // 是多选框 但是不checked 就把它从数组中删除
+        newFilter[name] = newFilter[name].filter((item) => item !== value);
+      }
+    } // 单选框 只要一个
+    else {
+      newFilter[name] = value;
+    }
+    // 重置filterOptions内容
+    setFilter(newFilter);
+    console.log(newFilter);
+  };
   // 设置可选择的过滤参数
 
   // 拿到过滤的具体数据
@@ -54,15 +76,15 @@ const FilterSidebar = () => {
 
       {/* Category filter */}
       <div className="mb-6">
-        <label htmlFor="" className="block mb-2 font-medium text-gray-600">
-          Category
-        </label>
+        <label className="block mb-2 font-medium text-gray-600">Category</label>
         {categories.map((category, index) => (
           <div key={category} className="flex items-center mb-1">
             {/* 单选框 */}
             <input
               type="radio"
               name="category"
+              value={category}
+              onChange={handleFilterChange}
               className="mr-2 w-4 h-4 text-blue-500 border-gray-300 focus:ring-blue-400"
             />
             <span className="text-gray-700">{category}</span>
@@ -72,15 +94,15 @@ const FilterSidebar = () => {
 
       {/* gender filter */}
       <div className="mb-6">
-        <label htmlFor="" className="block mb-2 font-medium text-gray-600">
-          Gender
-        </label>
+        <label className="block mb-2 font-medium text-gray-600">Gender</label>
         {genders.map((gender, index) => (
           <div key={gender} className="flex items-center mb-1">
             {/* 单选框 */}
             <input
               type="radio"
               name="gender"
+              value={gender}
+              onChange={handleFilterChange}
               className="mr-2 w-4 h-4 text-blue-500 border-gray-300 focus:ring-blue-400"
             />
             <span className="text-gray-700">{gender}</span>
@@ -97,6 +119,8 @@ const FilterSidebar = () => {
             <button
               key={color}
               name="color"
+              value={color}
+              onClick={handleFilterChange}
               className="w-8 h-8 rounded-full border border-gray-300 transition cursor-pointer hover:scale-105"
               style={{ backgroundColor: color.toLowerCase() }}></button>
           ))}
@@ -112,7 +136,8 @@ const FilterSidebar = () => {
             <input
               type="checkbox"
               name="size"
-              value=""
+              value={size}
+              onChange={handleFilterChange}
               className="mr-2 w-4 h-4 text-blue-500 border-gray-300 focus:ring-blue-400"
             />
             <span className="text-gray-700">{size}</span>
@@ -129,7 +154,8 @@ const FilterSidebar = () => {
             <input
               type="checkbox"
               name="material"
-              value=""
+              value={material}
+              onChange={handleFilterChange}
               className="mr-2 w-4 h-4 text-blue-500 border-gray-300 focus:ring-blue-400"
             />
             <span className="text-gray-700">{material}</span>
@@ -146,7 +172,8 @@ const FilterSidebar = () => {
             <input
               type="checkbox"
               name="brand"
-              value=""
+              value={brand}
+              onChange={handleFilterChange}
               className="mr-2 w-4 h-4 text-blue-500 border-gray-300 focus:ring-blue-400"
             />
             <span className="text-gray-700">{brand}</span>
@@ -156,7 +183,7 @@ const FilterSidebar = () => {
 
       {/* Price Range filter */}
       <div className="mb-8">
-        <label for="" className="block mb-2 font-medium text-gray-600">
+        <label className="block mb-2 font-medium text-gray-600">
           Price Range
         </label>
         {/* 范围 */}
