@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-30 20:08:25
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-30 21:14:40
+ * @LastEditTime: 2025-04-30 21:20:35
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/FilterSidebar.jsx
  */
 import React, { useEffect, useState } from "react";
@@ -102,6 +102,60 @@ const FilterSidebar = () => {
           ))}
         </div>
       </div>
+
+      {/* Size filter */}
+      <div className="mb-6">
+        <label className="block mb-2 font-medium text-gray-600">Size</label>
+        {sizes.map((size, index) => (
+          <div className="flex items-center mb-1" key={size}>
+            {/* 多选框 */}
+            <input
+              type="checkbox"
+              name="size"
+              value=""
+              className="mr-2 w-4 h-4 text-blue-500 border-gray-300 focus:ring-blue-400"
+            />
+            <span className="text-gray-700">{size}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* Material filter */}
+      <div className="mb-6">
+        <label className="block mb-2 font-medium text-gray-600">Material</label>
+        {materials.map((material, index) => (
+          <div className="flex items-center mb-1" key={material}>
+            {/* 多选框 */}
+            <input
+              type="checkbox"
+              name="material"
+              value=""
+              className="mr-2 w-4 h-4 text-blue-500 border-gray-300 focus:ring-blue-400"
+            />
+            <span className="text-gray-700">{material}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* Brand filter */}
+      <div className="mb-6">
+        <label className="block mb-2 font-medium text-gray-600">Brand</label>
+        {brands.map((brand, index) => (
+          <div className="flex items-center mb-1" key={brand}>
+            {/* 多选框 */}
+            <input
+              type="checkbox"
+              name="brand"
+              value=""
+              className="mr-2 w-4 h-4 text-blue-500 border-gray-300 focus:ring-blue-400"
+            />
+            <span className="text-gray-700">{brand}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* Price Range filter */}
+      
     </div>
   );
 };
