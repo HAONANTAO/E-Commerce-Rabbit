@@ -1,11 +1,11 @@
 /*
  * @Date: 2025-04-30 20:08:25
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-30 21:43:16
+ * @LastEditTime: 2025-04-30 21:57:31
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/FilterSidebar.jsx
  */
 import React, { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import {
   categories,
   genders,
@@ -15,6 +15,7 @@ import {
   brands,
 } from "@/utils/staticData.js";
 const FilterSidebar = () => {
+  const navigate = useNavigate();
   // 专门用于处理 URL 中问号（?）后面的参数。
   const [searchParams, setSearchParams] = useSearchParams();
   const [filter, setFilter] = useState({
@@ -29,6 +30,7 @@ const FilterSidebar = () => {
   });
   const [priceRange, setPriceRange] = useState([0, 100]);
 
+  // 过滤条件改变
   const handleFilterChange = (e) => {
     // 解构赋值
     const { name, value, checked, type } = e.target;
@@ -49,10 +51,31 @@ const FilterSidebar = () => {
     }
     // 重置filterOptions内容
     setFilter(newFilter);
-    console.log(newFilter);
+    updateURLParams(newFilter);
   };
-  // 设置可选择的过滤参数
 
+  // 创建URL过滤参数
+  const updateURLParams = (newFilters) => {
+    const params = new URLSearchParams();
+    // 遍历所有键值对的keyValue
+    Object.keys(newFilters).forEach((key) => {
+      // 如果是数组 就用逗号连接
+      if (Array.isArray(newFilters[key]) && newFilters[key].length > 0) {
+        // set是覆盖
+        params.append(key, newFilters[key].join(","));
+      } else {
+        params.append(key, newFilters[key]);
+      }
+    });
+    //  setSearchParams() ： 用于更新 URL 中的查询参数。
+    setSearchParams(params);
+
+    console.log(params);
+    // 跳转路由URL
+    // 2C = ","
+    //localhost:5173/collections/all?category=Top+Wear&gender=&color=&size=XS%2CS&material=&brand=&minPrice=0&maxPrice=100
+    http: navigate(`?${params.toString()}`);
+  };
   // 拿到过滤的具体数据
   useEffect(() => {
     // 2. Object.fromEntries() ： 将键值对数组转换为对象;
