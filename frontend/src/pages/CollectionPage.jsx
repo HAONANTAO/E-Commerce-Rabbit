@@ -8,6 +8,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { topWearsWomen } from "@/utils/mockdb.js";
 import { FaFilter } from "react-icons/fa";
 import FilterSidebar from "@/components/Products/FilterSidebar";
+import SortOptions from "@/components/Products/SortOptions";
+import ProductGrid from "@/components/Products/ProductGrid";
 const CollectionPage = () => {
   const [products, setProducts] = useState([]);
   const SidebarRef = useRef(null);
@@ -66,6 +68,9 @@ const CollectionPage = () => {
         <h2 className="mb-4 text-2xl uppercase">All Collection</h2>
 
         {/* sortBy options */}
+        <SortOptions />
+        {/* products grid */}
+        <ProductGrid products={products} />
       </div>
     </div>
   );
