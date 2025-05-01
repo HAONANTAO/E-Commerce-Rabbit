@@ -235,7 +235,7 @@ const FilterSidebar = () => {
         <input
           type="range"
           name="priceRange"
-          // 最大值
+          // 最大值 
           value={priceRange[1]}
           onChange={handlePriceChange}
           min={0}
