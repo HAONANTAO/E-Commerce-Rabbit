@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-05-01 20:44:23
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-01 21:42:52
+ * @LastEditTime: 2025-05-01 21:44:23
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Cart/CheckOut.jsx
  */
 import React, { useState } from "react";
@@ -20,13 +20,20 @@ const CheckOut = () => {
     country: "",
     phone: " ",
   });
+
+  const handleCheckOut = (e) => {
+    e.preventDefault();
+    // 生成随机的checkoutId
+    const randomId = Math.floor(Math.random() * 1000000);
+    setCheckoutId(randomId);
+  };
   return (
     <div className="grid grid-cols-1 gap-2 px-6 py-10 mx-auto max-w-7xl tracking-tighter lg:grid-cols-2">
       {/* left 左边地址 */}
       <div className="p-6 bg-white rounded-lg">
         <h2 className="mb-6 text-2xl uppercase">CheckOut</h2>
         {/* 地址表格 */}
-        <form>
+        <form onSubmit={handleCheckOut}>
           <h3 className="mb-4 text-lg">Contact Details</h3>
 
           {/* email */}
@@ -56,7 +63,7 @@ const CheckOut = () => {
                     firstName: e.target.value,
                   })
                 }
-                require
+                required
                 className="p-2 w-full rounded border"
               />
             </div>
@@ -74,7 +81,7 @@ const CheckOut = () => {
                     lastName: e.target.value,
                   })
                 }
-                require
+                required
                 className="p-2 w-full rounded border"
               />
             </div>
@@ -92,7 +99,7 @@ const CheckOut = () => {
                   address: e.target.value,
                 })
               }
-              require
+              required
               className="p-2 w-full rounded border"
             />
           </div>
@@ -111,7 +118,7 @@ const CheckOut = () => {
                     city: e.target.value,
                   })
                 }
-                require
+                required
                 className="p-2 w-full rounded border"
               />
             </div>
@@ -129,7 +136,7 @@ const CheckOut = () => {
                     postalCode: e.target.value,
                   })
                 }
-                require
+                required
                 className="p-2 w-full rounded border"
               />
             </div>
@@ -147,7 +154,7 @@ const CheckOut = () => {
                   country: e.target.value,
                 })
               }
-              require
+              required
               className="p-2 w-full rounded border"
             />
           </div>
@@ -164,7 +171,7 @@ const CheckOut = () => {
                   phone: e.target.value,
                 })
               }
-              require
+              required
               className="p-2 w-full rounded border"
             />
           </div>
