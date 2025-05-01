@@ -1,12 +1,13 @@
 /*
  * @Date: 2025-05-01 20:44:23
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-01 21:44:23
+ * @LastEditTime: 2025-05-01 21:59:33
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Cart/CheckOut.jsx
  */
 import React, { useState } from "react";
 import { checkoutCart as cart } from "@/utils/mockdb";
 import { useNavigate } from "react-router-dom";
+import PayPalButton from "@/components/Cart/PaypalButton";
 const CheckOut = () => {
   const navigate = useNavigate();
   const [checkoutId, setCheckoutId] = useState(null);
@@ -26,6 +27,11 @@ const CheckOut = () => {
     // 生成随机的checkoutId
     const randomId = Math.floor(Math.random() * 1000000);
     setCheckoutId(randomId);
+  };
+
+  const handlePaymentSuccess = (details) => {
+    console.log("payment good", details);
+    navigate("/order-confirmation")
   };
   return (
     <div className="grid grid-cols-1 gap-2 px-6 py-10 mx-auto max-w-7xl tracking-tighter lg:grid-cols-2">
@@ -187,6 +193,13 @@ const CheckOut = () => {
               <div>
                 <h3 className="mb-4 text-lg">Pay with PayPal</h3>
                 {/* Paypal component when click */}
+                <PayPalButton
+                  amount={100}
+                  onSuccess={handlePaymentSuccess}
+                  onError={(err) => {
+                    alert("Payment failed! Please try again.");
+                  }}
+                />
               </div>
             )}
           </div>
