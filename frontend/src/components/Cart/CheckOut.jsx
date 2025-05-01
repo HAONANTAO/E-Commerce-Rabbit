@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-05-01 20:44:23
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-01 21:59:33
+ * @LastEditTime: 2025-05-01 22:18:58
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Cart/CheckOut.jsx
  */
 import React, { useState } from "react";
@@ -31,7 +31,7 @@ const CheckOut = () => {
 
   const handlePaymentSuccess = (details) => {
     console.log("payment good", details);
-    navigate("/order-confirmation")
+    navigate("/order-confirmation");
   };
   return (
     <div className="grid grid-cols-1 gap-2 px-6 py-10 mx-auto max-w-7xl tracking-tighter lg:grid-cols-2">
@@ -193,6 +193,8 @@ const CheckOut = () => {
               <div>
                 <h3 className="mb-4 text-lg">Pay with PayPal</h3>
                 {/* Paypal component when click */}
+                {/* CheckOut.jsx:33 payment good 
+                  {id: '34G79133AG5542007', intent: 'CAPTURE', status: 'COMPLETED', purchase_units: Array(1), payer: {…},  */}
                 <PayPalButton
                   amount={100}
                   onSuccess={handlePaymentSuccess}
