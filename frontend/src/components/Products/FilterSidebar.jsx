@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-30 20:08:25
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-30 22:04:00
+ * @LastEditTime: 2025-05-01 20:25:07
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/FilterSidebar.jsx
  */
 import React, { useEffect, useState } from "react";
@@ -15,6 +15,13 @@ import {
   brands,
 } from "@/utils/staticData.js";
 const FilterSidebar = () => {
+  const handlePriceChange = (e) => {
+    const newPrice = e.target.value;
+    setPriceRange([0, newPrice]);
+    setFilter({ ...filter, maxPrice: newPrice });
+    updateURLParams(filter);
+  };
+
   const navigate = useNavigate();
   // 专门用于处理 URL 中问号（?）后面的参数。
   const [searchParams, setSearchParams] = useSearchParams();
@@ -228,6 +235,9 @@ const FilterSidebar = () => {
         <input
           type="range"
           name="priceRange"
+          // 最大值
+          value={priceRange[1]}
+          onChange={handlePriceChange}
           min={0}
           max={100}
           className="w-full h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer"
