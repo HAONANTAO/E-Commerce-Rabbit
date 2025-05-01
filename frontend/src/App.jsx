@@ -7,6 +7,7 @@ import Register from "@/components/Products/Register";
 import Profile from "@/pages/Profile";
 import CollectionPage from "@/pages/CollectionPage";
 import NotFound from "@/pages/NotFound";
+import ProductDetails from "@/components/Products/ProductDetails";
 /*
  * @Date: 2025-04-20 21:08:35
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
@@ -38,6 +39,7 @@ export default function App() {
             <Route
               path="collections/:collection"
               element={<CollectionPage />}></Route>
+            <Route path="product/:id" element={<ProductDetails />}></Route>
             <Route path="*" element={<NotFound />} />
           </Route>
           <Route>{/* Admin Layout */}</Route>
