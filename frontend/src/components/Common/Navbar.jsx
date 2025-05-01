@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-21 20:49:04
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-29 22:20:45
+ * @LastEditTime: 2025-05-01 21:04:26
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Common/Navbar.jsx
  */
 import React from "react";
@@ -87,7 +87,7 @@ const Navbar = () => {
 
       {/* mobile navigation  */}
       <div
-        className={`fixed top-0 left-0 w-3/4 sm:w-1/2 3 h-full bg-white  shadow-lg transform transition-transform duration-300 z-999 ${
+        className={`fixed top-0 left-0 w-3/4 sm:w-1/2 3 h-full bg-white  shadow-lg transform transition-transform duration-300 z-10 ${
           // navDrawerisopen就在原地 不open就往左侧划出去
           navDrawerOpen ? "translate-x-0" : "-translate-x-full"
         }`}>

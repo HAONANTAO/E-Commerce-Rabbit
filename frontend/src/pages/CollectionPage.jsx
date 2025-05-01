@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-29 22:17:20
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-30 20:28:53
+ * @LastEditTime: 2025-05-01 21:04:41
  * @FilePath: /E-Commerce-Rabbit/frontend/src/pages/CollectionPage.jsx
  */
 import React, { useEffect, useRef, useState } from "react";
@@ -61,7 +61,7 @@ const CollectionPage = () => {
         // - 大屏幕时：侧边栏永远在左侧不会被隐藏不受 isSidebarOpen 状态影响
         className={`${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } fixed inset-y-0 z-999 left-0 w-64 bg-white overflow-y-auto  transition-transform duration-300 lg:static lg:translate-x-0`}>
+        } fixed inset-y-0 z-10 left-0 w-64 bg-white overflow-y-auto  transition-transform duration-300 lg:static lg:translate-x-0`}>
         <FilterSidebar />
       </div>
       <div className="flex-grow p-4">

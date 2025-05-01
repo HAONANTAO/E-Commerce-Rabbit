@@ -36,7 +36,7 @@ const Searchbar = () => {
       <div
         className={`flex justify-center items-center w-full transition-all duration-300 ${
           isOpen
-            ? "absolute top-0 -left-4 w-full bg-white  h-24 z-999"
+            ? "absolute top-0 -left-4 w-full bg-white  h-24 z-10"
             : "w-auto"
         }`}>
         {isOpen ? (

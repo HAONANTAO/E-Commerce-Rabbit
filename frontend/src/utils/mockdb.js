@@ -239,3 +239,47 @@ export const myOrders = [
     isPaid: false,
   },
 ];
+// cartDrawer mock data
+export const cartProducts = [
+  {
+    productId: 1,
+    name: "T-shirt",
+    size: "M",
+    color: "Black",
+    quantity: 1,
+    price: 20,
+    // random image from picsum.photos
+    image: "https://picsum.photos/200?random=1",
+  },
+  {
+    productId: 2,
+    name: "Jeans",
+    size: "S",
+    color: "Blue",
+    quantity: 13,
+    price: 220,
+    // random image from picsum.photos
+    image: "https://picsum.photos/200?random=2",
+  },
+];
+
+// checkout test
+export const checkoutCart = {
+  product: [
+    {
+      name: "stylish shirt",
+      size: "M",
+      color: "Black",
+      price: 120,
+      image: "https://picsum.photos/150?ranodm=1",
+    },
+    {
+      name: "stylish shirt2",
+      size: "XS",
+      color: "Blue",
+      price: 140,
+      image: "https://picsum.photos/150?ranodm=2",
+    },
+  ],
+  totalPrice: 260,
+};

@@ -6,29 +6,8 @@
  */
 import React from "react";
 import { RiDeleteBin3Line } from "react-icons/ri";
+import { cartProducts } from "@/utils/mockdb";
 const CartContent = () => {
-  const cartProducts = [
-    {
-      productId: 1,
-      name: "T-shirt",
-      size: "M",
-      color: "Black",
-      quantity: 1,
-      price: 20,
-      // random image from picsum.photos
-      image: "https://picsum.photos/200?random=1",
-    },
-    {
-      productId: 2,
-      name: "Jeans",
-      size: "S",
-      color: "Blue",
-      quantity: 13,
-      price: 220,
-      // random image from picsum.photos
-      image: "https://picsum.photos/200?random=2",
-    },
-  ];
   return (
     <>
       <div>

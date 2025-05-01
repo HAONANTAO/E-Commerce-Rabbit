@@ -22,24 +22,23 @@ const Home = () => {
         <NewArrivals />
 
         {/* best seller */}
-        <div>
-          <h2 className="mb-4 text-3xl font-bold text-center">Best Seller</h2>
-          <ProductDetails />
 
-          {/*   Top Wears for Women */}
-          <div className="container mx-auto">
-            <h2 className="mb-4 text-3xl font-bold text-center">
-              Top Wears for Women
-            </h2>
-            <ProductGrid products={topWearsWomen} />
-          </div>
+        <h2 className="mb-4 text-3xl font-bold text-center">Best Seller</h2>
+        <ProductDetails />
 
-          {/*  FeatureCollection*/}
-          <FeatureCollection />
-
-          {/* features section */}
-          <FeatureSection />
+        {/*   Top Wears for Women */}
+        <div className="container mx-auto">
+          <h2 className="mb-4 text-3xl font-bold text-center">
+            Top Wears for Women
+          </h2>
+          <ProductGrid products={topWearsWomen} />
         </div>
+
+        {/*  FeatureCollection*/}
+        <FeatureCollection />
+
+        {/* features section */}
+        <FeatureSection />
       </div>
     </>
   );
