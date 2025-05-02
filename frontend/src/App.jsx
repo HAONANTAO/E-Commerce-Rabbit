@@ -9,10 +9,11 @@ import CollectionPage from "@/pages/CollectionPage";
 import NotFound from "@/pages/NotFound";
 import ProductDetails from "@/components/Products/ProductDetails";
 import CheckOut from "@/components/Cart/CheckOut";
+import OrderConfirmationPage from "@/pages/OrderConfirmationPage";
 /*
  * @Date: 2025-04-20 21:08:35
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-29 22:21:48
+ * @LastEditTime: 2025-05-02 21:14:45
  * @FilePath: /E-Commerce-Rabbit/frontend/src/App.jsx
  */
 export default function App() {
@@ -42,6 +43,9 @@ export default function App() {
               element={<CollectionPage />}></Route>
             <Route path="product/:id" element={<ProductDetails />}></Route>
             <Route path="checkout" element={<CheckOut />}></Route>
+            <Route
+              path="order-confirmation"
+              element={<OrderConfirmationPage />}></Route>
             <Route path="*" element={<NotFound />} />
           </Route>
           <Route>{/* Admin Layout */}</Route>

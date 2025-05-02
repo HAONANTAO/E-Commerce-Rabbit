@@ -283,3 +283,34 @@ export const checkoutCart = {
   ],
   totalPrice: 260,
 };
+
+// order-confirmation
+export const checkout = {
+  _id: "12312",
+  createdAt: "2021-01-01",
+  checkoutItems: [
+    {
+      productId: 1,
+      name: "T-shirt",
+      size: "M",
+      color: "Black",
+      quantity: 1,
+      price: 20,
+      image: "https://picsum.photos/150?random=1",
+    },
+    {
+      productId: 2,
+      name: "T-shirt2",
+      size: "S",
+      color: "Blue",
+      quantity: 2,
+      price: 44,
+      image: "https://picsum.photos/150?random=2",
+    },
+  ],
+  shippingAddress: {
+    address: "123 Main St",
+    city: "New York",
+    country: "USA",
+  },
+};
