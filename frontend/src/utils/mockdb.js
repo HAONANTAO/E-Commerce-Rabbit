@@ -265,7 +265,7 @@ export const cartProducts = [
 
 // checkout test
 export const checkoutCart = {
-  product: [
+  products: [
     {
       name: "stylish shirt",
       size: "M",

@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-05-01 20:44:23
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-01 22:18:58
+ * @LastEditTime: 2025-05-02 21:06:53
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Cart/CheckOut.jsx
  */
 import React, { useState } from "react";
@@ -30,7 +30,7 @@ const CheckOut = () => {
   };
 
   const handlePaymentSuccess = (details) => {
-    console.log("payment good", details);
+    // console.log("payment good", details);
     navigate("/order-confirmation");
   };
   return (
@@ -208,7 +208,48 @@ const CheckOut = () => {
         </form>
       </div>
 
-      {/* right右边结账 */}
+      {/* right section    Order Summary*/}
+      <div className="p-6 bg-gray-50 rounded-lg">
+        <h3 className="mb-4 text-lg">Order Summary</h3>
+        <div className="py-4 mb-4 border-t">
+          {cart.products.map((product, index) => (
+            <div
+              key={index}
+              className="flex justify-between items-start py-2 border-b">
+              <div className="flex items-start">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="object-cover mr-4 w-20 h-24"
+                />
+                <div>
+                  <h3 className="text-md">{product.name}</h3>
+                  <p className="text-gray-500">Size: {product.size}</p>
+                  <p className="text-gray-500">Color: {product.color}</p>
+                </div>
+              </div>
+              <p className="text-xl"> ${product.price?.toLocaleString()}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Subtotal */}
+        <div className="flex justify-between items-center mb-4 text-lg">
+          <p>Subtotal</p>
+          <p>${cart.totalPrice.toLocaleString()}</p>
+        </div>
+
+        {/* shipping */}
+        <div className="flex justify-between items-center text-lg">
+          <p>Shipping</p>
+          {/* TODO!:可以改限制 */}
+          <p>Free</p>
+        </div>
+        <div className="flex justify-between items-center pt-4 mb-4 text-lg border-top">
+          <p>Total</p>
+          <p>${cart.totalPrice.toLocaleString()}</p>
+        </div>
+      </div>
     </div>
   );
 };
