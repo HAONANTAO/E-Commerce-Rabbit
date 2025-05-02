@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-23 21:51:05
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-01 21:04:36
+ * @LastEditTime: 2025-05-02 21:39:56
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Layout/CartDrawer.jsx
  */
 
@@ -12,7 +12,8 @@ import { useNavigate } from "react-router-dom";
 const CartDrawer = ({ isOpen, toggleDrawer }) => {
   const navigate = useNavigate();
   const handleCheckOut = () => {
-    // 跳转到checkout页面
+    // 跳转到checkout页面,但是也要关闭侧边栏
+    toggleDrawer();
     navigate("/checkout");
   };
   return (
