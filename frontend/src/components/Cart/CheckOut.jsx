@@ -1,15 +1,16 @@
 /*
  * @Date: 2025-05-01 20:44:23
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-02 21:06:53
+ * @LastEditTime: 2025-05-02 21:13:06
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Cart/CheckOut.jsx
  */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { checkoutCart as cart } from "@/utils/mockdb";
 import { useNavigate } from "react-router-dom";
 import PayPalButton from "@/components/Cart/PaypalButton";
 const CheckOut = () => {
   const navigate = useNavigate();
+  const [shippingFee, setShippingFee] = useState(0);
   const [checkoutId, setCheckoutId] = useState(null);
   // 账单的地址
   const [shippingAddress, setShippingAddress] = useState({
@@ -29,6 +30,14 @@ const CheckOut = () => {
     setCheckoutId(randomId);
   };
 
+  // 算运费 超过100免费
+  useEffect(() => {
+    if (cart.totalPrice > 100) {
+      setShippingFee(0);
+    } else {
+      setShippingFee(10);
+    }
+  });
   const handlePaymentSuccess = (details) => {
     // console.log("payment good", details);
     navigate("/order-confirmation");
@@ -242,12 +251,17 @@ const CheckOut = () => {
         {/* shipping */}
         <div className="flex justify-between items-center text-lg">
           <p>Shipping</p>
-          {/* TODO!:可以改限制 */}
-          <p>Free</p>
+
+          <p>
+            {shippingFee === 0 ? "Free" : `$${shippingFee.toLocaleString()}`}
+          </p>
+        </div>
+        <div className="flex justify-end text-xs text-gray-500">
+          Free Shipping Over $100
         </div>
         <div className="flex justify-between items-center pt-4 mb-4 text-lg border-top">
           <p>Total</p>
-          <p>${cart.totalPrice.toLocaleString()}</p>
+          <p>${(cart.totalPrice + shippingFee).toLocaleString()}</p>
         </div>
       </div>
     </div>
