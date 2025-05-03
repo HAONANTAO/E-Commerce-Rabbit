@@ -1,11 +1,11 @@
 /*
  * @Date: 2025-05-03 14:05:27
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-03 14:32:17
+ * @LastEditTime: 2025-05-03 14:54:34
  * @FilePath: /E-Commerce-Rabbit/frontend/src/pages/OrderDetailsPage.jsx
  */
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { mockOrderDetails } from "@/utils/mockdb";
 const OrderDetailsPage = () => {
   const { id } = useParams();
@@ -52,6 +52,64 @@ const OrderDetailsPage = () => {
           </div>
 
           {/* customer payment and shipping info */}
+          <div className="grid grid-cols-1 gap-8 mb-8 sm:grid-cols-2 md:grid-cols-3">
+            <div>
+              <h4 className="mb-2 text-lg font-semibold">Payment Info</h4>
+              <p>Payment Method: {orderDetails.paymentMethod}</p>
+              <p>Status: {orderDetails.isPaid ? "Paid" : "Unpaid"}</p>
+            </div>
+            <div>
+              <h4 className="mb-2 text-lg font-semibold">Shipping Info</h4>
+              <p>Shipping Method: {orderDetails.shippingMethod}</p>
+              <p>
+                Address:{" "}
+                {`${orderDetails.shippingAddress.address}, ${orderDetails.shippingAddress.city}, ${orderDetails.shippingAddress.country}`}
+              </p>
+            </div>
+          </div>
+
+          {/* product list */}
+          <div className="overflow-x-auto">
+            <h4 className="mb-4 text-lg font-semibold">Products</h4>
+            <table className="mb-4 min-w-full text-gray-600">
+              <thead className="bg-gray-100">
+                <tr>
+                  <th className="px-4 py-2">Name</th>
+                  <th className="px-4 py-2">Unit Price</th>
+                  <th className="px-4 py-2">Quantity</th>
+                  <th className="px-4 py-2">Total</th>
+                </tr>
+              </thead>
+              <tbody className="items-center">
+                {orderDetails.orderItems.map((order, index) => (
+                  <tr key={order.productId} className="border-b">
+                    <td className="flex justify-center items-center px-4 py-2 text-center">
+                      <img
+                        src={order.image}
+                        alt={order.name}
+                        className="object-cover mr-4 w-12 h-12 rounded-lg"
+                      />
+                      <Link
+                        to={`/product/${order.productId}`}
+                        className="text-blue-500 hover:underline">
+                        {order.name}
+                      </Link>
+                    </td>
+                    <td className="px-4 py-2 text-center">${order.price}</td>
+                    <td className="px-4 py-2 text-center">${order.quantity}</td>
+                    <td className="px-4 py-2 text-center">
+                      ${order.price * order.quantity}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* back toOrder clickable */}
+          <Link to="/my-orders" className="text-blue-500 hover:underline">
+            Back to my Orders
+          </Link>
         </div>
       )}
     </div>
