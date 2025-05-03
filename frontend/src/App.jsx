@@ -10,6 +10,7 @@ import NotFound from "@/pages/NotFound";
 import ProductDetails from "@/components/Products/ProductDetails";
 import CheckOut from "@/components/Cart/CheckOut";
 import OrderConfirmationPage from "@/pages/OrderConfirmationPage";
+import OrderDetailsPage from "@/pages/OrderDetailsPage";
 /*
  * @Date: 2025-04-20 21:08:35
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
@@ -46,6 +47,7 @@ export default function App() {
             <Route
               path="order-confirmation"
               element={<OrderConfirmationPage />}></Route>
+            <Route path="order/:id" element={<OrderDetailsPage />}></Route>
             <Route path="*" element={<NotFound />} />
           </Route>
           <Route>{/* Admin Layout */}</Route>

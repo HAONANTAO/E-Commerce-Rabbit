@@ -314,3 +314,38 @@ export const checkout = {
     country: "USA",
   },
 };
+
+// orderDetails
+export const mockOrderDetails = {
+  _id: "12312",
+  createdAt: "2021-01-01",
+  isPaid: true,
+  isDelevered: true,
+  paymentMethod: "Paypal",
+  shippingMethod: "Standard",
+  shippingAddress: {
+    address: "123 Main St",
+    city: "New York",
+    country: "USA",
+  },
+  orderItems: [
+    {
+      productId: 1,
+      name: "T-shirt",
+      size: "M",
+      color: "Black",
+      quantity: 1,
+      price: 20,
+      image: "https://picsum.photos/150?ranodm=1",
+    },
+    {
+      productId: 2,
+      name: "T-shirt",
+      size: "S",
+      color: "Blue",
+      quantity: 1,
+      price: 23,
+      image: "https://picsum.photos/150?ranodm=2",
+    },
+  ],
+};
