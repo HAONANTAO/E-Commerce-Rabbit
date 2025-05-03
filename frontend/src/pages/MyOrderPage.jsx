@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { myOrders } from "@/utils/mockdb.js";
+import { useNavigate } from "react-router-dom";
 //profile page info
 const MyOrderPage = () => {
   const [orders, setOrders] = useState([]);
-
+  const navigate = useNavigate();
+  const handleRowClick = (id) => {
+    navigate(`/order/${id}`);
+  };
   useEffect(() => {
     // 模拟提前从后端拿到数据
     setTimeout(() => {
@@ -34,8 +38,8 @@ const MyOrderPage = () => {
               orders.map((order, index) => (
                 <tr
                   key={order._id}
-                  // cursor-pointer
-                  className="border-b hover:border-gray-50">
+                  onClick={() => handleRowClick(order._id)}
+                  className="border-b cursor-pointer hover:border-gray-50">
                   {/* 1 td */}
                   <td className="px-2 py-2 sm:py-4 sm:px-4">
                     <img
