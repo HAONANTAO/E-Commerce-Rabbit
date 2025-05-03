@@ -1,3 +1,9 @@
+/*
+ * @Date: 2025-04-20 21:08:35
+ * @LastEditors: 陶浩南 taoaaron5@gmail.com
+ * @LastEditTime: 2025-05-03 15:04:24
+ * @FilePath: /E-Commerce-Rabbit/frontend/src/App.jsx
+ */
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Userlayout from "@/components/Layout/UserLayout";
 import Home from "./pages/Home";
@@ -12,6 +18,7 @@ import CheckOut from "@/components/Cart/CheckOut";
 import OrderConfirmationPage from "@/pages/OrderConfirmationPage";
 import OrderDetailsPage from "@/pages/OrderDetailsPage";
 import MyOrderPage from "@/pages/MyOrderPage";
+import AdminLayout from "@/components/Admin/AdminLayout";
 /*
  * @Date: 2025-04-20 21:08:35
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
@@ -50,9 +57,11 @@ export default function App() {
               element={<OrderConfirmationPage />}></Route>
             <Route path="order/:id" element={<OrderDetailsPage />}></Route>
             <Route path="my-orders" element={<MyOrderPage />}></Route>
-            <Route path="*" element={<NotFound />} />
           </Route>
-          <Route>{/* Admin Layout */}</Route>
+          <Route path="/admin" element={<AdminLayout />}>
+            {/* Admin Layout */}
+          </Route>
+          {/* the end */} <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </>
