@@ -393,3 +393,21 @@ export const Users = [
     _id: 2,
   },
 ];
+
+// products in Admin
+export const Products = [
+  {
+    _id: 1,
+    name: "Stylish Jacket",
+    price: 120,
+    // SKU (Stock Keeping Unit商品唯一标识符
+    sku: "123123",
+  },
+  {
+    _id: 2,
+    name: "Stylish Jacket2",
+    price: 220,
+    // SKU (Stock Keeping Unit商品唯一标识符
+    sku: "123122",
+  },
+];

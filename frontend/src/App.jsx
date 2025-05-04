@@ -21,6 +21,7 @@ import MyOrderPage from "@/pages/MyOrderPage";
 import AdminLayout from "@/components/Admin/AdminLayout";
 import AdminHomePage from "@/pages/AdminHomePage";
 import UserManagement from "@/components/Admin/UserManagement";
+import ProductsManagement from "@/components/Admin/ProductsManagement";
 /*
  * @Date: 2025-04-20 21:08:35
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
@@ -65,6 +66,7 @@ export default function App() {
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<AdminHomePage />}></Route>
             <Route path="users" element={<UserManagement />}></Route>
+            <Route path="products" element={<ProductsManagement />}></Route>
           </Route>
 
           {/* the end */}
