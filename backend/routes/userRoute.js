@@ -21,14 +21,29 @@ userRouter.post("/register", async (req, res) => {
     // 没有才创建
     user = new User({ name, email, password });
     await user.save();
-    res.status(201).json({
-      user: {
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        role: user.role,
+
+    // create JWT payload using User info
+    const payload = { user: { id: user._id, role: user.role } };
+    // sign and return the token along with the user data
+    jwt.sign(
+      payload,
+      process.env.JWT_SECRET,
+      { expiresIn: "40h" },
+      (error, token) => {
+        if (error) throw error;
+
+        // send the user and token in response
+        res.status(201).json({
+          user: {
+            id: user._id,
+            name: user.name,
+            email: user.email,
+            role: user.role,
+          },
+          token,
+        });
       },
-    });
+    );
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Server error" });
