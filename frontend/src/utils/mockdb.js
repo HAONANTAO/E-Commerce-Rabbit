@@ -377,3 +377,17 @@ export const AdminOrders = [
     status: "Pending",
   },
 ];
+
+// users in Admin
+export const Users = [
+  {
+    name: "John Doe",
+    email: "87319019@gmail.com",
+    role: "admin",
+  },
+  {
+    name: "John Doe2",
+    email: "87319029@gmail.com",
+    role: "customer",
+  },
+];

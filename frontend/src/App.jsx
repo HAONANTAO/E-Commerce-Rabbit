@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-20 21:08:35
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-03 15:04:24
+ * @LastEditTime: 2025-05-04 12:12:35
  * @FilePath: /E-Commerce-Rabbit/frontend/src/App.jsx
  */
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -20,6 +20,7 @@ import OrderDetailsPage from "@/pages/OrderDetailsPage";
 import MyOrderPage from "@/pages/MyOrderPage";
 import AdminLayout from "@/components/Admin/AdminLayout";
 import AdminHomePage from "@/pages/AdminHomePage";
+import UserManagement from "@/components/Admin/UserManagement";
 /*
  * @Date: 2025-04-20 21:08:35
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
@@ -63,6 +64,7 @@ export default function App() {
           {/* Admin Layout */}
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<AdminHomePage />}></Route>
+            <Route path="users" element={<UserManagement />}></Route>
           </Route>
 
           {/* the end */}
