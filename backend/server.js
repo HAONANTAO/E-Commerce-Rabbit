@@ -6,8 +6,8 @@
  */
 import express from "express";
 import cors from "cors";
-
 import dotenv from "dotenv";
+import connectDB from "./config/db.js";
 // 初始化
 const app = express();
 // 中间件 允许跨域 json解析
@@ -17,6 +17,8 @@ dotenv.config();
 
 const PORT = process.env.PORT || 3000;
 
+// 数据库连接
+connectDB();
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
