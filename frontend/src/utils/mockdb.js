@@ -411,3 +411,15 @@ export const Products = [
     sku: "123122",
   },
 ];
+
+// orders on admin page
+export const AdminOrders2 = [
+  {
+    _id: 1,
+    user: {
+      name: "John Doe",
+    },
+    totalPrice: 200,
+    status: "Shipped",
+  },
+];

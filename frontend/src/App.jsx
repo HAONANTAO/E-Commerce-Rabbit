@@ -23,6 +23,7 @@ import AdminHomePage from "@/pages/AdminHomePage";
 import UserManagement from "@/components/Admin/UserManagement";
 import ProductsManagement from "@/components/Admin/ProductsManagement";
 import EditProduct from "@/components/Admin/EditProduct";
+import OrderManagement from "@/components/Admin/OrderManagement";
 /*
  * @Date: 2025-04-20 21:08:35
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
@@ -69,6 +70,7 @@ export default function App() {
             <Route path="users" element={<UserManagement />}></Route>
             <Route path="products" element={<ProductsManagement />}></Route>
             <Route path="products/:id/edit" element={<EditProduct />}></Route>
+            <Route path="orders" element={<OrderManagement />}></Route>
           </Route>
 
           {/* the end */}
