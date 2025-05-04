@@ -1,7 +1,7 @@
 import express from "express";
 import User from "../models/User.js";
 import jwt from "jsonwebtoken";
-
+import protect from "../middleware/AuthMiddleware.js";
 const userRouter = express.Router();
 
 // API 文档注释的格式，通常用于描述路由的基本信息：
@@ -92,5 +92,12 @@ userRouter.post("/login", async (req, res) => {
     console.log(error);
     res.status(500).send("Server error");
   }
+});
+
+// @route GET /api/user/profile
+// @desc Get the logged in user profile(只有经过授权的用户才能访问的路由protected route)
+// @access Private
+userRouter.get("/profile", protect, async (req, res) => {
+  res.json(req.user);
 });
 export default userRouter;
