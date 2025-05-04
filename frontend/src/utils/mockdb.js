@@ -349,3 +349,31 @@ export const mockOrderDetails = {
     },
   ],
 };
+
+// admin home page orders
+export const AdminOrders = [
+  {
+    _id: 1,
+    user: {
+      name: "John Doe",
+    },
+    totalPrice: 200,
+    status: "Pending",
+  },
+  {
+    _id: 2,
+    user: {
+      name: "John Doe2",
+    },
+    totalPrice: 220,
+    status: "Delivered",
+  },
+  {
+    _id: 3,
+    user: {
+      name: "John Doe3",
+    },
+    totalPrice: 333,
+    status: "Pending",
+  },
+];

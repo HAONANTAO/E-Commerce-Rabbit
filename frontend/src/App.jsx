@@ -19,6 +19,7 @@ import OrderConfirmationPage from "@/pages/OrderConfirmationPage";
 import OrderDetailsPage from "@/pages/OrderDetailsPage";
 import MyOrderPage from "@/pages/MyOrderPage";
 import AdminLayout from "@/components/Admin/AdminLayout";
+import AdminHomePage from "@/pages/AdminHomePage";
 /*
  * @Date: 2025-04-20 21:08:35
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
@@ -58,10 +59,14 @@ export default function App() {
             <Route path="order/:id" element={<OrderDetailsPage />}></Route>
             <Route path="my-orders" element={<MyOrderPage />}></Route>
           </Route>
+
+          {/* Admin Layout */}
           <Route path="/admin" element={<AdminLayout />}>
-            {/* Admin Layout */}
+            <Route index element={<AdminHomePage />}></Route>
           </Route>
-          {/* the end */} <Route path="*" element={<NotFound />} />
+
+          {/* the end */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </>
