@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-20 21:08:35
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-04 12:12:35
+ * @LastEditTime: 2025-05-04 15:46:06
  * @FilePath: /E-Commerce-Rabbit/frontend/src/App.jsx
  */
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -22,6 +22,7 @@ import AdminLayout from "@/components/Admin/AdminLayout";
 import AdminHomePage from "@/pages/AdminHomePage";
 import UserManagement from "@/components/Admin/UserManagement";
 import ProductsManagement from "@/components/Admin/ProductsManagement";
+import EditProduct from "@/components/Admin/EditProduct";
 /*
  * @Date: 2025-04-20 21:08:35
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
@@ -67,6 +68,7 @@ export default function App() {
             <Route index element={<AdminHomePage />}></Route>
             <Route path="users" element={<UserManagement />}></Route>
             <Route path="products" element={<ProductsManagement />}></Route>
+            <Route path="products/:id/edit" element={<EditProduct />}></Route>
           </Route>
 
           {/* the end */}
