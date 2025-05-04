@@ -1,12 +1,21 @@
 /*
  * @Date: 2025-05-04 12:11:36
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-04 12:28:33
+ * @LastEditTime: 2025-05-04 12:42:16
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Admin/UserManagement.jsx
  */
 import React, { useState } from "react";
 import { Users } from "@/utils/mockdb";
 const UserManagement = () => {
+  const handleDeleteUser = (userId) => {
+    // 浏览器提供的原生对话框方法
+    if (window.confirm("Are you sure you want to delete this user?")) {
+      console.log("delete id", userId);
+    }
+  };
+  const handleRoleChange = (userId, newRole) => {
+    console.log(userId, newRole);
+  };
   // 通用onchange function
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -95,6 +104,50 @@ const UserManagement = () => {
             Add User
           </button>
         </form>
+      </div>
+
+      {/* User List */}
+      <div className="overflow-x-auto shadow-md sm:rounded-lg">
+        <table className="min-w-full text-lefttext-gray-500">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-100">
+            <tr>
+              <th className="px-4 py-3">Name</th>
+              <th className="px-4 py-3">Email</th>
+              <th className="px-4 py-3">Role</th>
+              <th className="px-4 py-3">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Users.map((user, index) => (
+              <tr
+                key={user._id}
+                className="text-center border-b hover:bg-gray-50">
+                {/* 防止长文本打乱表格布局 */}
+                <td className="p-4 font-medium text-gray-900 whitespace-nowrap">
+                  {user.name}
+                </td>
+                <td className="p-4">{user.email}</td>
+
+                <td className="p-4">
+                  <select
+                    value={user.role}
+                    onChange={(e) => handleRoleChange(user._id, e.target.value)}
+                    className="p-2 rounded border">
+                    <option value="customer">Customer</option>
+                    <option value="admin">Admin</option>
+                  </select>
+                </td>
+                <td>
+                  <button
+                    onClick={() => handleDeleteUser(user._id)}
+                    className="px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600">
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
