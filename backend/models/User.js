@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-05-04 17:44:34
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-04 17:55:18
+ * @LastEditTime: 2025-05-04 18:49:55
  * @FilePath: /E-Commerce-Rabbit/backend/models/User.js
  */
 /*
@@ -58,6 +58,7 @@ UserSchema.pre("save", async function (next) {
 
 // match user entered password to hashed password in database
 // 用于定义模型实例的方法，模型实例方法就是每个用户对象都可以调用的方法
+// 为用户验证输入密码和数据库密码是不是一样的
 UserSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };

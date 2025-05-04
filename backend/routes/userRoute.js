@@ -33,6 +33,7 @@ userRouter.post("/register", async (req, res) => {
         if (error) throw error;
 
         // send the user and token in response
+        // 201 Created
         res.status(201).json({
           user: {
             id: user._id,
@@ -50,4 +51,46 @@ userRouter.post("/register", async (req, res) => {
   }
 });
 
+// @route POST /api/user/login
+// @desc Authenticate user
+// @access public
+userRouter.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    // find the user by email
+    const user = await User.findOne({ email });
+    if (!user)
+      res.status(400).json({ message: "can not find this user to login" });
+    // 找到了的话
+    // 对比密码
+    const isMatch = await user.matchPassword(password);
+    if (!isMatch) res.status(400).json({ message: "invalid password!" });
+
+    // create JWT payload using User info
+    const payload = { user: { id: user._id, role: user.role } };
+    // sign and return the token along with the user data
+    jwt.sign(
+      payload,
+      process.env.JWT_SECRET,
+      { expiresIn: "40h" },
+      (error, token) => {
+        if (error) throw error;
+
+        // send the user and token in response
+        res.status(200).json({
+          user: {
+            id: user._id,
+            name: user.name,
+            email: user.email,
+            role: user.role,
+          },
+          token,
+        });
+      },
+    );
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Server error");
+  }
+});
 export default userRouter;
