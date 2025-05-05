@@ -65,7 +65,6 @@ productRouter.post("/", protect, admin, async (req, res) => {
 // @routes PUT /api/products/:id
 // @desc Update a product
 // @access Private/Admin
-
 productRouter.put("/:id", protect, admin, async (req, res) => {
   try {
     const {
@@ -120,7 +119,28 @@ productRouter.put("/:id", protect, admin, async (req, res) => {
     } else {
       res.status(404).json({ message: "Product not found" });
     }
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Server Error");
+  }
 });
+
+// @routs DELETE /api/products/:id
+// @desc Delete a product
+// @access Private/Admin
+productRouter.delete("/:id", protect, admin, async (req, res) => {
+  try {
+    const deletedProduct = await Product.findByIdAndDelete(req.params.id);
+    if (deletedProduct) {
+      res.json({ message: "Product deleted" });
+    } else {
+      res.status(404).json({ message: "Product not found" });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Server Error");
+  }
+});
+
 
 export default productRouter;
