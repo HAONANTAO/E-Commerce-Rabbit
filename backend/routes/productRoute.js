@@ -142,5 +142,38 @@ productRouter.delete("/:id", protect, admin, async (req, res) => {
   }
 });
 
+// @routs GET /api/products
+// @desc Get all product
+// @access Public
 
+// 过滤器
+productRouter.get("/", async (req, res) => {
+  try {
+    const {
+      collection,
+      sizes,
+      colors,
+      gender,
+      minPrice,
+      maxPrice,
+      sortBy,
+      search,
+      category,
+      material,
+      brand,
+      limit,
+    } = req.query;
+
+    let query = {};
+
+    // filter logic
+    if (collection && collection.toLocaleLowerCase() !== "all") {
+      // 用于处理产品集合的过滤逻辑。
+      query.collections = collection;
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Server Error");
+  }
+});
 export default productRouter;
