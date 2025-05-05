@@ -220,11 +220,11 @@ productRouter.get("/", async (req, res) => {
     if (sortBy) {
       switch (sortBy) {
         // 升序
-        case "price-asc":
+        case "priceAsc":
           sort = { price: 1 };
           break;
         // 降序
-        case "price-desc":
+        case "priceDesc":
           sort = { price: -1 };
           break;
         case "popularity":
@@ -248,6 +248,48 @@ productRouter.get("/", async (req, res) => {
       .sort(sort)
       .limit(Number(limit) || 0);
     res.json(products);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Server Error");
+  }
+});
+
+// #@routes GET /api/products/:id
+// #@desc Get a single product by id
+// #@access Public
+productRouter.get("/:id", async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+    if (product) {
+      res.json(product);
+    } else {
+      res.status(404).json({ message: "Product not found" });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Server Error");
+  }
+});
+
+// 找相似的产品去展示
+// @routes GET /api/products/similar/:id
+// @desc Retrieve similar products for a given product id
+// @access Public
+productRouter.get("/similar/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const product = await Product.findById(id);
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+    const similarProducts = await Product.find({
+      // $ne 表示 "not equal"（不等于）
+      _id: { $ne: id },
+      // 同种类 同性别
+      gender: product.gender,
+      category: product.category,
+    }).limit(4);
+    res.json(similarProducts);
   } catch (error) {
     console.log(error);
     res.status(500).send("Server Error");
