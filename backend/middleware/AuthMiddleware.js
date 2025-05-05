@@ -1,3 +1,9 @@
+/*
+ * @Date: 2025-05-04 19:00:14
+ * @LastEditors: 陶浩南 taoaaron5@gmail.com
+ * @LastEditTime: 2025-05-05 19:01:43
+ * @FilePath: /E-Commerce-Rabbit/backend/middleware/AuthMiddleware.js
+ */
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 
@@ -25,4 +31,13 @@ const protect = async (req, res, next) => {
     res.status(401).json({ message: "Not authorized, no token provided" });
   }
 };
-export default protect;
+
+// check if user is admin
+const admin = (req, res, next) => {
+  if (req.user && req.user.role === "admin") {
+    next();
+  } else {
+    res.status(401).json({ message: "Not authorized as an admin" });
+  }
+};
+export { protect, admin };

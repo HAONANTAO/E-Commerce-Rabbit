@@ -1,7 +1,7 @@
 import express from "express";
 import User from "../models/User.js";
 import jwt from "jsonwebtoken";
-import protect from "../middleware/AuthMiddleware.js";
+import { protect } from "../middleware/AuthMiddleware.js";
 const userRouter = express.Router();
 
 // API 文档注释的格式，通常用于描述路由的基本信息：
