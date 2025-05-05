@@ -62,6 +62,22 @@ productRouter.post("/", protect, admin, async (req, res) => {
   }
 });
 
+// @routes GET /api/products/best-seller
+// @desc Retrieve best-selling products
+// @access Public
+productRouter.get("/best-seller", async (req, res) => {
+  try {
+    // 获取评分最高的4个产品
+    // const bestSellingProducts = await Product.find({})
+    //   .sort({ rating: -1 })
+    //   .limit(4);
+    res.json({ message: "sss" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Server Error");
+  }
+});
+
 // @routes PUT /api/products/:id
 // @desc Update a product
 // @access Private/Admin
@@ -116,23 +132,6 @@ productRouter.put("/:id", protect, admin, async (req, res) => {
       // save product
       const updatedProduct = await product.save();
       res.json(updatedProduct);
-    } else {
-      res.status(404).json({ message: "Product not found" });
-    }
-  } catch (error) {
-    console.log(error);
-    res.status(500).send("Server Error");
-  }
-});
-
-// @routs DELETE /api/products/:id
-// @desc Delete a product
-// @access Private/Admin
-productRouter.delete("/:id", protect, admin, async (req, res) => {
-  try {
-    const deletedProduct = await Product.findByIdAndDelete(req.params.id);
-    if (deletedProduct) {
-      res.json({ message: "Product deleted" });
     } else {
       res.status(404).json({ message: "Product not found" });
     }
@@ -254,14 +253,14 @@ productRouter.get("/", async (req, res) => {
   }
 });
 
-// #@routes GET /api/products/:id
-// #@desc Get a single product by id
-// #@access Public
-productRouter.get("/:id", async (req, res) => {
+// @routs DELETE /api/products/:id
+// @desc Delete a product
+// @access Private/Admin
+productRouter.delete("/:id", protect, admin, async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id);
-    if (product) {
-      res.json(product);
+    const deletedProduct = await Product.findByIdAndDelete(req.params.id);
+    if (deletedProduct) {
+      res.json({ message: "Product deleted" });
     } else {
       res.status(404).json({ message: "Product not found" });
     }
@@ -290,6 +289,23 @@ productRouter.get("/similar/:id", async (req, res) => {
       category: product.category,
     }).limit(4);
     res.json(similarProducts);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Server Error");
+  }
+});
+
+// #@routes GET /api/products/:id
+// #@desc Get a single product by id
+// #@access Public
+productRouter.get("/:id", async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+    if (product) {
+      res.json(product);
+    } else {
+      res.status(404).json({ message: "Product not found" });
+    }
   } catch (error) {
     console.log(error);
     res.status(500).send("Server Error");
