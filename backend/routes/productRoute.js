@@ -68,10 +68,32 @@ productRouter.post("/", protect, admin, async (req, res) => {
 productRouter.get("/best-seller", async (req, res) => {
   try {
     // 获取评分最高的4个产品
-    // const bestSellingProducts = await Product.find({})
-    //   .sort({ rating: -1 })
-    //   .limit(4);
-    res.json({ message: "sss" });
+    const bestSellingProducts = await Product.find({})
+      .sort({ rating: -1 })
+      .limit(4);
+    if (bestSellingProducts) {
+      res.json(bestSellingProducts);
+    } else {
+      res.status(404).json({ message: "Product not found" });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Server Error");
+  }
+});
+
+// @routes GET /api/products/new-arrivals
+// @desc Retrieve new arrivals products
+// @access Public
+productRouter.get("/new-arrivals", async (req, res) => {
+  try {
+    // 最新到的 时间顺序
+    const newArrivals = await Product.find().sort({ createdAt: -1 }).limit(8);
+    if (newArrivals) {
+      res.json(newArrivals);
+    } else {
+      res.status(404).json({ message: "Product not found" });
+    }
   } catch (error) {
     console.log(error);
     res.status(500).send("Server Error");
