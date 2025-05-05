@@ -100,4 +100,5 @@ userRouter.post("/login", async (req, res) => {
 userRouter.get("/profile", protect, async (req, res) => {
   res.json(req.user);
 });
+
 export default userRouter;

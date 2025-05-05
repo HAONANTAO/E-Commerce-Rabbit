@@ -163,10 +163,26 @@ productRouter.put("/:id", protect, admin, async (req, res) => {
   }
 });
 
+// @routs DELETE /api/products/:id
+// @desc Delete a product
+// @access Private/Admin
+productRouter.delete("/:id", protect, admin, async (req, res) => {
+  try {
+    const deletedProduct = await Product.findByIdAndDelete(req.params.id);
+    if (deletedProduct) {
+      res.json({ message: "Product deleted" });
+    } else {
+      res.status(404).json({ message: "Product not found" });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Server Error");
+  }
+});
+
 // @routs GET /api/products
 // @desc Get all product
 // @access Public
-
 // 过滤器
 productRouter.get("/", async (req, res) => {
   try {
@@ -275,23 +291,6 @@ productRouter.get("/", async (req, res) => {
   }
 });
 
-// @routs DELETE /api/products/:id
-// @desc Delete a product
-// @access Private/Admin
-productRouter.delete("/:id", protect, admin, async (req, res) => {
-  try {
-    const deletedProduct = await Product.findByIdAndDelete(req.params.id);
-    if (deletedProduct) {
-      res.json({ message: "Product deleted" });
-    } else {
-      res.status(404).json({ message: "Product not found" });
-    }
-  } catch (error) {
-    console.log(error);
-    res.status(500).send("Server Error");
-  }
-});
-
 // 找相似的产品去展示
 // @routes GET /api/products/similar/:id
 // @desc Retrieve similar products for a given product id
@@ -333,4 +332,5 @@ productRouter.get("/:id", async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+
 export default productRouter;
