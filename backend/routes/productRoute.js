@@ -1,3 +1,9 @@
+/*
+ * @Date: 2025-05-04 20:25:23
+ * @LastEditors: 陶浩南 taoaaron5@gmail.com
+ * @LastEditTime: 2025-05-05 22:32:16
+ * @FilePath: /E-Commerce-Rabbit/backend/routes/productRoute.js
+ */
 import express from "express";
 import Product from "../models/Product.js";
 import { protect, admin } from "../middleware/AuthMiddleware.js";

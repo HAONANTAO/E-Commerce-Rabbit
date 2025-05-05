@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-05-04 17:25:45
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-04 20:28:02
+ * @LastEditTime: 2025-05-05 22:34:08
  * @FilePath: /E-Commerce-Rabbit/backend/server.js
  */
 import express from "express";
@@ -10,6 +10,7 @@ import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoute.js";
 import productRoutes from "./routes/productRoute.js";
+import cartRoutes from "./routes/cartRoute.js";
 // 初始化
 const app = express();
 // 中间件 允许跨域 json解析
@@ -28,6 +29,7 @@ app.get("/", (req, res) => {
 // API Routes
 app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/cart", cartRoutes);
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

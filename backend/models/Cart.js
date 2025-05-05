@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-05-05 22:26:14
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-05 22:30:30
+ * @LastEditTime: 2025-05-05 22:52:00
  * @FilePath: /E-Commerce-Rabbit/backend/models/Cart.js
  */
 import mongoose from "mongoose";
@@ -18,7 +18,7 @@ const cartItemSchema = new mongoose.Schema(
     name: String,
     image: String,
     price: String,
-    sizes: String,
+    size: String,
     color: String,
     quantity: {
       type: Number,
