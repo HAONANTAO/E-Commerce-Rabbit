@@ -1,23 +1,20 @@
 /*
  * @Date: 2025-05-05 19:50:37
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-05 19:57:43
+ * @LastEditTime: 2025-05-05 20:02:16
  * @FilePath: /E-Commerce-Rabbit/backend/seeder.js
  */
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import Product from "/models/Product.js";
-import User from "/models/User.js";
-import products from "/data/products.js";
+import Product from "./models/Product.js";
+import User from "./models/User.js";
+import products from "./data/product.js";
 
 // seed data（种子数据）是指用于初始化数据库的示例或测试数据。在这个上下文中
 dotenv.config();
 
 // connect to database
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(process.env.MONGO_URL, {});
 
 // function to seed data
 const seedData = async () => {
@@ -34,11 +31,11 @@ const seedData = async () => {
       role: "admin",
     });
     // Assign the created user's ID to the product data
-    const userID = createdUser._id;
+    const user = createdUser._id;
     // 加上admin的id
     const sampleProducts = products.map((product) => ({
       ...product,
-      userID,
+      user,
     }));
 
     // insert sample products
