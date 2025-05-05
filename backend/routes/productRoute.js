@@ -172,7 +172,7 @@ productRouter.get("/", async (req, res) => {
       query.collections = collection;
     }
 
-    if (collection && category.toLocaleLowerCase() !== "all") {
+    if (category && category.toLocaleLowerCase() !== "all") {
       // 用于处理产品集合的过滤逻辑。
       query.category = category;
     }
@@ -192,7 +192,7 @@ productRouter.get("/", async (req, res) => {
     }
     if (size) {
       query.sizes = {
-        $in: brand.split(","),
+        $in: size.split(","),
       };
     }
     if (color) {
