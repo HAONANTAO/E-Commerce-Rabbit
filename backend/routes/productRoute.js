@@ -4,7 +4,7 @@ import { protect, admin } from "../middleware/AuthMiddleware.js";
 
 const productRouter = express.Router();
 
-// @routes POST /api/
+// @routes POST /api/products
 // @desc Create new product in database
 // @access Private/Admin
 productRouter.post("/", protect, admin, async (req, res) => {
@@ -151,8 +151,8 @@ productRouter.get("/", async (req, res) => {
   try {
     const {
       collection,
-      sizes,
-      colors,
+      size,
+      color,
       gender,
       minPrice,
       maxPrice,
@@ -171,6 +171,83 @@ productRouter.get("/", async (req, res) => {
       // 用于处理产品集合的过滤逻辑。
       query.collections = collection;
     }
+
+    if (collection && category.toLocaleLowerCase() !== "all") {
+      // 用于处理产品集合的过滤逻辑。
+      query.category = category;
+    }
+    if (material) {
+      query.material = {
+        // 查找material用逗号分隔的所有材质
+        // 如果请求参数是 material=cotton,polyester
+        //  query.material = { $in: ["cotton", "polyester"] }
+        $in: material.split(","),
+      };
+    }
+
+    if (brand) {
+      query.brand = {
+        $in: brand.split(","),
+      };
+    }
+    if (size) {
+      query.sizes = {
+        $in: brand.split(","),
+      };
+    }
+    if (color) {
+      query.colors = {
+        $in: [color],
+      };
+    }
+    if (gender) {
+      query.gender = gender;
+    }
+    if (minPrice || maxPrice) {
+      query.price = {};
+      if (minPrice) {
+        // greater than or equal to minPrice
+        query.price.$gte = Number(minPrice);
+      }
+      if (maxPrice) {
+        // less than or equal to maxPrice
+        query.price.$lte = Number(maxPrice);
+      }
+    }
+
+    // sortby排序功能
+    let sort = {};
+    if (sortBy) {
+      switch (sortBy) {
+        // 升序
+        case "price-asc":
+          sort = { price: 1 };
+          break;
+        // 降序
+        case "price-desc":
+          sort = { price: -1 };
+          break;
+        case "popularity":
+          sort = { rating: -1 };
+          break;
+        default:
+          // query.sort({ createdAt: -1 });
+          break;
+      }
+    }
+    // 实现模糊搜索功能：
+    if (search) {
+      // OR 条件，满足任一条件即可（不分大小写）
+      query.$or = [
+        { name: { $regex: search, $options: "i" } },
+        { description: { $regex: search, $options: "i" } },
+      ];
+    }
+    // fetch products from DB
+    let products = await Product.find(query)
+      .sort(sort)
+      .limit(Number(limit) || 0);
+    res.json(products);
   } catch (error) {
     console.log(error);
     res.status(500).send("Server Error");
