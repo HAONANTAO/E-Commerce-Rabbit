@@ -93,4 +93,77 @@ cartRouter.post("/", async (req, res) => {
   }
 });
 
+// @routes PUT /api/cart
+// @desc update cart for guest or logged user
+// @access Public
+cartRouter.put("/", async (req, res) => {
+  const { productId, quantity, size, color, guestId, userId } = req.body;
+  try {
+    let cart = await getCart(userId, guestId);
+    if (!cart) {
+      return res.status(404).json({ message: "Cart not found" });
+    }
+    // find the product in the cart
+    const productIndex = cart.products.findIndex(
+      (p) =>
+        p.productId.toString() === productId &&
+        p.size === size &&
+        p.color === color,
+    );
+    if (productIndex === -1) {
+      return res.status(404).json({ message: "Product not found in cart" });
+    }
+    // update the product quantity
+    if (quantity === 0) {
+      // 从productIndex开始删除1个元素
+      cart.products.splice(productIndex, 1);
+    } else {
+      cart.products[productIndex].quantity = quantity;
+    }
+    // recalculate total price
+    cart.totalPrice = cart.products.reduce(
+      (acc, item) => acc + item.price * item.quantity,
+      0,
+    );
+    await cart.save();
+    res.status(200).json(cart);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
+
+// @routes DELETE /api/cart
+// @desc delete product from cart for guest or logged user
+// @access Public
+cartRouter.delete("/", async (req, res) => {
+  const { productId, size, color, guestId, userId } = req.body;
+  try {
+    let cart = await getCart(userId, guestId);
+    if (!cart) {
+      return res.status(404).json({ message: "Cart not found" });
+    }
+    // find the product in the cart
+    const productIndex = cart.products.findIndex(
+      (p) =>
+        p.productId.toString() === productId &&
+        p.size === size &&
+        p.color === color,
+    );
+    if (productIndex === -1) {
+      return res.status(404).json({ message: "Product not found in cart" });
+    }
+    cart.products.splice(productIndex, 1);
+    // recalculate total price
+    cart.totalPrice = cart.products.reduce(
+      (acc, item) => acc + item.price * item.quantity,
+      0,
+    );
+    await cart.save();
+    res.status(200).json(cart);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
 export default cartRouter;
