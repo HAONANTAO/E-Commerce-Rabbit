@@ -19,7 +19,7 @@ const getCart = async (userId, guestId) => {
 // @ routes POST /api/cart
 // @ desc add product to cart for guest or logged user
 // @ access Public
-cartRouter.post("/", protect, async (req, res) => {
+cartRouter.post("/", async (req, res) => {
   const { productId, quantity, guestId, userId, size, color } = req.body;
   try {
     // 找到需要添加的商品
@@ -46,11 +46,51 @@ cartRouter.post("/", protect, async (req, res) => {
       if (productIndex !== -1) {
         // 已经有了一样的商品了 就更新数量
         cart.products[productIndex].quantity += quantity;
+      } else {
+        // 没有就添加新的商品
+        cart.products.push({
+          productId,
+          name: product.name,
+          image: product.images[0].url,
+          price: product.price,
+          quantity,
+          size,
+          color,
+        });
       }
+
+      // recalculate total price
+      // reduce 是一个数组方法，用于将数组中的所有元素归并为一个值。
+      cart.totalPrice = cart.products.reduce(
+        (acc, item) => acc + item.price * item.quantity,
+        0,
+      );
+      await cart.save();
+      res.status(200).json(cart);
+    } else {
+      // create a new cart
+      const newCart = await Cart.create({
+        user: userId ? userId : undefined,
+        guestId: guestId ? guestId : "guest_" + new Date().getTime(),
+        products: [
+          {
+            productId,
+            name: product.name,
+            image: product.images[0].url,
+            price: product.price,
+            size,
+            color,
+            quantity,
+          },
+        ],
+        totalPrice: product.price * quantity,
+      });
+      return res.status(201).json(newCart);
     }
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Server Error" });
   }
 });
+
 export default cartRouter;
