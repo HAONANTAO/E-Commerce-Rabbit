@@ -1,13 +1,14 @@
 /*
  * @Date: 2025-05-04 19:00:14
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-05 19:01:43
+ * @LastEditTime: 2025-05-06 22:09:58
  * @FilePath: /E-Commerce-Rabbit/backend/middleware/AuthMiddleware.js
  */
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 
 // middleware to protect routes 用于jwt验证的中间件
+// 验证是否登录
 const protect = async (req, res, next) => {
   let token;
   // 头部有验证的信息存在
