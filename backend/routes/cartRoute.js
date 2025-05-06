@@ -184,4 +184,74 @@ cartRouter.get("/", async (req, res) => {
   }
 });
 
+// 合并游客购物车到登录用户的购物车
+// @routes POST /api/cart/merge
+// @desc merge guest cart to logged user cart
+// @access Private/logged user
+cartRouter.post("/merge", protect, async (req, res) => {
+  const { guestId } = req.body;
+  try {
+    // find the guest cart
+    let guestCart = await Cart.findOne({ guestId });
+    // 从protect里面拿userId （req.user._id）
+    let userCart = await Cart.findOne({ user: req.user._id });
+    if (guestCart) {
+      // 有游客购物车，那就需要合并了
+      if (guestCart.products.length === 0) {
+        // 如果游客购物车是空的，那就直接删除游客购物车
+        // await Cart.deleteOne({ guestId });
+        return res.status(400).json({ message: "Guest cart is empty" });
+      }
+      if (userCart) {
+        // 合并merge购物车
+        // 从游客购物车里面遍历，看看有没有一样的商品，如果有就合并数量，如果没有就添加新的商品
+        guestCart.products.forEach((product) => {
+          const productIndex = userCart.products.findIndex(
+            (p) =>
+              p.productId.toString() === product.productId.toString() &&
+              p.size === product.size &&
+              p.color === product.color,
+          );
+          if (productIndex > -1) {
+            // 有一样的商品
+            userCart.products[productIndex].quantity += product.quantity;
+          } else {
+            // 没有一样的商品
+            userCart.products.push(product);
+          }
+        });
+        userCart.totalPrice = userCart.products.reduce(
+          (acc, item) => (acc += item.price * item.quantity),
+          0,
+        );
+        await userCart.save();
+        // 合并完了之后，就可以删除游客购物车了
+        try {
+          await Cart.findOneAndDelete({ guestId });
+        } catch (error) {
+          console.log(error);
+          res.status(500).json({ message: " Error when deleting guest cart" });
+        }
+        res.status(200).json(userCart);
+      }
+      // 没有用户购物车，那就直接把guest购物车的商品复制到用户购物车
+      guestCart.user = req.user._id;
+      guestCart.guestId = undefined;
+      await guestCart.save();
+      res.status(200).json(guestCart);
+      // 合并完了之后，就可以删除游客购物车了
+      // await Cart.findOneAndDelete({ guestId });
+    } else {
+      // 没有游客购物车，那就不需要合并了
+      if (userCart) {
+        // already merged
+        res.status(200).json(userCart);
+      }
+      res.status(404).json({ message: "Guest cart not found" });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
 export default cartRouter;
