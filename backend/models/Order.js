@@ -1,12 +1,11 @@
 /*
- * @Date: 2025-05-07 20:11:09
+ * @Date: 2025-05-07 20:19:04
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-07 20:26:25
- * @FilePath: /E-Commerce-Rabbit/backend/models/checkout.js
+ * @LastEditTime: 2025-05-07 20:26:05
+ * @FilePath: /E-Commerce-Rabbit/backend/models/Order.js
  */
 import mongoose from "mongoose";
-
-const CheckoutItemSchema = new mongoose.Schema(
+const OrderItemSchema = mongoose.model(
   {
     productId: {
       type: mongoose.Schema.Types.ObjectId,
@@ -25,18 +24,24 @@ const CheckoutItemSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    size: String,
+    color: String,
+    quantity: {
+      type: Number,
+      required: true,
+    },
   },
   { _id: false },
 );
 
-const CheckoutSchema = new mongoose.Schema(
+const OrderSchema = new mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
-    checkoutItems: [CheckoutItemSchema],
+    orderItems: [OrderItemSchema],
     shippingAddress: {
       address: {
         type: String,
@@ -65,27 +70,30 @@ const CheckoutSchema = new mongoose.Schema(
     },
     isPaid: {
       type: Boolean,
+      required: true,
       default: false,
     },
     paidAt: {
+      type: Date,
+    },
+    isDelivered: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    deliveredAt: {
       type: Date,
     },
     paymentStatus: {
       type: String,
       default: "Pending",
     },
-    paymentDetails: {
-      // - 可以存储任意类型的值 不进行类型检查
-      type: mongoose.Schema.Types.Mixed, //store payment-related details(transactionID,paypal)
-    },
-    isFinalized: {
-      type: Boolean,
-      default: false,
-    },
-    finalizedAt: {
-      type: Date,
+    status: {
+      type: String,
+      enum: ["Processing", "Shipped", "Delivered", "Cancelled"],
+      default: "Processing",
     },
   },
   { timestamps: true },
 );
-export default mongoose.model("Checkout", CheckoutSchema);
+export default mongoose.model("Order", OrderSchema);
