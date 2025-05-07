@@ -13,6 +13,7 @@ import productRoutes from "./routes/productRoute.js";
 import cartRoutes from "./routes/cartRoute.js";
 import checkoutRoutes from "./routes/checkoutRoute.js";
 import orderRouter from "./routes/orderRoute.js";
+import uploadRouter from "./routes/uploadRoute.js";
 // 初始化
 const app = express();
 // 中间件 允许跨域 json解析
@@ -34,6 +35,7 @@ app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/checkout", checkoutRoutes);
 app.use("/api/orders", orderRouter);
+app.use("/api/upload", uploadRouter);
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
