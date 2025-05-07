@@ -1,11 +1,11 @@
 /*
  * @Date: 2025-05-07 20:19:04
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-07 20:26:05
+ * @LastEditTime: 2025-05-07 21:11:56
  * @FilePath: /E-Commerce-Rabbit/backend/models/Order.js
  */
 import mongoose from "mongoose";
-const OrderItemSchema = mongoose.model(
+const OrderItemSchema = mongoose.Schema(
   {
     productId: {
       type: mongoose.Schema.Types.ObjectId,

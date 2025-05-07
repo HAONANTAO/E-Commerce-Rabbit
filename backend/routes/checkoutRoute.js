@@ -54,7 +54,8 @@ CheckOutRoute.put("/:id/pay", protect, async (req, res) => {
       checkout.paymentDetails = paymentDetails;
       checkout.paidAt = Date.now();
       await checkout.save();
-      res.status(200).json({ message: "Checkout updated" });
+
+      res.status(200).json(checkout);
     } else {
       res.status(400).json({ message: "Invalid payment status" });
     }
