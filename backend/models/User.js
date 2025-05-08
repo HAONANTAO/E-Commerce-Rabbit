@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-05-04 17:44:34
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-04 18:49:55
+ * @LastEditTime: 2025-05-08 20:40:55
  * @FilePath: /E-Commerce-Rabbit/backend/models/User.js
  */
 /*
@@ -45,7 +45,7 @@ const UserSchema = new mongoose.Schema(
 );
 
 // password 加密
-// 在保存文档之前执行的中间件
+// 在保存文档之前执行的中间件!
 UserSchema.pre("save", async function (next) {
   // 如果密码没有修改，就不加密
   if (!this.isModified("password")) {
