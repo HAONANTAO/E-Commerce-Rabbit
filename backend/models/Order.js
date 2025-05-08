@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-05-07 20:19:04
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-07 21:11:56
+ * @LastEditTime: 2025-05-08 21:03:59
  * @FilePath: /E-Commerce-Rabbit/backend/models/Order.js
  */
 import mongoose from "mongoose";
@@ -28,7 +28,7 @@ const OrderItemSchema = mongoose.Schema(
     color: String,
     quantity: {
       type: Number,
-      required: true,
+      // required: true,
     },
   },
   { _id: false },
