@@ -8,6 +8,7 @@
 4. [Checkout Related APIs](#checkout-related-apis)
 5. [Order Related APIs](#order-related-apis)
 6. [File Upload APIs](#file-upload-apis)
+7. [Newsletter Subscription APIs](#newsletter-subscription-apis)
 
 ## Basic Information
 
@@ -124,6 +125,56 @@
 ```
 
 - Note: Uses Cloudinary service for image storage
+
+## Newsletter Subscription APIs
+
+### Subscribe to Newsletter
+
+- Route: `POST /subscribe`
+- Access: Public
+- Description: Handle newsletter subscription
+- Request Body:
+
+```json
+{
+  "email": "user@example.com"
+}
+```
+
+- Response Success (201):
+
+```json
+{
+  "message": "Successfully subscribed"
+}
+```
+
+- Response Error (400):
+
+```json
+{
+  "message": "Email already subscribed" | "Email is required"
+}
+```
+
+### Subscriber Model Schema
+
+```json
+{
+  "email": {
+    "type": "String",
+    "required": true,
+    "unique": true,
+    "trim": true,
+    "lowercase": true,
+    "match": "email format regex"
+  },
+  "subscribedAt": {
+    "type": "Date",
+    "default": "Current Date"
+  }
+}
+```
 
 ## Error Handling
 
