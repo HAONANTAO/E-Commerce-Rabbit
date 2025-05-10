@@ -1,14 +1,32 @@
 /*
  * @Date: 2025-04-26 19:23:01
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-28 19:03:59
+ * @LastEditTime: 2025-05-10 17:19:23
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/NewArrivals.jsx
  */
 import React, { useEffect, useRef, useState } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
-import { newProducts } from "../../utils/mockdb";
+import axios from "axios";
+// import { newProducts } from "../../utils/mockdb";
 import { Link } from "react-router-dom";
 const NewArrivals = () => {
+  const [newProducts, setNewProducts] = useState([]);
+
+  // 从后端拿到数据
+  useEffect(() => {
+    const fetchNewArrivals = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.BACKEND_URL}/api/products/new-arrivals`,
+        );
+        setNewProducts(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchNewArrivals;
+  }, []);
+
   // 点击按钮滚动
   const scrollRef = useRef(null);
   const [isDragging, setIsDragging] = React.useState(false);
