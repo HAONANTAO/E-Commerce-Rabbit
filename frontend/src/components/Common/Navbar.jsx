@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-21 20:49:04
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-03 15:06:45
+ * @LastEditTime: 2025-05-10 19:23:13
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Common/Navbar.jsx
  */
 import React from "react";
@@ -35,22 +35,22 @@ const Navbar = () => {
         {/* center navigation links */}
         <div className="hidden space-x-4 md:flex">
           <Link
-            to="/collections/all"
+            to="/collections/all?gender=Men"
             className="text-sm font-medium text-gray-700 uppercase hover:text-black">
             Men
           </Link>
           <Link
-            to="#"
+            to="/collections/all?gender=Women"
             className="text-sm font-medium text-gray-700 uppercase hover:text-black">
             Women
           </Link>
           <Link
-            to="#"
+            to="/collections/all?category=Top Wear"
             className="text-sm font-medium text-gray-700 uppercase hover:text-black">
             Top Wear
           </Link>
           <Link
-            to="#"
+            to="/collections/all?category=Bottom Wear"
             className="text-sm font-medium text-gray-700 uppercase hover:text-black">
             Bottom Wear
           </Link>
@@ -114,25 +114,25 @@ const Navbar = () => {
             {/* 导航标签 */}
             {/* block为了横向显示 */}
             <Link
-              to="#"
+              to="/collections/all?gender=Men"
               onClick={toggleNavDrawer}
               className="block text-gray-600 hover:text-black">
               Men
             </Link>
             <Link
-              to="#"
+              to="/collections/all?gender=Women"
               onClick={toggleNavDrawer}
               className="block text-gray-600 hover:text-black">
               Women
             </Link>
             <Link
-              to="#"
+              to="/collections/all?category=Top Wear"
               onClick={toggleNavDrawer}
               className="block text-gray-600 hover:text-black">
               TopWear
             </Link>
             <Link
-              to="#"
+              to="/collections/all?category=Bottom Wear"
               onClick={toggleNavDrawer}
               className="block text-gray-600 hover:text-black">
               BottomWear
