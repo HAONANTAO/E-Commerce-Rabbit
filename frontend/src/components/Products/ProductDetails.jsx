@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-27 11:33:34
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-10 18:52:03
+ * @LastEditTime: 2025-05-10 18:54:17
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/ProductDetails.jsx
  */
 import React, { useEffect, useState } from "react";
@@ -248,12 +248,16 @@ const ProductDetails = ({ productId }) => {
               </div>
             </div>
 
-            {/* you also like */}
+            {/* you also like! */}
             <div className="mt-20">
               <h2 className="mb-4 text-2xl font-medium text-center">
                 You May Also Like...
               </h2>
-              <ProductGrid products={similarProducts} />
+              <ProductGrid
+                products={similarProducts}
+                loading={loading}
+                error={error}
+              />
             </div>
           </div>
         )}
