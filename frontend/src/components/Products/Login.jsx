@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-29 20:44:35
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-29 21:28:57
+ * @LastEditTime: 2025-05-10 14:32:23
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/Login.jsx
  */
 /*
@@ -13,12 +13,19 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import LoginImage from "@/assets/login.webp";
+import { loginUser } from "@/redux/slices/authSlice";
+import { useDispatch } from "react-redux";
 // 登录页面
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  // - 用于向 Redux store 发送 action   -触发状态更新;
+  const dispatch = useDispatch();
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(loginUser({ email, password }));
     console.log(email, password);
   };
   return (

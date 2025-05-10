@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-20 21:08:35
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-04 15:46:06
+ * @LastEditTime: 2025-05-10 14:30:10
  * @FilePath: /E-Commerce-Rabbit/frontend/src/App.jsx
  */
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -24,6 +24,8 @@ import UserManagement from "@/components/Admin/UserManagement";
 import ProductsManagement from "@/components/Admin/ProductsManagement";
 import EditProduct from "@/components/Admin/EditProduct";
 import OrderManagement from "@/components/Admin/OrderManagement";
+import { Provider } from "react-redux";
+import store from "@/redux/store";
 /*
  * @Date: 2025-04-20 21:08:35
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
@@ -32,7 +34,7 @@ import OrderManagement from "@/components/Admin/OrderManagement";
  */
 export default function App() {
   return (
-    <>
+    <Provider store={store}>
       {/* react-router-dom */}
       <BrowserRouter
         // 提前启用 v7 的新功能，取消控制台warning
@@ -77,6 +79,6 @@ export default function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
-    </>
+    </Provider>
   );
 }

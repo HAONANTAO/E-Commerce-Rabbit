@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-05-10 14:01:28
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-10 14:21:33
+ * @LastEditTime: 2025-05-10 14:26:23
  * @FilePath: /E-Commerce-Rabbit/frontend/src/redux/slices/authSlice.js
  */
 // Redux 的工作流程：
@@ -19,7 +19,7 @@ import {
 } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// retrieve user from local storage
+// retrieve user from local storage 从localStorage获取用户信息
 const userFromStorage = localStorage.getItem("userInfo")
   ? // 将 JSON 格式的字符串转换为 JavaScript 对象
     JSON.parse(localStorage.getItem("userInfo"))
@@ -30,7 +30,7 @@ const userFromStorage = localStorage.getItem("userInfo")
 const initialGuestId = localStorage.getItem("guestId") || `guest_${Date.now()}`;
 localStorage.setItem("guestId", initialGuestId);
 
-// initial state
+// initial state 定义初始状态对象，
 const initialState = {
   user: userFromStorage,
   guestId: initialGuestId,
@@ -42,7 +42,7 @@ const initialState = {
 // Redux 异步 action creator
 export const loginUser = createAsyncThunk(
   "/auth/loginUser",
-  async (userData, { isRejectedWithValue }) => {
+  async (userData, { rejectWithValue }) => {
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/users/login`,
@@ -52,7 +52,7 @@ export const loginUser = createAsyncThunk(
       localStorage.setItem("userToken", response.data.token);
       return response.data.user;
     } catch (error) {
-      isRejectedWithValue(error.response.data);
+      return rejectWithValue(error.response.data);
     }
   },
 );
@@ -60,7 +60,7 @@ export const loginUser = createAsyncThunk(
 //
 export const registerUser = createAsyncThunk(
   "/auth/registerUser",
-  async (userData, { isRejectedWithValue }) => {
+  async (userData, { rejectWithValue }) => {
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/users/register`,
@@ -70,7 +70,7 @@ export const registerUser = createAsyncThunk(
       localStorage.setItem("userToken", response.data.token);
       return response.data.user;
     } catch (error) {
-      isRejectedWithValue(error.response.data);
+      return rejectWithValue(error.response.data);
     }
   },
 );
@@ -79,6 +79,7 @@ export const registerUser = createAsyncThunk(
 const authSlice = createSlice({
   name: "auth",
   initialState,
+  // 同步操作 用于处理状态更新
   reducers: {
     logout: (state) => {
       state.user = null;
@@ -92,6 +93,7 @@ const authSlice = createSlice({
       localStorage.setItem("guestId", state.guestId);
     },
   },
+  // 处理异步操作的三种状态：pending/fulfilled/rejected
   extraReducers: (builder) => {
     builder
       .addCase(loginUser.pending, (state) => {
@@ -100,11 +102,12 @@ const authSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.user = action.payload;
+        state.error = null;
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload.message;
+        state.error = action.payload?.message || "登录失败，请稍后重试";
       })
       .addCase(registerUser.pending, (state) => {
         state.loading = true;
@@ -112,11 +115,12 @@ const authSlice = createSlice({
       })
       .addCase(registerUser.fulfilled, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.user = action.payload;
+        state.error = null;
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload.message;
+        state.error = action.payload?.message || "注册失败，请稍后重试";
       });
   },
 });
