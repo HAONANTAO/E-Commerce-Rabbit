@@ -1,14 +1,17 @@
 /*
  * @Date: 2025-04-25 18:31:40
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-10 19:41:00
+ * @LastEditTime: 2025-05-10 20:08:22
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Cart/CartContent.jsx
  */
 import React from "react";
 import { RiDeleteBin3Line } from "react-icons/ri";
 import { useDispatch } from "react-redux";
+import { removeItemFromCart } from "../../redux/slices/cartSlice";
 // import { cartProducts } from "@/utils/mockdb";
 const CartContent = ({ cart, userId, guestId }) => {
+  console.log("cart", cart.products);
+  console.log(userId);
   const dispatch = useDispatch();
   // handle adding or subtracting to cart
   // delta 通常是一个 增量值（difference），表示对购物车中某个商品的数量进行的更改。
@@ -36,7 +39,7 @@ const CartContent = ({ cart, userId, guestId }) => {
       <div>
         {cart.products.map((product, index) => (
           <div
-            key={product.productId}
+            key={`${product.productId}-${product.size}-${product.color}`} // 使用 productId、size、color 组合
             className="flex justify-between items-start py-4 border-b">
             <div className="flex items-start">
               <img

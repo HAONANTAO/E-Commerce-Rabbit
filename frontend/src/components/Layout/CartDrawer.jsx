@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-23 21:51:05
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-10 19:33:20
+ * @LastEditTime: 2025-05-10 20:01:28
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Layout/CartDrawer.jsx
  */
 
@@ -13,8 +13,9 @@ import { useSelector } from "react-redux";
 const CartDrawer = ({ isOpen, toggleDrawer }) => {
   const navigate = useNavigate();
   const { user, guestId } = useSelector((state) => state.auth);
+
   const { cart } = useSelector((state) => state.cart);
-  const userId = user ? user._id : null;
+  const userId = user ? user.id : null;
   const handleCheckOut = () => {
     // 跳转到checkout页面,但是也要关闭侧边栏
     toggleDrawer();
@@ -42,8 +43,8 @@ const CartDrawer = ({ isOpen, toggleDrawer }) => {
         {/* Cart contents with scrolling */}
         <div className="overflow-y-auto flex-grow p-4">
           <h2 className="mb-4 text-xl font-semibold">Your Cart</h2>
-          {cart && cart?.product?.length > 0 ? (
-            <CartContent cart={cart} userId guestId />
+          {cart && cart?.products?.length > 0 ? (
+            <CartContent cart={cart} userId={userId} guestId={guestId} />
           ) : (
             <p>Your Cart is Empty.</p>
           )}
