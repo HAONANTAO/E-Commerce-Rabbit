@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-05-10 14:57:23
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-10 18:29:37
+ * @LastEditTime: 2025-05-10 18:53:11
  * @FilePath: /E-Commerce-Rabbit/frontend/src/redux/slices/productSlice.js
  */
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
@@ -89,7 +89,7 @@ const productSlice = createSlice({
   name: "products",
   initialState: {
     products: [],
-    selectedProduct: null,
+    selectedProducts: null,
     similarProducts: [],
     loading: false,
     error: null,
@@ -154,7 +154,7 @@ const productSlice = createSlice({
       })
       .addCase(fetchSingleProduct.fulfilled, (state, action) => {
         state.loading = false;
-        state.selectedProduct = action.payload;
+        state.selectedProducts = action.payload;
       })
 
       //handle updating product

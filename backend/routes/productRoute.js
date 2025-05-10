@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-05-04 20:25:23
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-05 22:32:16
+ * @LastEditTime: 2025-05-10 18:43:58
  * @FilePath: /E-Commerce-Rabbit/backend/routes/productRoute.js
  */
 import express from "express";
@@ -76,7 +76,7 @@ productRouter.get("/best-seller", async (req, res) => {
     // 获取评分最高的4个产品
     const bestSellingProducts = await Product.find({})
       .sort({ rating: -1 })
-      .limit(4);
+      .limit(1);
     if (bestSellingProducts) {
       res.json(bestSellingProducts);
     } else {

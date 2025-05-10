@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-26 18:34:57
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-10 18:23:00
+ * @LastEditTime: 2025-05-10 18:49:39
  * @FilePath: /E-Commerce-Rabbit/frontend/src/pages/Home.jsx
  */
 import React, { useEffect, useState } from "react";
@@ -38,12 +38,13 @@ const Home = () => {
         const response = await axios.get(
           `${import.meta.env.VITE_BACKEND_URL}/api/products/best-seller`,
         );
-        setBestSellerProducts(response.data);
+        console.log("the best seller", response.data);
+        setBestSellerProducts(response.data[0]);
       } catch (error) {
         console.log(error);
       }
     };
-    fetchBestSeller;
+    fetchBestSeller();
     // “防御性编程”。[dispatch]
   }, [dispatch]);
 
