@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-05-10 14:00:06
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-10 16:12:40
+ * @LastEditTime: 2025-05-10 16:59:45
  * @FilePath: /E-Commerce-Rabbit/frontend/src/redux/store.js
  */
 
@@ -11,7 +11,8 @@ import productReducer from "./slices/productSlice";
 import cartReducer from "./slices/cartSlice";
 import checkoutReducer from "./slices/checkoutSlice";
 import orderReducer from "./slices/orderSlice";
-import adminReducer from "./slices/adminSlice"
+import adminReducer from "./slices/adminSlice";
+import adminProductReducer from "./slices/adminProductSlice";
 // 创建store
 const store = configureStore({
   reducer: {
@@ -21,6 +22,7 @@ const store = configureStore({
     checkout: checkoutReducer,
     orders: orderReducer,
     admin: adminReducer,
+    adminProduct: adminProductReducer,
   },
 });
 export default store;
