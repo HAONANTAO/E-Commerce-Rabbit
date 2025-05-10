@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-26 18:34:57
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-10 18:19:33
+ * @LastEditTime: 2025-05-10 18:23:00
  * @FilePath: /E-Commerce-Rabbit/frontend/src/pages/Home.jsx
  */
 import React, { useEffect, useState } from "react";
@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProductsByFilters } from "../redux/slices/productSlice";
 import axios from "axios";
 const Home = () => {
+  const dispatch = useDispatch();
   const [bestSellerProducts, setBestSellerProducts] = useState(null);
   // useSelector 拿到整个 Redux 的状态 state。
   // 然后从 state.productState 中取出 products、loading 和 error 三个字段。
@@ -45,7 +46,7 @@ const Home = () => {
     fetchBestSeller;
     // “防御性编程”。[dispatch]
   }, [dispatch]);
-  const dispatch = useDispatch();
+
   return (
     <>
       <div>

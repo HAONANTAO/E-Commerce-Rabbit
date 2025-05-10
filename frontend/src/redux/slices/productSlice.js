@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-05-10 14:57:23
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-10 15:24:20
+ * @LastEditTime: 2025-05-10 18:29:37
  * @FilePath: /E-Commerce-Rabbit/frontend/src/redux/slices/productSlice.js
  */
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
@@ -77,7 +77,7 @@ export const fetchUpdateProduct = createAsyncThunk(
 // async thunk to fetch related similar products
 export const fetchSimilarProducts = createAsyncThunk(
   "products/fetchSimilarProduct",
-  async (id) => {
+  async ({ id }) => {
     const response = await axios.get(
       `${import.meta.env.VITE_BACKEND_URL}/api/products/similar/${id}`,
     );

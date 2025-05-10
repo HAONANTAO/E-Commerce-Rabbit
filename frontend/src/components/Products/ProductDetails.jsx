@@ -1,19 +1,37 @@
 /*
  * @Date: 2025-04-27 11:33:34
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-28 19:10:45
+ * @LastEditTime: 2025-05-10 18:35:47
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/ProductDetails.jsx
  */
 import React, { useEffect, useState } from "react";
-import { selectedProducts, similarProducts } from "../../utils/mockdb";
+// import { selectedProducts, similarProducts } from "../../utils/mockdb";
 import { toast } from "sonner";
 import ProductGrid from "./ProductGrid";
-const ProductDetails = () => {
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchSimilarProducts } from "../../redux/slices/productSlice";
+import { addItemToCart } from "../../redux/slices/cartSlice";
+const ProductDetails = ({ productId }) => {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const { selectedProducts, loading, error, similarProducts } = useSelector(
+    (state) => state.products,
+  );
+  const { user, guestId } = useSelector((state) => state.auth);
   const [imgUrl, setImgUrl] = useState("");
   const [selectSize, setSelectSize] = useState("");
   const [selectColor, setSelectColor] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const productFetchId = productId || id;
+  useEffect(() => {
+    if (productFetchId) {
+      dispatch(fetchSingleProduct(productFetchId));
+      dispatch(fetchSimilarProducts({ id: productFetchId }));
+    }
+  }, [dispatch, productId]);
+
   useEffect(() => {
     if (selectedProducts?.images?.length > 0) {
       setImgUrl(selectedProducts.images[0].url);
@@ -41,14 +59,32 @@ const ProductDetails = () => {
     // 先按钮不可用
     setIsButtonDisabled(true);
     // 过段时间回复按钮功能
-    setTimeout(() => {
-      toast.success("Added to cart!", {
-        duration: 1000,
+    dispatch(
+      addItemToCart({
+        productId: productFetchId,
+        quantity,
+        size: selectSize,
+        color: selectColor,
+        guestId,
+        userId: user?._id,
+      }),
+    )
+      .then(() => {
+        toast.success("Product added to the cart!", {
+          duration: 1000,
+        });
+      })
+      .finally(() => {
+        setIsButtonDisabled(false);
       });
-      setIsButtonDisabled(false);
-    }, 1000);
   };
 
+  if (loading) {
+    <p>Loading...</p>;
+  }
+  if (error) {
+    <p>Error:{error}</p>;
+  }
   return (
     <>
       <div className="p-6">
