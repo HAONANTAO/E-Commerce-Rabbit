@@ -1,13 +1,18 @@
 /*
  * @Date: 2025-04-22 21:46:46
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-23 21:49:45
+ * @LastEditTime: 2025-05-10 20:34:47
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Common/Searchbar.jsx
  */
 import React from "react";
 import { HiMagnifyingGlass, HiMiniXMark } from "react-icons/hi2";
-
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { fetchProductsByFilters } from "../../redux/slices/productSlice";
+import { setFilters } from "../../redux/slices/productSlice";
 const Searchbar = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   // 搜索词
   const [searchTerms, setSearchTerms] = React.useState("");
   // 搜索展开框
@@ -18,8 +23,11 @@ const Searchbar = () => {
     e.preventDefault();
     // console.log(searchTerms);
 
-    // TODO: 搜索功能
+    dispatch(setFilters({ search: searchTerms }));
+    dispatch(fetchProductsByFilters({ search: searchTerms }));
+    // 跳转页面
 
+    navigate(`/collections/all?search=${searchTerms}`);
     // 点击完清空并跳转搜索结果
     setIsOpen(false);
     setSearchTerms("");

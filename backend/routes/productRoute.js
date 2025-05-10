@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-05-04 20:25:23
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-10 18:43:58
+ * @LastEditTime: 2025-05-10 20:32:58
  * @FilePath: /E-Commerce-Rabbit/backend/routes/productRoute.js
  */
 import express from "express";
@@ -189,7 +189,7 @@ productRouter.delete("/:id", protect, admin, async (req, res) => {
 // @routs GET /api/products
 // @desc Get all product
 // @access Public
-// 过滤器
+// 过滤器!!
 productRouter.get("/", async (req, res) => {
   try {
     const {
