@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-05-10 16:23:31
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-10 16:40:57
+ * @LastEditTime: 2025-05-10 18:02:56
  * @FilePath: /E-Commerce-Rabbit/frontend/src/redux/slices/adminSlice.js
  */
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
@@ -30,7 +30,7 @@ export const addUser = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        `${import.meta.env.BACKEND_URL}/api/admin/users`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/admin/users`,
         userData,
         {
           headers: {
@@ -52,7 +52,7 @@ export const updateUser = createAsyncThunk(
   async ({ id, name, email, role }) => {
     try {
       const response = await axios.put(
-        `${import.meta.env.BACKEND_URL}/api/admin/users/${id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/admin/users/${id}`,
         { name, email, role },
         {
           headers: {
@@ -70,7 +70,7 @@ export const updateUser = createAsyncThunk(
 // delete the user
 export const deleteUser = createAsyncThunk("admin/deleteUser", async (id) => {
   const response = await axios.delete(
-    `${import.meta.env.BACKEND_URL}/api/admin/users/${id}`,
+    `${import.meta.env.VITE_BACKEND_URL}/api/admin/users/${id}`,
     {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("userToken")}`,

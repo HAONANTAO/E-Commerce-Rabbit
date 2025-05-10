@@ -1,14 +1,14 @@
 /*
  * @Date: 2025-05-10 16:05:21
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-10 16:11:42
+ * @LastEditTime: 2025-05-10 17:58:04
  * @FilePath: /E-Commerce-Rabbit/frontend/src/redux/slices/checkoutSlice.js
  */
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 // async chunk to create a checkout session
-export const createCheckoutSession = createAsyncThunk(
+export const createCheckout = createAsyncThunk(
   "checkout/createCheckout",
   async (checkoutData, { rejectWithValue }) => {
     try {
