@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-29 20:44:35
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-10 14:54:06
+ * @LastEditTime: 2025-05-10 14:55:07
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/Register.jsx
  */
 /*
@@ -13,7 +13,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import RegisterImage from "@/assets/register.webp";
-import { registerUser } from "@/redux/slices/userSlice";
+import { registerUser } from "@/redux/slices/authSlice";
 import { useDispatch } from "react-redux";
 // 登录页面
 const Register = () => {
@@ -53,7 +53,20 @@ const Register = () => {
             <p className="mb-6 text-center">
               Enter your email and password to login.
             </p>
-
+            {/* Name */}
+            <div className="mb-4">
+              <label htmlFor="" className="block mb-2 text-sm font-semibold">
+                Name
+              </label>
+              <input
+                type="name"
+                name="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="p-2 w-full rounded border"
+                placeholder="Enter your name..."
+              />
+            </div>
             {/* email */}
             <div className="mb-4">
               {/* 用于为表单控件（如输入框、复选框等）创建说明标签。 */}
@@ -71,20 +84,6 @@ const Register = () => {
               />
             </div>
 
-            {/* Name */}
-            <div className="mb-4">
-              <label htmlFor="" className="block mb-2 text-sm font-semibold">
-                Name
-              </label>
-              <input
-                type="name"
-                name="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="p-2 w-full rounded border"
-                placeholder="Enter your name..."
-              />
-            </div>
             {/* password */}
             <div className="mb-4">
               <label htmlFor="" className="block mb-2 text-sm font-semibold">
