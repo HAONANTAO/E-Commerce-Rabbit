@@ -1,0 +1,135 @@
+/*
+ * @Date: 2025-05-10 16:23:31
+ * @LastEditors: 陶浩南 taoaaron5@gmail.com
+ * @LastEditTime: 2025-05-10 16:40:57
+ * @FilePath: /E-Commerce-Rabbit/frontend/src/redux/slices/adminSlice.js
+ */
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+
+//fetch all the users(admin only)
+export const fetchUsers = createAsyncThunk("admin/fetchUsers", async () => {
+  try {
+    const response = await axios.get(
+      `${import.meta.env.VITE_BACKEND.URL}/api/admin/users`,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+        },
+      },
+    );
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+});
+
+// add the create user action(admin only)
+export const addUser = createAsyncThunk(
+  "admin/addUser",
+  async (userData, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        `${import.meta.env.BACKEND_URL}/api/admin/users`,
+        userData,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+          },
+        },
+      );
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
+
+//update the user info
+export const updateUser = createAsyncThunk(
+  "admin/updateUser",
+  async ({ id, name, email, role }) => {
+    try {
+      const response = await axios.put(
+        `${import.meta.env.BACKEND_URL}/api/admin/users/${id}`,
+        { name, email, role },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+          },
+        },
+      );
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+);
+
+// delete the user
+export const deleteUser = createAsyncThunk("admin/deleteUser", async (id) => {
+  const response = await axios.delete(
+    `${import.meta.env.BACKEND_URL}/api/admin/users/${id}`,
+    {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+      },
+    },
+  );
+  return id;
+});
+
+const adminSlice = createSlice({
+  name: "admin",
+  initialState: {
+    users: [],
+    loading: false,
+    error: null,
+  },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchUsers.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchUsers.fulfilled, (state) => {
+        state.loading = false;
+        state.users = action.payload;
+      })
+      .addCase(fetchUsers.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      //
+      .addCase(updateUser.fulfilled, (state) => {
+        const updateUser = action.payload;
+        const userIndex = state.users.findIndex((user) => {
+          user._id === updateUser._id;
+        });
+        if (userIndex !== -1) {
+          state.users[userIndex] == updateUser;
+        }
+      })
+      .addCase(deleteUser.fulfilled, (state, action) => {
+        // 因为返回的是id
+        state.users = state.users.filter((user) => {
+          user._id !== action.payload;
+        });
+      })
+      .addCase(addUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+
+      .addCase(addUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.users.push(action.payload.user);
+      })
+      .addCase(addUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload.message;
+      });
+  },
+});
+export default adminSlice;

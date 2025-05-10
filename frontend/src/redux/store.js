@@ -10,6 +10,8 @@ import authReducer from "./slices/authSlice";
 import productReducer from "./slices/productSlice";
 import cartReducer from "./slices/cartSlice";
 import checkoutReducer from "./slices/checkoutSlice";
+import orderReducer from "./slices/orderSlice";
+import adminReducer from "./slices/adminSlice"
 // 创建store
 const store = configureStore({
   reducer: {
@@ -17,6 +19,8 @@ const store = configureStore({
     products: productReducer,
     cart: cartReducer,
     checkout: checkoutReducer,
+    orders: orderReducer,
+    admin: adminReducer,
   },
 });
 export default store;
