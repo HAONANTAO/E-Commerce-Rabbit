@@ -1,12 +1,18 @@
 /*
  * @Date: 2025-04-27 21:31:26
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-28 19:10:32
+ * @LastEditTime: 2025-05-10 18:21:41
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/ProductGrid.jsx
  */
 import React from "react";
 import { Link } from "react-router-dom";
-const ProductGrid = ({ products }) => {
+const ProductGrid = ({ products, loading, error }) => {
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+  if (error) {
+    return <p>Error:{error}</p>;
+  }
   return (
     <>
       {/* - 0-639px: 1列 ( grid-cols-1 )

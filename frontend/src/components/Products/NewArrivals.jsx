@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-26 19:23:01
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-10 18:02:37
+ * @LastEditTime: 2025-05-10 18:04:42
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/NewArrivals.jsx
  */
 import React, { useEffect, useRef, useState } from "react";
@@ -19,7 +19,7 @@ const NewArrivals = () => {
         const response = await axios.get(
           `${import.meta.env.VITE_BACKEND_URL}/api/products/new-arrivals`,
         );
-        console.log(response.data);
+
         setNewProducts(response.data);
       } catch (error) {
         console.log(error);
@@ -91,7 +91,6 @@ const NewArrivals = () => {
         scrollContainer.removeEventListener("scroll", updateScrollButtons);
       };
     }
-    //TODO:理解
   }, [newProducts]);
 
   // 鼠标按下 记录位置
