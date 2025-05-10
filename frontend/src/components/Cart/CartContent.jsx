@@ -1,21 +1,21 @@
 /*
  * @Date: 2025-04-25 18:31:40
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-10 20:08:22
+ * @LastEditTime: 2025-05-10 20:23:23
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Cart/CartContent.jsx
  */
 import React from "react";
 import { RiDeleteBin3Line } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 import { removeItemFromCart } from "../../redux/slices/cartSlice";
+import { updateCartItemQuantity } from "../../redux/slices/cartSlice";
 // import { cartProducts } from "@/utils/mockdb";
 const CartContent = ({ cart, userId, guestId }) => {
-  console.log("cart", cart.products);
-  console.log(userId);
   const dispatch = useDispatch();
   // handle adding or subtracting to cart
   // delta 通常是一个 增量值（difference），表示对购物车中某个商品的数量进行的更改。
   const handleAddToCart = (productId, delta, quantity, size, color) => {
+    console.log("click to add/minus the cart quantity");
     const newQuantity = delta + quantity;
     if (newQuantity >= 1) {
       dispatch(
