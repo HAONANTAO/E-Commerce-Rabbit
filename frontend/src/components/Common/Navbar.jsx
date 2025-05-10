@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-21 20:49:04
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-10 19:23:13
+ * @LastEditTime: 2025-05-10 19:46:06
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Common/Navbar.jsx
  */
 import React from "react";
@@ -12,7 +12,13 @@ import { HiBars3BottomRight } from "react-icons/hi2";
 import Searchbar from "./Searchbar";
 import CartDrawer from "../Layout/CartDrawer";
 import { IoMdClose } from "react-icons/io";
+import { useSelector } from "react-redux";
 const Navbar = () => {
+  const { cart } = useSelector((state) => state.cart);
+  // 把购物车里面每一种累的个数加起来算总量
+  const cartItemCount =
+    cart?.products?.reduce((total, product) => total + product.quantity, 0) ||
+    0;
   const [isCartOpen, setIsCartOpen] = useState(false);
   const toggleCartDrawer = () => {
     setIsCartOpen(!isCartOpen);
@@ -72,10 +78,11 @@ const Navbar = () => {
             onClick={toggleCartDrawer}
             className="relative hover:text-black">
             <HiOutlineShoppingBag className="w-6 h-6 text-gray-700"></HiOutlineShoppingBag>
-            {/* TODO:responsive display according to the items in the bags  */}
-            <span className="absolute -top-1  px-2 py-0.5 text-xs text-white rounded-full bg-e-red">
-              5
-            </span>
+            {cartItemCount > 0 && (
+              <span className="absolute -top-1  px-2 py-0.5 text-xs text-white rounded-full bg-e-red">
+                {cartItemCount}
+              </span>
+            )}
           </button>
 
           {/* Search bar */}
