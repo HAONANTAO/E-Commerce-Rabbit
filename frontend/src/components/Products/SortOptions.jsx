@@ -22,7 +22,8 @@ const SortOptions = () => {
         id="sort"
         className="p-2 rounded-md border focus:outline-none"
         onChange={handleSortChange}
-        value={searchParams.get("sortBy")}>
+        // 避免拿到null
+        value={searchParams.get("sortBy") || ""}>
         <option value="">Default</option>
         <option value="priceAsc">Price: Low to High </option>
         <option value="priceDesc">Price: High to Low</option>

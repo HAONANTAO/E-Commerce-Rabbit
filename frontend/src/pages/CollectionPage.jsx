@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-29 22:17:20
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-01 21:04:41
+ * @LastEditTime: 2025-05-10 19:12:09
  * @FilePath: /E-Commerce-Rabbit/frontend/src/pages/CollectionPage.jsx
  */
 import React, { useEffect, useRef, useState } from "react";
@@ -10,8 +10,21 @@ import { FaFilter } from "react-icons/fa";
 import FilterSidebar from "@/components/Products/FilterSidebar";
 import SortOptions from "@/components/Products/SortOptions";
 import ProductGrid from "@/components/Products/ProductGrid";
+import { useParams, useSearchParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProductsByFilters } from "../redux/slices/productSlice";
 const CollectionPage = () => {
-  const [products, setProducts] = useState([]);
+  const { collection } = useParams();
+  const [searchParams] = useSearchParams();
+  const dispatch = useDispatch();
+  const { products, loading, error } = useSelector((state) => state.products);
+
+  // 将 searchParams（即 useSearchParams() 返回的对象）转换成一个普通的 JavaScript 对象 queryParams，方便访问和使用。
+  const queryParams = Object.fromEntries([...searchParams]);
+  useEffect(() => {
+    dispatch(fetchProductsByFilters({ collection, ...queryParams }));
+  }, [dispatch, collection, searchParams]);
+  // const [products, setProducts] = useState([]);
   const SidebarRef = useRef(null);
   // 点按钮打开 点击其他关闭
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -34,12 +47,7 @@ const CollectionPage = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-  useEffect(() => {
-    // 模拟后端拿数据
-    setTimeout(() => {
-      setProducts(topWearsWomen);
-    }, 1000);
-  }, []);
+
   return (
     <div className="flex flex-col lg:flex-row">
       {/* mobile filter button */}
@@ -70,7 +78,7 @@ const CollectionPage = () => {
         {/* sortBy options */}
         <SortOptions />
         {/* products grid */}
-        <ProductGrid products={products} />
+        <ProductGrid products={products} loading={loading} error={error} />
       </div>
     </div>
   );
