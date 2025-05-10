@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-29 20:44:35
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-29 21:26:00
+ * @LastEditTime: 2025-05-10 14:54:06
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/Register.jsx
  */
 /*
@@ -13,14 +13,28 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import RegisterImage from "@/assets/register.webp";
+import { registerUser } from "@/redux/slices/userSlice";
+import { useDispatch } from "react-redux";
 // 登录页面
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email, password);
+    dispatch(
+      registerUser({
+        name,
+        email,
+        password,
+      }),
+    );
+    //todo: 注册逻辑成功后？
+    // 清空输入框
+    setEmail("");
+    setPassword("");
+    setName("");
   };
   return (
     <>

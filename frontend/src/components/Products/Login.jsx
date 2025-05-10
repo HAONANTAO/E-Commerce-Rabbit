@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-29 20:44:35
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-10 14:32:23
+ * @LastEditTime: 2025-05-10 14:53:51
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/Login.jsx
  */
 /*
@@ -27,6 +27,9 @@ const Login = () => {
     e.preventDefault();
     dispatch(loginUser({ email, password }));
     console.log(email, password);
+    //todo: 登录逻辑成功后？
+    setEmail("");
+    setPassword("");
   };
   return (
     <>
