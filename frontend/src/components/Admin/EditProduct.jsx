@@ -34,10 +34,11 @@ const EditProduct = () => {
     (state) => state.products,
   );
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(updateProduct({ id, productData }));
-    navigate("/admin/products");
+    await dispatch(updateProduct({ id, productData }));
+    // navigate("/admin/products");
+    navigate(`/product/${id}`);
   };
 
   // for the image uploading state
