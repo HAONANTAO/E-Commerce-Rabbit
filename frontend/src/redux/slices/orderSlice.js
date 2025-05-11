@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-05-10 16:13:04
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-10 16:21:38
+ * @LastEditTime: 2025-05-11 14:07:32
  * @FilePath: /E-Commerce-Rabbit/frontend/src/redux/slices/orderSlice.js
  */
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
@@ -14,7 +14,7 @@ export const fetchOrders = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_BACKEND.URL}/api/orders/my-orders}`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/orders/my-orders`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("userToken")}`,
@@ -35,7 +35,7 @@ export const fetchOrderDetails = createAsyncThunk(
   async (orderId, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_BACKEND.URL}/api/orders/${orderId}`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/orders/${orderId}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("userToken")}`,

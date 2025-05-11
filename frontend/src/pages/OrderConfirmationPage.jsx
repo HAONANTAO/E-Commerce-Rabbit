@@ -1,12 +1,30 @@
 /*
  * @Date: 2025-05-02 21:14:03
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-02 21:37:33
+ * @LastEditTime: 2025-05-11 13:52:54
  * @FilePath: /E-Commerce-Rabbit/frontend/src/pages/OrderConfirmationPage.jsx
  */
-import React from "react";
-import { checkout } from "@/utils/mockdb";
+import React, { useEffect } from "react";
+// import { checkout } from "@/utils/mockdb";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { clearCart } from "../redux/slices/cartSlice";
 const OrderConfirmationPage = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { checkout } = useSelector((state) => state.checkout);
+  // clear the cart when order is confirmed
+  useEffect(() => {
+    // 结账成功
+    if (checkout && checkout._id) {
+      dispatch(clearCart());
+      localStorage.removeItem("cart");
+    } else {
+      // 还没结账
+      navigate("/my-orders");
+    }
+  }, [checkout, navigate, dispatch]);
+
   // 计算是五天后到
   const calculatedEstimatedDelivery = (createdAt) => {
     const orderDate = new Date(createdAt);

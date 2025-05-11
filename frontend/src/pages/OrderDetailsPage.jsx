@@ -1,19 +1,29 @@
 /*
  * @Date: 2025-05-03 14:05:27
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-03 14:54:34
+ * @LastEditTime: 2025-05-11 14:10:39
  * @FilePath: /E-Commerce-Rabbit/frontend/src/pages/OrderDetailsPage.jsx
  */
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { mockOrderDetails } from "@/utils/mockdb";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchOrderDetails } from "../redux/slices/orderSlice";
+// import { mockOrderDetails } from "@/utils/mockdb";
 const OrderDetailsPage = () => {
   const { id } = useParams();
-  const [orderDetails, setOrderDetails] = useState(null);
 
+  const dispatch = useDispatch();
+  const { orderDetails, loading, error } = useSelector((state) => state.orders);
   useEffect(() => {
-    setOrderDetails(mockOrderDetails);
-  }, [id]);
+    dispatch(fetchOrderDetails(id));
+  }, [dispatch, id]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
   return (
     <div className="p-4 mx-auto max-x-7xl sm:p-6">
       <h2 className="mb-6 text-2xl font-bold md:text-3xl">Order Details</h2>

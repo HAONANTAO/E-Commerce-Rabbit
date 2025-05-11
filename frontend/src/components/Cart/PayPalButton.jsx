@@ -1,8 +1,8 @@
 /*
  * @Date: 2025-05-01 21:57:00
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-02 20:54:48
- * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Cart/PaypalButton.jsx
+ * @LastEditTime: 2025-05-11 13:46:40
+ * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Cart/PayPalButton.jsx
  */
 import React from "react";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
@@ -23,7 +23,7 @@ const PayPalButton = ({ amount, onSuccess, onError }) => {
             purchase_units: [
               {
                 amount: {
-                  value: amount,
+                  value: parseFloat(amount).toFixed(2),
                 },
               },
             ],

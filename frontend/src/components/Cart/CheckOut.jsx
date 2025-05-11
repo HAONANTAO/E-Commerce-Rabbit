@@ -77,7 +77,7 @@ const CheckOut = () => {
             Authorization: `Bearer ${localStorage.getItem("userToken")}`,
           },
         },
-      );
+      ); 
 
       await handleFinalizeCheckout(checkoutId);
     } catch (error) {

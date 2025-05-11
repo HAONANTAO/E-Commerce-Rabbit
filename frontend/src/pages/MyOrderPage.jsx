@@ -1,19 +1,27 @@
 import React, { useState, useEffect } from "react";
-import { myOrders } from "@/utils/mockdb.js";
+// import { myOrders } from "@/utils/mockdb.js";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchOrders } from "../redux/slices/orderSlice";
 //profile page info
 const MyOrderPage = () => {
-  const [orders, setOrders] = useState([]);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { orders, loading, error } = useSelector((state) => state.orders);
   const handleRowClick = (id) => {
     navigate(`/order/${id}`);
   };
   useEffect(() => {
-    // 模拟提前从后端拿到数据
-    setTimeout(() => {
-      setOrders(myOrders);
-    }, 1000);
-  }, []);
+    dispatch(fetchOrders());
+  }, [dispatch]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   return (
     <div className="p-4 mx-auto max-w-7xl sm:p-6">
       <h2 className="mb-6 text-xl font-bold sm:text-2xl">My Orders</h2>
