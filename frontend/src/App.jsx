@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-20 21:08:35
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-10 14:30:10
+ * @LastEditTime: 2025-05-11 14:25:02
  * @FilePath: /E-Commerce-Rabbit/frontend/src/App.jsx
  */
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -26,6 +26,7 @@ import EditProduct from "@/components/Admin/EditProduct";
 import OrderManagement from "@/components/Admin/OrderManagement";
 import { Provider } from "react-redux";
 import store from "@/redux/store";
+import ProtectedRoute from "./components/Common/ProtectedRoute";
 /*
  * @Date: 2025-04-20 21:08:35
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
@@ -67,7 +68,13 @@ export default function App() {
           </Route>
 
           {/* Admin Layout */}
-          <Route path="/admin" element={<AdminLayout />}>
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute role="admin">
+                <AdminLayout />
+              </ProtectedRoute>
+            }>
             <Route index element={<AdminHomePage />}></Route>
             <Route path="users" element={<UserManagement />}></Route>
             <Route path="products" element={<ProductsManagement />}></Route>
