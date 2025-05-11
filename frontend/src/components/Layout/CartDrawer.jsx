@@ -15,7 +15,7 @@ const CartDrawer = ({ isOpen, toggleDrawer }) => {
   const { user, guestId } = useSelector((state) => state.auth);
 
   const { cart } = useSelector((state) => state.cart);
-  console.log(cart);
+
   const userId = user ? user.id : null;
   const handleCheckOut = () => {
     // 跳转到checkout页面,但是也要关闭侧边栏

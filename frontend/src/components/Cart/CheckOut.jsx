@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-05-01 20:44:23
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-11 13:24:11
+ * @LastEditTime: 2025-05-11 13:45:14
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Cart/CheckOut.jsx
  */
 import React, { useEffect, useState } from "react";
@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import PayPalButton from "@/components/Cart/PaypalButton";
 import { useDispatch, useSelector } from "react-redux";
 import { createCheckout } from "../../redux/slices/checkoutSlice";
+import axios from "axios";
 
 const CheckOut = () => {
   const navigate = useNavigate();
@@ -37,14 +38,11 @@ const CheckOut = () => {
     }
   }, [cart, navigate]);
 
-  const handleCheckOut = (e) => {
+  const handleCheckOut = async (e) => {
     e.preventDefault();
 
     if (cart && cart.products.length > 0) {
-      // 生成随机的checkoutId
-      // const randomId = Math.floor(Math.random() * 1000000);
-      // setCheckoutId(randomId);
-      const res = dispatch(
+      const res = await dispatch(
         createCheckout({
           checkoutItems: cart.products,
           shippingAddress,
@@ -52,9 +50,10 @@ const CheckOut = () => {
           totalPrice: cart.totalPrice + shippingFee,
         }),
       );
+
       if (res.payload && res.payload._id) {
         setCheckoutId(res.payload._id);
-        navigate("/order-confirmation");
+        // navigate("/order-confirmation");
       }
     }
   };
@@ -71,7 +70,7 @@ const CheckOut = () => {
     // console.log("payment good", details);
     try {
       const response = await axios.put(
-        `${import.meta.env.VITE_BACKEND.URL}/api/checkout/${checkoutId}/pay}`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/checkout/${checkoutId}/pay`,
         { paymentStatus: "paid", paymentDetails: details },
         {
           headers: {
@@ -79,12 +78,8 @@ const CheckOut = () => {
           },
         },
       );
-      if (response.status === 200) {
-        //finalize checkout if payment is successful
-        await handleFinalizeCheckout(checkoutId);
-      } else {
-        console.log(error);
-      }
+
+      await handleFinalizeCheckout(checkoutId);
     } catch (error) {
       console.log(error);
     }
@@ -93,25 +88,31 @@ const CheckOut = () => {
     try {
       const response = await axios.post(
         `${
-          import.meta.env.VITE_BACKEND.URL
-        }/api/checkout/${checkoutId}/finalize}`,
+          import.meta.env.VITE_BACKEND_URL
+        }/api/checkout/${checkoutId}/finalize`,
+        // post请求需要空一个空对象出来当做参数！！
+        {},
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("userToken")}`,
           },
         },
       );
-      if (response.status === 200) {
-        // 最后全部成功了 跳转！
-        navigate("/order-confirmation");
-      } else {
-        console.log(error);
-      }
+
+      navigate("/order-confirmation");
     } catch (error) {
       console.log(error);
     }
-    // navigate("/order-confirmation");
   };
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+  if (!cart || !cart.products || cart.products.length === 0) {
+    return <div>Your Cart is Empty.</div>;
+  }
   return (
     <div className="grid grid-cols-1 gap-2 px-6 py-10 mx-auto max-w-7xl tracking-tighter lg:grid-cols-2">
       {/* left 左边地址 */}
@@ -128,7 +129,7 @@ const CheckOut = () => {
             <input
               type="text"
               className="p-2 w-full rounded border cursor-not-allowed"
-              value="user@example.com"
+              value={user ? user.email : ""}
               disabled
             />
           </div>
@@ -275,7 +276,7 @@ const CheckOut = () => {
                 {/* CheckOut.jsx:33 payment good 
                   {id: '34G79133AG5542007', intent: 'CAPTURE', status: 'COMPLETED', purchase_units: Array(1), payer: {…},  */}
                 <PayPalButton
-                  amount={100}
+                  amount={cart.totalPrice + shippingFee}
                   onSuccess={handlePaymentSuccess}
                   onError={(err) => {
                     alert("Payment failed! Please try again.");
