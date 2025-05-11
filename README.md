@@ -2,7 +2,13 @@
 
 E-Commerce Rabbit is a full-stack e-commerce platform designed for seamless online shopping. The React-based frontend delivers a responsive, user-friendly interface for browsing products, managing carts, and processing payments via PayPal. The Express backend powers a robust API, with MongoDB for data storage and Cloudinary for image management. Built with scalability and developer experience in mind, this project is ideal for businesses and developers alike.
 
-<img src="assets/ScreenShow.png" width="300" height="600" alt="E-Commerce" />
+<img
+  src="/ScreenShow.png"
+  width="1200"
+  height="600"
+  alt="E-Commerce"
+  className="object-cover"
+/>
 
 ## Table of Contents
 - [E-Commerce Rabbit](#e-commerce-rabbit)
