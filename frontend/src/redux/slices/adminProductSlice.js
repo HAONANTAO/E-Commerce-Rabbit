@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-05-10 16:42:55
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-11 16:25:22
+ * @LastEditTime: 2025-05-11 16:28:22
  * @FilePath: /E-Commerce-Rabbit/frontend/src/redux/slices/adminProductSlice.js
  */
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
@@ -50,7 +50,7 @@ export const updateProduct = createAsyncThunk(
         productData,
         { headers: { Authorization: userToken } },
       );
-      console.log("this", response);
+
       return response.data;
     } catch (error) {
       console.log(error);

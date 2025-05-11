@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-05-04 15:45:37
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-11 16:19:29
+ * @LastEditTime: 2025-05-11 16:40:51
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Admin/EditProduct.jsx
  */
 import React, { useEffect, useState } from "react";
@@ -35,7 +35,6 @@ const EditProduct = () => {
   );
 
   const handleSubmit = (e) => {
-   
     e.preventDefault();
     dispatch(updateProduct({ id, productData }));
     navigate("/admin/products");
@@ -80,7 +79,9 @@ const EditProduct = () => {
   const handleImageUpload = async (e) => {
     const file = e.target.files[0]; // 修正 file -> files
     const formData = new FormData(); // 修正 formData -> FormData
+
     formData.append("image", file);
+
     try {
       // 图片上传中..
       setUploading(true);
@@ -94,10 +95,14 @@ const EditProduct = () => {
         //   },
         // },
       );
-      setProductData((prev) => ({
-        ...prev,
-        images: [...prev.images, { url: data.imageUrl, altText: "" }],
+
+      // 不能改名字 一定要是prevData
+
+      setProductData((prevData) => ({
+        ...prevData,
+        images: [...prevData.images, { url: data.imageUrl, altText: "" }],
       }));
+
       setUploading(false);
     } catch (error) {
       console.log(error);
@@ -105,7 +110,8 @@ const EditProduct = () => {
     }
   };
 
-  if (loading || !selectedProduct) {
+  // || !selectedProduct
+  if (loading) {
     return <p>Loading...</p>; // selectedProduct 为空时避免渲染表单
   }
   if (error) {
@@ -222,7 +228,13 @@ const EditProduct = () => {
         {/* images upload */}
         <div className="mb-6">
           <label className="block mb-2 font-semibold">Upload Images</label>
-          <input type="file" name="" value="" onChange={handleImageUpload} />
+          <input
+            type="file"
+            name="image"
+            value=""
+            onChange={handleImageUpload}
+          />
+          {uploading && <p>Uploading image...</p>}
           <div className="flex gap-4 mt-4">
             {productData.images.map((image, index) => (
               <div key={index}>
