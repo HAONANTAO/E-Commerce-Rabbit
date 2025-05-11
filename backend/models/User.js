@@ -4,12 +4,7 @@
  * @LastEditTime: 2025-05-08 20:40:55
  * @FilePath: /E-Commerce-Rabbit/backend/models/User.js
  */
-/*
- * @Date: 2025-05-04 17:44:34
- * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-04 17:54:35
- * @FilePath: /E-Commerce-Rabbit/backend/models/User.js
- */
+
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 // 定义一个schema 映射到mongodb的collection

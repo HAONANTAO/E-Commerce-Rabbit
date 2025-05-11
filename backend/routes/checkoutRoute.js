@@ -1,6 +1,6 @@
 import express from "express";
 import Order from "../models/Order.js";
-import Checkout from "../models/Checkout.js";
+import Checkout from "../models/checkout.js";
 import Cart from "../models/Cart.js";
 // import Product from "../models/Product.js";
 import { protect } from "../middleware/AuthMiddleware.js";

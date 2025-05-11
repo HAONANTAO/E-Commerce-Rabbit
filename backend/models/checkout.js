@@ -1,8 +1,8 @@
 /*
  * @Date: 2025-05-07 20:11:09
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-07 20:26:25
- * @FilePath: /E-Commerce-Rabbit/backend/models/checkout.js
+ * @LastEditTime: 2025-05-11 17:32:16
+ * @FilePath: /E-Commerce-Rabbit/backend/models/Checkout.js
  */
 import mongoose from "mongoose";
 
