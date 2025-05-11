@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-05-04 12:11:36
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-11 15:09:35
+ * @LastEditTime: 2025-05-11 15:21:06
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Admin/UserManagement.jsx
  */
 import React, { useEffect, useState } from "react";
@@ -31,11 +31,13 @@ const UserManagement = () => {
   useEffect(() => {
     if (user && user.role !== "admin") {
       navigate("/");
-    } else {
-      dispatch(fetchUsers());
     }
   }, [navigate, user, dispatch]);
-
+  useEffect(() => {
+    if (user && user.role === "admin") {
+      dispatch(fetchUsers());
+    }
+  }, [dispatch, user, users]);
   const handleDeleteUser = (userId) => {
     // 浏览器提供的原生对话框方法
     if (window.confirm("Are you sure you want to delete this user?")) {
