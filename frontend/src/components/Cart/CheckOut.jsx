@@ -1,13 +1,13 @@
 /*
  * @Date: 2025-05-01 20:44:23
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-11 13:45:14
+ * @LastEditTime: 2025-05-11 18:00:26
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Cart/CheckOut.jsx
  */
 import React, { useEffect, useState } from "react";
 // import { checkoutCart as cart } from "@/utils/mockdb";
 import { useNavigate } from "react-router-dom";
-import PayPalButton from "@/components/Cart/PaypalButton";
+import PayPalButton from "../../components/Cart/PayPalButton";
 import { useDispatch, useSelector } from "react-redux";
 import { createCheckout } from "../../redux/slices/checkoutSlice";
 import axios from "axios";
@@ -77,7 +77,7 @@ const CheckOut = () => {
             Authorization: `Bearer ${localStorage.getItem("userToken")}`,
           },
         },
-      ); 
+      );
 
       await handleFinalizeCheckout(checkoutId);
     } catch (error) {
