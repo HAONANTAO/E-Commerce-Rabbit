@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-05-10 16:42:55
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-11 14:49:06
+ * @LastEditTime: 2025-05-11 15:54:18
  * @FilePath: /E-Commerce-Rabbit/frontend/src/redux/slices/adminProductSlice.js
  */
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
@@ -56,10 +56,12 @@ export const updateProduct = createAsyncThunk(
 //async thunk to delete the product
 export const deleteProduct = createAsyncThunk(
   "adminProducts/deleteProduct",
-  async (id) => {
-    await axios.delete(`${API_URL}/api/admin/products/${id}`, {
+
+  async ({ id }) => {
+    await axios.delete(`${API_URL}/api/products/${id}`, {
       headers: { Authorization: userToken },
     });
+
     return id;
   },
 );
@@ -105,7 +107,7 @@ const adminProductSlice = createSlice({
       .addCase(deleteProduct.fulfilled, (state, action) => {
         const deleteProductId = action.payload;
         state.products = state.products.filter(
-          (pro) => pro._id === deleteProductId,
+          (pro) => pro._id !== deleteProductId,
         );
       });
   },
