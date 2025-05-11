@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-05-10 14:57:23
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-10 18:55:13
+ * @LastEditTime: 2025-05-11 16:11:38
  * @FilePath: /E-Commerce-Rabbit/frontend/src/redux/slices/productSlice.js
  */
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
@@ -52,6 +52,7 @@ export const fetchSingleProduct = createAsyncThunk(
     const response = await axios.get(
       `${import.meta.env.VITE_BACKEND_URL}/api/products/${id}`,
     );
+
     return response.data;
   },
 );
@@ -89,7 +90,7 @@ const productSlice = createSlice({
   name: "products",
   initialState: {
     products: [],
-    selectedProducts: null,
+    selectedProduct: null,
     similarProducts: [],
     loading: false,
     error: null,
@@ -154,7 +155,7 @@ const productSlice = createSlice({
       })
       .addCase(fetchSingleProduct.fulfilled, (state, action) => {
         state.loading = false;
-        state.selectedProducts = action.payload;
+        state.selectedProduct = action.payload;
       })
 
       //handle updating product

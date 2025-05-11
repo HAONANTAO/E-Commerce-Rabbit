@@ -1,16 +1,19 @@
 /*
  * @Date: 2025-05-04 15:45:37
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-04 16:15:34
+ * @LastEditTime: 2025-05-11 16:14:51
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Admin/EditProduct.jsx
  */
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { fetchSingleProduct } from "../../redux/slices/productSlice";
+import { updateProduct } from "../../redux/slices/adminProductSlice";
+import axios from "axios";
 const EditProduct = () => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(productData);
-  };
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { id } = useParams();
   const [productData, setProductData] = useState({
     name: "",
     description: "",
@@ -24,26 +27,90 @@ const EditProduct = () => {
     collections: "",
     material: "",
     gender: "",
-    images: [
-      {
-        url: "https://picsum.photos/150?random=1",
-      },
-      {
-        url: "https://picsum.photos/150?random=2",
-      },
-    ],
+    images: [],
   });
+
+  const { selectedProduct, loading, error } = useSelector(
+    (state) => state.products,
+  );
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(updateProduct({ id, productData }));
+    navigate("/admin/products");
+  };
+
+  // for the image uploading state
+  const [uploading, setUploading] = useState(false);
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchSingleProduct(id));
+    }
+  }, [dispatch, id]);
+
+  useEffect(() => {
+    if (selectedProduct) {
+      setProductData({
+        name: selectedProduct.name || "",
+        description: selectedProduct.description || "",
+        price: selectedProduct.price || 0,
+        countingStock: selectedProduct.countingStock || 0,
+        sku: selectedProduct.sku || "",
+        category: selectedProduct.category || "",
+        brand: selectedProduct.brand || "",
+        sizes: selectedProduct.sizes || [],
+        colors: selectedProduct.colors || [],
+        collections: selectedProduct.collections || "",
+        material: selectedProduct.material || "",
+        gender: selectedProduct.gender || "",
+        images: selectedProduct.images || [],
+      });
+    }
+  }, [selectedProduct]);
+
   const handleOnchange = (e) => {
     setProductData((prevData) => ({
       ...prevData,
       [e.target.name]: e.target.value,
     }));
   };
-  const handleImageUpload = async (e) => {
-    // 处理图片上传逻辑
 
-    console.log(productData.images);
+  // 处理图片上传逻辑!!
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0]; // 修正 file -> files
+    const formData = new FormData(); // 修正 formData -> FormData
+    formData.append("image", file);
+    try {
+      // 图片上传中..
+      setUploading(true);
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/upload`,
+        formData,
+        // 不设置 Content-Type，axios 自动设置并带上 boundary
+        // {
+        //   headers: {
+        //     "Content-Type": "multipart/form-data",
+        //   },
+        // },
+      );
+      setProductData((prev) => ({
+        ...prev,
+        images: [...prev.images, { url: data.imageUrl, altText: "" }],
+      }));
+      setUploading(false);
+    } catch (error) {
+      console.log(error);
+      setUploading(false);
+    }
   };
+
+  if (loading || !selectedProduct) {
+    return <p>Loading...</p>; // selectedProduct 为空时避免渲染表单
+  }
+  if (error) {
+    return <p>Error:{error}</p>;
+  }
+
   return (
     <div className="p-6 mx-auto max-w-5xl rounded shadow-md">
       <h2 className="mb-6 text-3xl font-bold">Edit Product</h2>

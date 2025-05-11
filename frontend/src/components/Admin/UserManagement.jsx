@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-05-04 12:11:36
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-11 15:27:18
+ * @LastEditTime: 2025-05-11 16:07:20
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Admin/UserManagement.jsx
  */
 import React, { useEffect, useState } from "react";
@@ -63,12 +63,15 @@ const UserManagement = () => {
       role: "customer", //default
     });
   };
-
+  {
+    loading && <p>Loading...</p>;
+  }
+  {
+    error && <p>Error: {error}</p>;
+  }
   return (
     <div className="p-6 mx-auto max-w-7xl">
       <h2 className="mb-4 text-2xl font-bold">User Management</h2>
-      {loading && <p>Loading...</p>}
-      {error && <p>Error: {error}</p>}
 
       {/* add new user Form */}
       <div className="p-6 mb-6 rounded-lg">
