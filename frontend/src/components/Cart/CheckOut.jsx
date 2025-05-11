@@ -1,15 +1,21 @@
 /*
  * @Date: 2025-05-01 20:44:23
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-02 21:13:06
+ * @LastEditTime: 2025-05-11 13:24:11
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Cart/CheckOut.jsx
  */
 import React, { useEffect, useState } from "react";
-import { checkoutCart as cart } from "@/utils/mockdb";
+// import { checkoutCart as cart } from "@/utils/mockdb";
 import { useNavigate } from "react-router-dom";
 import PayPalButton from "@/components/Cart/PaypalButton";
+import { useDispatch, useSelector } from "react-redux";
+import { createCheckout } from "../../redux/slices/checkoutSlice";
+
 const CheckOut = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { cart, loading, error } = useSelector((state) => state.cart);
+  const { user } = useSelector((state) => state.auth);
   const [shippingFee, setShippingFee] = useState(0);
   const [checkoutId, setCheckoutId] = useState(null);
   // 账单的地址
@@ -23,11 +29,34 @@ const CheckOut = () => {
     phone: " ",
   });
 
+  // cart is loading before proceeding
+  useEffect(() => {
+    // 没购物车？
+    if (!cart || !cart.products || cart.products.length === 0) {
+      navigate("/");
+    }
+  }, [cart, navigate]);
+
   const handleCheckOut = (e) => {
     e.preventDefault();
-    // 生成随机的checkoutId
-    const randomId = Math.floor(Math.random() * 1000000);
-    setCheckoutId(randomId);
+
+    if (cart && cart.products.length > 0) {
+      // 生成随机的checkoutId
+      // const randomId = Math.floor(Math.random() * 1000000);
+      // setCheckoutId(randomId);
+      const res = dispatch(
+        createCheckout({
+          checkoutItems: cart.products,
+          shippingAddress,
+          paymentMethod: "paypal",
+          totalPrice: cart.totalPrice + shippingFee,
+        }),
+      );
+      if (res.payload && res.payload._id) {
+        setCheckoutId(res.payload._id);
+        navigate("/order-confirmation");
+      }
+    }
   };
 
   // 算运费 超过100免费
@@ -38,9 +67,50 @@ const CheckOut = () => {
       setShippingFee(10);
     }
   });
-  const handlePaymentSuccess = (details) => {
+  const handlePaymentSuccess = async (details) => {
     // console.log("payment good", details);
-    navigate("/order-confirmation");
+    try {
+      const response = await axios.put(
+        `${import.meta.env.VITE_BACKEND.URL}/api/checkout/${checkoutId}/pay}`,
+        { paymentStatus: "paid", paymentDetails: details },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+          },
+        },
+      );
+      if (response.status === 200) {
+        //finalize checkout if payment is successful
+        await handleFinalizeCheckout(checkoutId);
+      } else {
+        console.log(error);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handleFinalizeCheckout = async (checkoutId) => {
+    try {
+      const response = await axios.post(
+        `${
+          import.meta.env.VITE_BACKEND.URL
+        }/api/checkout/${checkoutId}/finalize}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+          },
+        },
+      );
+      if (response.status === 200) {
+        // 最后全部成功了 跳转！
+        navigate("/order-confirmation");
+      } else {
+        console.log(error);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    // navigate("/order-confirmation");
   };
   return (
     <div className="grid grid-cols-1 gap-2 px-6 py-10 mx-auto max-w-7xl tracking-tighter lg:grid-cols-2">

@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-23 21:51:05
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-10 20:01:28
+ * @LastEditTime: 2025-05-11 13:01:41
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Layout/CartDrawer.jsx
  */
 
@@ -15,6 +15,7 @@ const CartDrawer = ({ isOpen, toggleDrawer }) => {
   const { user, guestId } = useSelector((state) => state.auth);
 
   const { cart } = useSelector((state) => state.cart);
+  console.log(cart);
   const userId = user ? user.id : null;
   const handleCheckOut = () => {
     // 跳转到checkout页面,但是也要关闭侧边栏
@@ -55,7 +56,7 @@ const CartDrawer = ({ isOpen, toggleDrawer }) => {
         {/* sticky 为了可以在很多内容的时候
         这个结账区域会"粘住"在视图底部，不会随着内容滚动而消失*/}
         <div className="sticky bottom-0 p-4 bg-white">
-          {cart && cart?.product?.length > 0 && (
+          {cart && cart?.products?.length > 0 && (
             <>
               <button
                 onClick={handleCheckOut}
