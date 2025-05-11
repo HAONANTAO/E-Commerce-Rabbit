@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-29 20:44:35
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-11 12:32:20
+ * @LastEditTime: 2025-05-11 12:35:31
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/Login.jsx
  */
 /*
@@ -10,7 +10,7 @@
  * @LastEditTime: 2025-04-29 21:11:05
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/Login.jsx
  */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import LoginImage from "@/assets/login.webp";
 import { loginUser } from "@/redux/slices/authSlice";
@@ -20,10 +20,14 @@ import { mergeCart } from "../../redux/slices/cartSlice";
 
 // 登录页面
 const Login = () => {
+  // - 用于向 Redux store 发送 action   -触发状态更新;
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
   // 获取当前页面的 URL 信息
   const location = useLocation();
   const { user, guestId } = useSelector((state) => state.auth);
+  console.log("here", user, guestId);
   const { cart } = useSelector((state) => state.cart);
   // get the redirect parameter and check if it is checkout or something
   // 看看是checkout跳转过来的还是单纯地登录！
@@ -46,9 +50,6 @@ const Login = () => {
   }, [user, guestId, cart, redirect, isCheckoutRedirect, navigate, dispatch]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  // - 用于向 Redux store 发送 action   -触发状态更新;
-  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -115,7 +116,10 @@ const Login = () => {
             </button>
             <p className="mt-6 text-sm text-center">
               Don't have an account?{"     "}
-              <Link to="/register" className="text-blue-500">
+              {/* encodeURIComponent 字符串转URL格式 */}
+              <Link
+                to={`/register?redirect=${encodeURIComponent(redirect)}`}
+                className="text-blue-500">
                 Register
               </Link>
             </p>
