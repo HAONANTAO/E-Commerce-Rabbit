@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-05-03 14:05:27
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-11 14:10:39
+ * @LastEditTime: 2025-05-11 14:12:59
  * @FilePath: /E-Commerce-Rabbit/frontend/src/pages/OrderDetailsPage.jsx
  */
 import React, { useEffect, useState } from "react";
@@ -93,7 +93,7 @@ const OrderDetailsPage = () => {
               <tbody className="items-center">
                 {orderDetails.orderItems.map((order, index) => (
                   <tr key={order.productId} className="border-b">
-                    <td className="flex justify-center items-center px-4 py-2 text-center">
+                    <td className="flex items-center px-4 py-2">
                       <img
                         src={order.image}
                         alt={order.name}
@@ -106,7 +106,7 @@ const OrderDetailsPage = () => {
                       </Link>
                     </td>
                     <td className="px-4 py-2 text-center">${order.price}</td>
-                    <td className="px-4 py-2 text-center">${order.quantity}</td>
+                    <td className="px-4 py-2 text-center">{order.quantity}</td>
                     <td className="px-4 py-2 text-center">
                       ${order.price * order.quantity}
                     </td>
