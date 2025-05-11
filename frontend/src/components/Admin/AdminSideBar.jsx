@@ -1,11 +1,11 @@
 /*
  * @Date: 2025-05-04 11:32:29
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-04 11:53:07
+ * @LastEditTime: 2025-05-11 15:04:01
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Admin/AdminSideBar.jsx
  */
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import {
   FaUser,
   FaBoxOpen,
@@ -13,10 +13,15 @@ import {
   FaStore,
   FaSignOutAlt,
 } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/slices/authSlice";
+import { clearCart } from "../../redux/slices/cartSlice";
 const AdminSideBar = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleLogout = () => {
+    dispatch(logout());
+    dispatch(clearCart());
     navigate("/");
   };
   return (

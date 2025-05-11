@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-05-10 16:23:31
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-10 18:02:56
+ * @LastEditTime: 2025-05-11 15:16:32
  * @FilePath: /E-Commerce-Rabbit/frontend/src/redux/slices/adminSlice.js
  */
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
@@ -11,7 +11,7 @@ import axios from "axios";
 export const fetchUsers = createAsyncThunk("admin/fetchUsers", async () => {
   try {
     const response = await axios.get(
-      `${import.meta.env.VITE_BACKEND.URL}/api/admin/users`,
+      `${import.meta.env.VITE_BACKEND_URL}/api/admin/users`,
       {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
@@ -20,7 +20,7 @@ export const fetchUsers = createAsyncThunk("admin/fetchUsers", async () => {
     );
     return response.data;
   } catch (error) {
-    throw error;
+    console.log(error);
   }
 });
 
@@ -93,7 +93,7 @@ const adminSlice = createSlice({
       .addCase(fetchUsers.pending, (state) => {
         state.loading = true;
       })
-      .addCase(fetchUsers.fulfilled, (state) => {
+      .addCase(fetchUsers.fulfilled, (state, action) => {
         state.loading = false;
         state.users = action.payload;
       })
@@ -104,18 +104,16 @@ const adminSlice = createSlice({
       //
       .addCase(updateUser.fulfilled, (state) => {
         const updateUser = action.payload;
-        const userIndex = state.users.findIndex((user) => {
-          user._id === updateUser._id;
-        });
+        const userIndex = state.users.findIndex(
+          (user) => user._id === updateUser._id,
+        );
         if (userIndex !== -1) {
           state.users[userIndex] == updateUser;
         }
       })
       .addCase(deleteUser.fulfilled, (state, action) => {
         // 因为返回的是id
-        state.users = state.users.filter((user) => {
-          user._id !== action.payload;
-        });
+        state.users = state.users.filter((user) => user._id !== action.payload);
       })
       .addCase(addUser.pending, (state) => {
         state.loading = true;
@@ -124,7 +122,7 @@ const adminSlice = createSlice({
 
       .addCase(addUser.fulfilled, (state, action) => {
         state.loading = false;
-        state.users.push(action.payload.user);
+        +state.users.push(action.payload);
       })
       .addCase(addUser.rejected, (state, action) => {
         state.loading = false;
@@ -132,4 +130,4 @@ const adminSlice = createSlice({
       });
   },
 });
-export default adminSlice;
+export default adminSlice.reducer;

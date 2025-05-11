@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-05-04 11:56:35
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-11 14:51:27
+ * @LastEditTime: 2025-05-11 14:54:45
  * @FilePath: /E-Commerce-Rabbit/frontend/src/pages/AdminHomePage.jsx
  */
 import React, { useEffect } from "react";
@@ -18,7 +18,7 @@ const AdminHomePage = () => {
     loading: productsLoading,
     error: productsError,
   } = useSelector((state) => state.adminProduct);
-  console.log("在这里", products);
+
   const {
     orders,
     totalOrders,
@@ -45,7 +45,7 @@ const AdminHomePage = () => {
           {/* 第一列 */}
           <div className="p-4 rounded-lg shadow-md">
             <h2 className="text-xl font-semibold">Revenue</h2>
-            <p className="text-2xl">${totalSales}</p>
+            <p className="text-2xl">${totalSales.toFixed(2)}</p>
           </div>
 
           {/* 第2列 */}
@@ -89,7 +89,7 @@ const AdminHomePage = () => {
                     className="border-b cursor-pointer hover:bg-gray-50">
                     <td className="p-4">{order._id}</td>
                     <td className="p-4">{order.user?.name}</td>
-                    <td className="p-4">{order.totalPrice}</td>
+                    <td className="p-4">{order.totalPrice.toFixed(2)}</td>
                     <td className="p-4">{order.status}</td>
                   </tr>
                 ))

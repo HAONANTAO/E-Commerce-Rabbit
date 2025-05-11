@@ -1,20 +1,49 @@
 /*
  * @Date: 2025-05-04 12:11:36
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-04 12:42:16
+ * @LastEditTime: 2025-05-11 15:09:35
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Admin/UserManagement.jsx
  */
-import React, { useState } from "react";
-import { Users } from "@/utils/mockdb";
+import React, { useEffect, useState } from "react";
+// import { Users } from "@/utils/mockdb";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import {
+  addUser,
+  updateUser,
+  deleteUser,
+  fetchUsers,
+} from "../../redux/slices/adminSlice";
+
 const UserManagement = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  // all fileds in formData
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    role: "customer", //default
+  });
+  const { user } = useSelector((state) => state.auth);
+  const { users, loading, error } = useSelector((state) => state.admin);
+  console.log("看这个", users);
+  useEffect(() => {
+    if (user && user.role !== "admin") {
+      navigate("/");
+    } else {
+      dispatch(fetchUsers());
+    }
+  }, [navigate, user, dispatch]);
+
   const handleDeleteUser = (userId) => {
     // 浏览器提供的原生对话框方法
     if (window.confirm("Are you sure you want to delete this user?")) {
-      console.log("delete id", userId);
+      dispatch(deleteUser(userId));
     }
   };
   const handleRoleChange = (userId, newRole) => {
-    console.log(userId, newRole);
+    dispatch(updateUser({ id: userId, role: newRole }));
   };
   // 通用onchange function
   const handleChange = (e) => {
@@ -22,7 +51,8 @@ const UserManagement = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    // 加
+    dispatch(addUser(formData));
     // reset the formdata after submision
     setFormData({
       name: "",
@@ -31,16 +61,13 @@ const UserManagement = () => {
       role: "customer", //default
     });
   };
-  // all fileds in formData
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    role: "customer", //default
-  });
+
   return (
     <div className="p-6 mx-auto max-w-7xl">
       <h2 className="mb-4 text-2xl font-bold">User Management</h2>
+      {loading && <p>Loading...</p>}
+      {error && <p>Error: {error}</p>}
+
       {/* add new user Form */}
       <div className="p-6 mb-6 rounded-lg">
         <h3 className="mb-4 text-lg font-bold">Add New User</h3>
@@ -118,19 +145,19 @@ const UserManagement = () => {
             </tr>
           </thead>
           <tbody>
-            {Users.map((user, index) => (
+            {users.map((user, index) => (
               <tr
-                key={user._id}
+                key={user?._id}
                 className="text-center border-b hover:bg-gray-50">
                 {/* 防止长文本打乱表格布局 */}
                 <td className="p-4 font-medium text-gray-900 whitespace-nowrap">
-                  {user.name}
+                  {user?.name}
                 </td>
-                <td className="p-4">{user.email}</td>
+                <td className="p-4">{user?.email}</td>
 
                 <td className="p-4">
                   <select
-                    value={user.role}
+                    value={user?.role}
                     onChange={(e) => handleRoleChange(user._id, e.target.value)}
                     className="p-2 rounded border">
                     <option value="customer">Customer</option>
