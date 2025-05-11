@@ -27,7 +27,7 @@ const Register = () => {
   const navigate = useNavigate();
   // 获取当前页面的 URL 信息
   const location = useLocation();
-  const { user, guestId } = useSelector((state) => state.auth);
+  const { user, guestId, loading, error } = useSelector((state) => state.auth);
 
   const { cart } = useSelector((state) => state.cart);
   // get the redirect parameter and check if it is checkout or something
@@ -135,7 +135,7 @@ const Register = () => {
             <button
               className="p-2 w-full font-semibold text-white bg-black rounded-lg transition hover:bg-gray-700"
               type="submit">
-              SignUp
+              {loading ? "loading..." : "SignUp"}
             </button>
             <p className="mt-6 text-sm text-center">
               Already have an account?{"     "}

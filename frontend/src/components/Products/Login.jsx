@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-29 20:44:35
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-11 12:55:50
+ * @LastEditTime: 2025-05-11 17:01:37
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/Login.jsx
  */
 /*
@@ -26,7 +26,7 @@ const Login = () => {
   const navigate = useNavigate();
   // 获取当前页面的 URL 信息
   const location = useLocation();
-  const { user, guestId } = useSelector((state) => state.auth);
+  const { user, guestId, loading, error } = useSelector((state) => state.auth);
 
   const { cart } = useSelector((state) => state.cart);
   // get the redirect parameter and check if it is checkout or something
@@ -112,7 +112,7 @@ const Login = () => {
             <button
               className="p-2 w-full font-semibold text-white bg-black rounded-lg transition hover:bg-gray-700"
               type="submit">
-              SignIn
+              {loading ? "loading..." : "SignIn"}
             </button>
             <p className="mt-6 text-sm text-center">
               Don't have an account?{"     "}
