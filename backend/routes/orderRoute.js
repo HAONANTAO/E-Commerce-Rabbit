@@ -1,6 +1,6 @@
 import express from "express";
 import Order from "../models/Order.js";
-import { protect } from "../middleware/AuthMiddleware.js";
+import { protect } from "../middleware/authMiddleware.js";
 const orderRouter = express.Router();
 
 // @routes GET /api/orders/my-orders
@@ -24,10 +24,9 @@ orderRouter.get("/my-orders", protect, async (req, res) => {
 // @access Private
 orderRouter.get("/:id", protect, async (req, res) => {
   try {
-    const order = await Order.findById(req.params.id).populate(
-      "user",
-      "name email",
-    );
+    const order = await Order
+      .findById(req.params.id)
+      .populate("user", "name email");
     if (!order) {
       res.status(404).json({ message: "Order not found" });
       return;
