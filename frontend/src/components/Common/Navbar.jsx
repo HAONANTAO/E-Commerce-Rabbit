@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-21 20:49:04
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-10 19:46:06
+ * @LastEditTime: 2025-05-11 14:28:45
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Common/Navbar.jsx
  */
 import React from "react";
@@ -14,6 +14,7 @@ import CartDrawer from "../Layout/CartDrawer";
 import { IoMdClose } from "react-icons/io";
 import { useSelector } from "react-redux";
 const Navbar = () => {
+  const { user } = useSelector((state) => state.auth);
   const { cart } = useSelector((state) => state.cart);
   // 把购物车里面每一种累的个数加起来算总量
   const cartItemCount =
@@ -65,11 +66,16 @@ const Navbar = () => {
         {/* right section for icons */}
         <div className="flex items-center space-x-4">
           {/* profile router */}
-          <Link
-            to="/admin"
-            className="block px-2 text-sm text-white bg-black rounded">
-            admin
-          </Link>
+          {user?.role === "admin" ? (
+            <Link
+              to="/admin"
+              className="block px-2 text-sm text-white bg-black rounded">
+              admin
+            </Link>
+          ) : (
+            ""
+          )}
+
           <Link to="/profile" className="hover:text-black">
             <HiOutlineUser className="w-6 h-6 text-gray-700"></HiOutlineUser>
           </Link>

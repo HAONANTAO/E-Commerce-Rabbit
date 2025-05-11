@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-05-10 16:42:55
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-10 16:59:31
+ * @LastEditTime: 2025-05-11 14:49:06
  * @FilePath: /E-Commerce-Rabbit/frontend/src/redux/slices/adminProductSlice.js
  */
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
@@ -14,7 +14,7 @@ const userToken = `Bearer ${localStorage.getItem("userToken")}`;
 export const fetchAdminProducts = createAsyncThunk(
   "adminProducts/fetchProducts",
   async () => {
-    const response = await axios.get(API_URL / api / admin / products, {
+    const response = await axios.get(`${API_URL}/api/admin/products`, {
       headers: {
         Authorization: userToken,
       },
@@ -45,7 +45,8 @@ export const updateProduct = createAsyncThunk(
   "adminProducts/updateProduct",
   async ({ id, productData }) => {
     const response = await axios.put(
-      `${API_URL}/api/admin/products/${id}`.productData,
+      `${API_URL}/api/admin/products/${id}`,
+      productData,
       { headers: { Authorization: userToken } },
     );
     return response.data;
@@ -80,7 +81,7 @@ const adminProductSlice = createSlice({
         state.loading = false;
         state.products = action.payload;
       })
-      .addCase(fetchAdminProducts.pending, (state) => {
+      .addCase(fetchAdminProducts.rejected, (state) => {
         state.loading = false;
         state.error = action.error.message;
       })
@@ -94,19 +95,19 @@ const adminProductSlice = createSlice({
       .addCase(updateProduct.fulfilled, (state, action) => {
         const updatedProduct = action.payload;
         const updatedIndex = state.products.findIndex(
-          (pro) => (pro._id = updateProduct._id),
+          (pro) => (pro._id = updatedProduct._id),
         );
         if (updatedIndex !== -1) {
-          state.products[updatedIndex] = updateProduct;
+          state.products[updatedIndex] = updatedProduct;
         }
       })
       //delete product
       .addCase(deleteProduct.fulfilled, (state, action) => {
         const deleteProductId = action.payload;
-        state.products.filter((pro) => {
-          pro._id !== deleteProductId;
-        });
+        state.products = state.products.filter(
+          (pro) => pro._id === deleteProductId,
+        );
       });
   },
 });
-export default adminProductSlice;
+export default adminProductSlice.reducer;

@@ -116,4 +116,4 @@ const adminOrderSlice = createSlice({
         });
       }),
 });
-export default adminOrderSlice
+export default adminOrderSlice.reducer;
