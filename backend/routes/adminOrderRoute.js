@@ -22,7 +22,10 @@ adminOrderRoute.get("/", protect, admin, async (req, res) => {
 // TODO:如果点击两次mark as delivered,会出现时间戳更新
 adminOrderRoute.put("/:id", protect, admin, async (req, res) => {
   try {
-    let order = await Order.findById(req.params.id);
+    let order = await Order.findById(req.params.id).populate(
+      "user",
+      "name email",
+    );
     if (!order) {
       res.status(404).json({ message: "Order not found" });
       return;
