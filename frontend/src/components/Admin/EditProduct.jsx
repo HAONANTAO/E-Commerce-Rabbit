@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-05-04 15:45:37
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-11 16:14:51
+ * @LastEditTime: 2025-05-11 16:19:29
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Admin/EditProduct.jsx
  */
 import React, { useEffect, useState } from "react";
@@ -35,6 +35,7 @@ const EditProduct = () => {
   );
 
   const handleSubmit = (e) => {
+   
     e.preventDefault();
     dispatch(updateProduct({ id, productData }));
     navigate("/admin/products");

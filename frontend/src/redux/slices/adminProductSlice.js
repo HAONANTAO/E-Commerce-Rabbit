@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-05-10 16:42:55
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-11 15:54:18
+ * @LastEditTime: 2025-05-11 16:25:22
  * @FilePath: /E-Commerce-Rabbit/frontend/src/redux/slices/adminProductSlice.js
  */
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
@@ -44,12 +44,17 @@ export const createProduct = createAsyncThunk(
 export const updateProduct = createAsyncThunk(
   "adminProducts/updateProduct",
   async ({ id, productData }) => {
-    const response = await axios.put(
-      `${API_URL}/api/admin/products/${id}`,
-      productData,
-      { headers: { Authorization: userToken } },
-    );
-    return response.data;
+    try {
+      const response = await axios.put(
+        `${API_URL}/api/products/${id}`,
+        productData,
+        { headers: { Authorization: userToken } },
+      );
+      console.log("this", response);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
   },
 );
 
@@ -96,8 +101,9 @@ const adminProductSlice = createSlice({
       //update product
       .addCase(updateProduct.fulfilled, (state, action) => {
         const updatedProduct = action.payload;
+
         const updatedIndex = state.products.findIndex(
-          (pro) => (pro._id = updatedProduct._id),
+          (pro) => pro._id === updatedProduct._id,
         );
         if (updatedIndex !== -1) {
           state.products[updatedIndex] = updatedProduct;
