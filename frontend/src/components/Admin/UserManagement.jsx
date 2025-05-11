@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-05-04 12:11:36
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-11 15:21:06
+ * @LastEditTime: 2025-05-11 15:27:18
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Admin/UserManagement.jsx
  */
 import React, { useEffect, useState } from "react";
@@ -27,7 +27,7 @@ const UserManagement = () => {
   });
   const { user } = useSelector((state) => state.auth);
   const { users, loading, error } = useSelector((state) => state.admin);
-  console.log("看这个", users);
+
   useEffect(() => {
     if (user && user.role !== "admin") {
       navigate("/");

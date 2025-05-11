@@ -1,15 +1,41 @@
 /*
  * @Date: 2025-05-04 16:16:36
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-04 17:19:24
+ * @LastEditTime: 2025-05-11 15:26:57
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Admin/OrderManagement.jsx
  */
-import React from "react";
-import { AdminOrders2 as Orders } from "@/utils/mockdb";
+import React, { useEffect } from "react";
+// import { AdminOrders2 as Orders } from "@/utils/mockdb";\
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import {
+  fetchAllOrders,
+  updateOrderStatus,
+} from "../../redux/slices/adminOrderSlice";
 const OrderManagement = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { user } = useSelector((state) => state.auth);
+  const { orders, loading, error } = useSelector((state) => state.adminOrder);
+
+  useEffect(() => {
+    if (!user || user.role !== "admin") {
+      navigate("/");
+    } else {
+      dispatch(fetchAllOrders());
+    }
+  }, [user, dispatch, navigate]);
+
   const handleStatusChange = (orderId, newStatus) => {
-    console.log(orderId, newStatus);
+    dispatch(updateOrderStatus({ id: orderId, status: newStatus }));
   };
+
+  if (loading) {
+    return <p>loading...</p>;
+  }
+  if (error) {
+    return <p>error:{error}</p>;
+  }
   return (
     <div className="p-6 mx-auto max-w-7xl">
       <h2 className="mb-6 text-2xl font-bold">Order Management</h2>
@@ -25,16 +51,16 @@ const OrderManagement = () => {
             </tr>
           </thead>
           <tbody>
-            {Orders.length > 0 ? (
-              Orders.map((order, index) => (
+            {orders.length > 0 ? (
+              orders.map((order, index) => (
                 <tr
                   key={order._id}
                   className="border-b cursor-pointer hover:bg-gray-50">
                   <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">
                     #{order._id}
                   </td>
-                  <td className="p-4">{order.user.name}</td>
-                  <td className="p-4">{order.totalPrice}</td>
+                  <td className="p-4">{order.user?.name}</td>
+                  <td className="p-4">{order.totalPrice.toFixed(2)}</td>
                   <td className="p-4">
                     <select
                       value={order.status}
@@ -50,7 +76,9 @@ const OrderManagement = () => {
                   </td>
                   <td className="p-4">
                     <button
-                      onClick={() => handleStatusChange(order._id, "Delivered")}
+                      onClick={() =>
+                        handleStatusChange(order?._id, "Delivered")
+                      }
                       className="px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600">
                       Mark as Delivered
                     </button>
