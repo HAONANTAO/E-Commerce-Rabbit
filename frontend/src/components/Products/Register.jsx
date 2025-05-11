@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-29 20:44:35
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-10 14:55:07
+ * @LastEditTime: 2025-05-11 12:58:32
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/Register.jsx
  */
 /*
@@ -10,17 +10,49 @@
  * @LastEditTime: 2025-04-29 21:11:05
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/Login.jsx
  */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import RegisterImage from "@/assets/register.webp";
 import { registerUser } from "@/redux/slices/authSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useLocation } from "react-router-dom";
+
+import { mergeCart } from "../../redux/slices/cartSlice";
+
 // 登录页面
 const Register = () => {
+  // - 用于向 Redux store 发送 action   -触发状态更新;
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+  // 获取当前页面的 URL 信息
+  const location = useLocation();
+  const { user, guestId } = useSelector((state) => state.auth);
+
+  const { cart } = useSelector((state) => state.cart);
+  // get the redirect parameter and check if it is checkout or something
+  // 看看是checkout跳转过来的还是单纯地登录！
+  const redirect = new URLSearchParams(location.search).get("redirect") || "/";
+  // 看看是不是checkout跳转过来的
+  const isCheckoutRedirect = redirect.includes("checkout");
+
+  // 保证购物车合并和页面跳转的正确性。
+  useEffect(() => {
+    if (user) {
+      // user和guest的信息都有 需要合并购物车！
+      if (cart?.products.length > 0 && guestId) {
+        dispatch(mergeCart({ guestId, user })).then(() => {
+          navigate(isCheckoutRedirect ? "/checkout" : "/");
+        });
+      } else {
+        navigate(isCheckoutRedirect ? "/checkout" : "/");
+      }
+    }
+  }, [user, guestId, cart, redirect, isCheckoutRedirect, navigate, dispatch]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const dispatch = useDispatch();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(
@@ -107,7 +139,9 @@ const Register = () => {
             </button>
             <p className="mt-6 text-sm text-center">
               Already have an account?{"     "}
-              <Link to="/register" className="text-blue-500">
+              <Link
+                to={`/login?redirect=${encodeURIComponent(redirect)}`}
+                className="text-blue-500">
                 Login
               </Link>
             </p>

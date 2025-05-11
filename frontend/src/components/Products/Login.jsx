@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-29 20:44:35
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-11 12:35:31
+ * @LastEditTime: 2025-05-11 12:55:50
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/Login.jsx
  */
 /*
@@ -27,7 +27,7 @@ const Login = () => {
   // 获取当前页面的 URL 信息
   const location = useLocation();
   const { user, guestId } = useSelector((state) => state.auth);
-  console.log("here", user, guestId);
+
   const { cart } = useSelector((state) => state.cart);
   // get the redirect parameter and check if it is checkout or something
   // 看看是checkout跳转过来的还是单纯地登录！
