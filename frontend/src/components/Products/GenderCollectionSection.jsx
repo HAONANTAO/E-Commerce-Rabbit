@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-26 19:06:23
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-29 20:27:59
+ * @LastEditTime: 2025-05-13 22:04:20
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/GenderCollectionSection.jsx
  */
 import React from "react";
@@ -24,7 +24,7 @@ const GenderCollectionSection = () => {
               Women's Collection
             </h2>
             <Link
-              to="/collections/all?gender=women"
+              to="collections/all?category=&gender=Women&color=&size=&material=&brand=&minPrice=0&maxPrice=100"
               className="text-gray-900 underline">
               Shop Now
             </Link>
@@ -43,7 +43,7 @@ const GenderCollectionSection = () => {
               Man's Collection
             </h2>
             <Link
-              to="/collections/all?gender=man"
+              to="collections/all?category=&gender=Men&color=&size=&material=&brand=&minPrice=0&maxPrice=100"
               className="text-gray-900 underline">
               Shop Now
             </Link>

@@ -1,11 +1,12 @@
 /*
  * @Date: 2025-04-20 21:08:35
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-11 14:25:02
+ * @LastEditTime: 2025-05-13 22:11:16
  * @FilePath: /E-Commerce-Rabbit/frontend/src/App.jsx
  */
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Userlayout from "@/components/Layout/UserLayout";
+import ScrollToTop from "@/components/ScrollToTop";
 import Home from "./pages/Home";
 import { Toaster } from "sonner";
 import Login from "@/components/Products/Login";
@@ -43,6 +44,7 @@ export default function App() {
           v7_startTransition: true,
           v7_relativeSplatPath: true,
         }}>
+        <ScrollToTop />
         <Toaster position="top-center" richColors /> {/* 添加 Toaster 组件 */}
         <Routes>
           {/* User Layout */}
