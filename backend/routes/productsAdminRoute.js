@@ -7,7 +7,7 @@
 import express from "express";
 import { protect, admin } from "../middleware/AuthMiddleware.js";
 import Product from "../models/Product.js";
-import { handleServerError } from "../utils";
+import { handleServerError } from "../utils.js";
 const productsAdminRoute = express.Router();
 
 //@ routes GET /api/admin/products

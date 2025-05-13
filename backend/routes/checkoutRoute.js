@@ -2,7 +2,7 @@ import express from "express";
 import Order from "../models/Order.js";
 import Checkout from "../models/Checkout.js";
 import Cart from "../models/Cart.js";
-import { handleServerError } from "../utils";
+import { handleServerError } from "../utils.js";
 
 import { protect } from "../middleware/AuthMiddleware.js";
 const CheckOutRoute = express.Router();

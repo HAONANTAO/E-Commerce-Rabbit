@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-26 18:35:16
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-04-26 19:02:39
+ * @LastEditTime: 2025-05-13 21:08:55
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Layout/Hero.jsx
  */
 import React from "react";
@@ -28,7 +28,7 @@ const Hero = () => {
             <p className="mb-6 text-sm tracking-tighter md:text-lg">
               Explore our wide range of products.
             </p>
-            {/* TODO:Link jump */}
+
             <Link
               to="#"
               className="px-6 py-2 text-lg bg-white rounded-sm text-gray-950">

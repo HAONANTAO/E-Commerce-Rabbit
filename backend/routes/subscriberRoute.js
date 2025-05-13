@@ -1,12 +1,12 @@
 /*
  * @Date: 2025-05-08 20:09:25
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-13 21:07:46
+ * @LastEditTime: 2025-05-13 21:13:36
  * @FilePath: /E-Commerce-Rabbit/backend/routes/subscriberRoute.js
  */
 import express from "express";
 import Subscribers from "../models/Subscribers.js";
-import { handleServerError } from "../utils";
+import { handleServerError } from "../utils.js";
 const SubscribersRouter = express.Router();
 
 // @routes POST /api/subscribe

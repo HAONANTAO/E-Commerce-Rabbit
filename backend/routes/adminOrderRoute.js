@@ -1,12 +1,12 @@
 /*
  * @Date: 2025-05-08 20:55:33
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-13 21:02:38
+ * @LastEditTime: 2025-05-13 21:13:57
  * @FilePath: /E-Commerce-Rabbit/backend/routes/adminOrderRoute.js
  */
 import express from "express";
 import { protect, admin } from "../middleware/AuthMiddleware.js";
-import { handleServerError } from "../utils";
+import { handleServerError } from "../utils.js";
 import Order from "../models/Order.js";
 const adminOrderRoute = express.Router();
 

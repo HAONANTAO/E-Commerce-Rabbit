@@ -184,7 +184,7 @@ const NewArrivals = () => {
             />
             {/* backdrop-blur-md 磨砂玻璃效果*/}
             <div className="absolute right-0 bottom-0 left-0 p-4 text-white bg-opacity-50 rounded-b-lg backdrop-blur-md">
-              {/* TODO */}
+         
               <Link to={`/product/${product._id}`} className="block">
                 <h4 className="font-medium">{product.name}</h4>
                 <p className="mt-1">$ {product.price} </p>

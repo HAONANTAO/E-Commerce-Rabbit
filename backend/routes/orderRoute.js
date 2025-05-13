@@ -1,14 +1,14 @@
 /*
  * @Date: 2025-05-07 21:14:43
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-13 21:06:35
+ * @LastEditTime: 2025-05-13 21:13:42
  * @FilePath: /E-Commerce-Rabbit/backend/routes/orderRoute.js
  */
 import express from "express";
 import Order from "../models/Order.js";
 import { protect } from "../middleware/AuthMiddleware.js";
 const orderRouter = express.Router();
-import { handleServerError } from "../utils";
+import { handleServerError } from "../utils.js";
 // @routes GET /api/orders/my-orders
 // @desc Get all orders for logged in user
 // @access Private

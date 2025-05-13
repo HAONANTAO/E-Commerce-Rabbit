@@ -20,7 +20,7 @@ const FeatureCollection = () => {
               Discover high-quality clothing that suits your style and
               personality.Designed to make you feel confident and comfortable.
             </p>
-            {/* TODO */}
+
             {/* Link其实就是一个按钮的样式 */}
             <Link
               to="/collections/all"

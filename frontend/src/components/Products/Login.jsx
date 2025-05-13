@@ -1,6 +1,12 @@
 /*
  * @Date: 2025-04-29 20:44:35
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
+ * @LastEditTime: 2025-05-13 21:09:06
+ * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/Login.jsx
+ */
+/*
+ * @Date: 2025-04-29 20:44:35
+ * @LastEditors: 陶浩南 taoaaron5@gmail.com
  * @LastEditTime: 2025-05-11 17:01:37
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/Login.jsx
  */
@@ -123,7 +129,6 @@ const Login = () => {
                 Register
               </Link>
             </p>
-            {/* TODO: */}
           </form>
         </div>
 

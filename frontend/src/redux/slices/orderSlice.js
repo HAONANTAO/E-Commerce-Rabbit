@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-05-10 16:13:04
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-11 14:07:32
+ * @LastEditTime: 2025-05-13 21:11:43
  * @FilePath: /E-Commerce-Rabbit/frontend/src/redux/slices/orderSlice.js
  */
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
@@ -73,7 +73,7 @@ const orderSlice = createSlice({
       })
       .addCase(fetchOrders.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload.message;
+        state.error = action.error.message;
       })
       // fetchOrderDetails
       .addCase(fetchOrderDetails.pending, (state) => {
@@ -86,7 +86,7 @@ const orderSlice = createSlice({
       })
       .addCase(fetchOrderDetails.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload.message;
+        state.error = action.error.message;
       });
   },
 });

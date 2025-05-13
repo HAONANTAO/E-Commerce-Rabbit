@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-27 21:31:26
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-10 18:21:41
+ * @LastEditTime: 2025-05-13 21:09:21
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/ProductGrid.jsx
  */
 import React from "react";
@@ -20,7 +20,6 @@ const ProductGrid = ({ products, loading, error }) => {
       - 1024px及以上: 4列 ( lg:grid-cols-4 ) */}
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {products?.map((product, index) => (
-          //   TODO:Link
           // 1. 默认情况下 <Link> 是行内元素（inline），设置 block 后变成块级元素
           //       如果不设置 block ：- 链接可能只在文本区域可点击
           <Link

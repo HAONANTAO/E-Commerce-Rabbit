@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-29 20:44:35
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-11 12:58:32
+ * @LastEditTime: 2025-05-13 21:09:18
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/Register.jsx
  */
 /*
@@ -145,7 +145,6 @@ const Register = () => {
                 Login
               </Link>
             </p>
-            {/* TODO: */}
           </form>
         </div>
 

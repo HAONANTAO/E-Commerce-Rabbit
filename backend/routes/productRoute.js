@@ -1,13 +1,13 @@
 /*
  * @Date: 2025-05-04 20:25:23
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-13 21:07:12
+ * @LastEditTime: 2025-05-13 21:13:25
  * @FilePath: /E-Commerce-Rabbit/backend/routes/productRoute.js
  */
 import express from "express";
 import Product from "../models/Product.js";
 import { protect, admin } from "../middleware/AuthMiddleware.js";
-import { handleServerError } from "../utils";
+import { handleServerError } from "../utils.js";
 const productRouter = express.Router();
 
 // @routes POST /api/products

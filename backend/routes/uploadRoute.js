@@ -19,7 +19,7 @@ import multer from "multer";
 import streamifier from "streamifier";
 import { v2 as cloudinary } from "cloudinary";
 import dotenv from "dotenv";
-import { handleServerError } from "../utils";
+import { handleServerError } from "../utils.js";
 dotenv.config();
 const uploadRouter = express.Router();
 // cloudinary configuration 是一个云端图片和视频管理服务平台：
