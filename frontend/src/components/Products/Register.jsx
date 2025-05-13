@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-04-29 20:44:35
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-13 21:09:18
+ * @LastEditTime: 2025-05-13 21:16:36
  * @FilePath: /E-Commerce-Rabbit/frontend/src/components/Products/Register.jsx
  */
 /*
@@ -62,11 +62,11 @@ const Register = () => {
         password,
       }),
     );
-    //todo: 注册逻辑成功后？
-    // 清空输入框
-    setEmail("");
-    setPassword("");
-    setName("");
+    // 注册逻辑成功后 会自动跳转 因为useeffect
+    // 无所谓清空输入框
+    // setEmail("");
+    // setPassword("");
+    // setName("");
   };
   return (
     <>

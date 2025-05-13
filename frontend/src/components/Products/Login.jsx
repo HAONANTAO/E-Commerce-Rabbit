@@ -61,9 +61,10 @@ const Login = () => {
     e.preventDefault();
     dispatch(loginUser({ email, password }));
     console.log(email, password);
-    //todo: 登录逻辑成功后？
-    setEmail("");
-    setPassword("");
+    // 登录逻辑成功后？ 会自动跳转 因为useeffect
+    // 无所谓清空输入框
+    // setEmail("");
+    // setPassword("");
   };
   return (
     <>
