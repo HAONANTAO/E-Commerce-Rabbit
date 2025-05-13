@@ -1,13 +1,13 @@
 /*
  * @Date: 2025-05-04 20:25:23
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-10 20:32:58
+ * @LastEditTime: 2025-05-13 21:07:12
  * @FilePath: /E-Commerce-Rabbit/backend/routes/productRoute.js
  */
 import express from "express";
 import Product from "../models/Product.js";
 import { protect, admin } from "../middleware/AuthMiddleware.js";
-
+import { handleServerError } from "../utils";
 const productRouter = express.Router();
 
 // @routes POST /api/products
@@ -63,8 +63,7 @@ productRouter.post("/", protect, admin, async (req, res) => {
     const createdProduct = await product.save();
     res.status(201).json(createdProduct);
   } catch (error) {
-    console.log(error);
-    res.status(500).send("Server Error");
+    handleServerError(res, error);
   }
 });
 
@@ -83,8 +82,7 @@ productRouter.get("/best-seller", async (req, res) => {
       res.status(404).json({ message: "Product not found" });
     }
   } catch (error) {
-    console.log(error);
-    res.status(500).send("Server Error");
+    handleServerError(res, error);
   }
 });
 
@@ -101,8 +99,7 @@ productRouter.get("/new-arrivals", async (req, res) => {
       res.status(404).json({ message: "Product not found" });
     }
   } catch (error) {
-    console.log(error);
-    res.status(500).send("Server Error");
+    handleServerError(res, error);
   }
 });
 
@@ -164,8 +161,7 @@ productRouter.put("/:id", protect, admin, async (req, res) => {
       res.status(404).json({ message: "Product not found" });
     }
   } catch (error) {
-    console.log(error);
-    res.status(500).send("Server Error");
+    handleServerError(res, error);
   }
 });
 
@@ -292,8 +288,7 @@ productRouter.get("/", async (req, res) => {
       .limit(Number(limit) || 0);
     res.json(products);
   } catch (error) {
-    console.log(error);
-    res.status(500).send("Server Error");
+    handleServerError(res, error);
   }
 });
 
@@ -334,8 +329,7 @@ productRouter.get("/:id", async (req, res) => {
       res.status(404).json({ message: "Product not found" });
     }
   } catch (error) {
-    console.log(error);
-    res.status(500).send("Server Error");
+    handleServerError(res, error);
   }
 });
 

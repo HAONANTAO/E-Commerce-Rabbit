@@ -1,6 +1,12 @@
+/*
+ * @Date: 2025-05-08 20:09:25
+ * @LastEditors: 陶浩南 taoaaron5@gmail.com
+ * @LastEditTime: 2025-05-13 21:07:46
+ * @FilePath: /E-Commerce-Rabbit/backend/routes/subscriberRoute.js
+ */
 import express from "express";
 import Subscribers from "../models/Subscribers.js";
-
+import { handleServerError } from "../utils";
 const SubscribersRouter = express.Router();
 
 // @routes POST /api/subscribe
@@ -26,8 +32,7 @@ SubscribersRouter.post("/", async (req, res) => {
     await subscriber.save();
     res.status(201).json({ message: "Successfully subscribed" });
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: "Server Error" });
+    handleServerError(res, error);
   }
 });
 

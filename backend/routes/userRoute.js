@@ -2,6 +2,7 @@ import express from "express";
 import User from "../models/User.js";
 import jwt from "jsonwebtoken";
 import { protect } from "../middleware/AuthMiddleware.js";
+import { handleServerError } from "../utils";
 const userRouter = express.Router();
 
 // API 文档注释的格式，通常用于描述路由的基本信息：
@@ -46,8 +47,7 @@ userRouter.post("/register", async (req, res) => {
       },
     );
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: "Server error" });
+    handleServerError(res, error);
   }
 });
 
@@ -89,8 +89,7 @@ userRouter.post("/login", async (req, res) => {
       },
     );
   } catch (error) {
-    console.log(error);
-    res.status(500).send("Server error");
+   handleServerError(res, error);
   }
 });
 

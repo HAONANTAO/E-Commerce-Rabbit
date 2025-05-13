@@ -1,7 +1,13 @@
+/*
+ * @Date: 2025-05-08 20:20:17
+ * @LastEditors: 陶浩南 taoaaron5@gmail.com
+ * @LastEditTime: 2025-05-13 21:04:00
+ * @FilePath: /E-Commerce-Rabbit/backend/routes/adminRoute.js
+ */
 import express from "express";
 import User from "../models/User.js";
 import { protect, admin } from "../middleware/AuthMiddleware.js";
-
+import { handleServerError } from "../utils";
 const adminRoute = express.Router();
 
 // @routes GET /api/admin/users
@@ -12,8 +18,7 @@ adminRoute.get("/users", protect, admin, async (req, res) => {
     const users = await User.find({});
     res.json(users);
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: "Server Error" });
+    handleServerError(res, error);
   }
 });
 
@@ -43,8 +48,7 @@ adminRoute.post("/users", protect, admin, async (req, res) => {
       isAdmin: user.isAdmin,
     });
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: "Server Error" });
+    handleServerError(res, error);
   }
 });
 
@@ -72,8 +76,7 @@ adminRoute.put("/users/:id", protect, admin, async (req, res) => {
       isAdmin: user.isAdmin,
     });
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: "Server Error" });
+    handleServerError(res, error);
   }
 });
 
@@ -89,8 +92,7 @@ adminRoute.delete("/users/:id", protect, admin, async (req, res) => {
     }
     res.json({ message: "User deleted successfully" });
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: "Server Error" });
+    handleServerError(res, error);
   }
 });
 export default adminRoute;

@@ -1,7 +1,7 @@
 /*
  * @Date: 2025-05-07 21:32:16
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-07 21:53:25
+ * @LastEditTime: 2025-05-13 21:08:05
  * @FilePath: /E-Commerce-Rabbit/backend/routes/uploadRoute.js
  */
 //用于上传images到cloudinary
@@ -19,7 +19,7 @@ import multer from "multer";
 import streamifier from "streamifier";
 import { v2 as cloudinary } from "cloudinary";
 import dotenv from "dotenv";
-
+import { handleServerError } from "../utils";
 dotenv.config();
 const uploadRouter = express.Router();
 // cloudinary configuration 是一个云端图片和视频管理服务平台：
@@ -67,8 +67,7 @@ uploadRouter.post("/", upload.single("image"), async (req, res) => {
     // respond with the upload url
     res.json({ imageUrl: result.secure_url });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Internal Server Error" });
+    handleServerError(res, error);
   }
 });
 

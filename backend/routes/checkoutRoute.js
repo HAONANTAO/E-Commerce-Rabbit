@@ -2,7 +2,8 @@ import express from "express";
 import Order from "../models/Order.js";
 import Checkout from "../models/Checkout.js";
 import Cart from "../models/Cart.js";
-// import Product from "../models/Product.js";
+import { handleServerError } from "../utils";
+
 import { protect } from "../middleware/AuthMiddleware.js";
 const CheckOutRoute = express.Router();
 
@@ -31,8 +32,7 @@ CheckOutRoute.post("/", protect, async (req, res) => {
     console.log(`good new checkout,${req.user._id}`);
     res.status(201).json(newCheckout);
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: "Server Error" });
+    handleServerError(res, error);
   }
 });
 
@@ -102,8 +102,7 @@ CheckOutRoute.post("/:id/finalize", protect, async (req, res) => {
       res.status(400).json({ message: "Checkout not paid" });
     }
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: "Server Error" });
+    handleServerError(res, error);
   }
 });
 

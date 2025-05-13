@@ -1,13 +1,13 @@
 /*
  * @Date: 2025-05-08 20:49:13
  * @LastEditors: 陶浩南 taoaaron5@gmail.com
- * @LastEditTime: 2025-05-08 20:54:40
+ * @LastEditTime: 2025-05-13 21:07:32
  * @FilePath: /E-Commerce-Rabbit/backend/routes/productsAdminRoute.js
  */
 import express from "express";
 import { protect, admin } from "../middleware/AuthMiddleware.js";
 import Product from "../models/Product.js";
-
+import { handleServerError } from "../utils";
 const productsAdminRoute = express.Router();
 
 //@ routes GET /api/admin/products
@@ -20,8 +20,7 @@ productsAdminRoute.get("/", protect, admin, async (req, res) => {
   } catch (error) {
     let products = await Product.find({});
     res.status(200).json(products);
-    console.log(error);
-    res.status(500).json({ message: "Server Error" });
+    handleServerError(res, error);
   }
 });
 export default productsAdminRoute;

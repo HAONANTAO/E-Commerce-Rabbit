@@ -2,6 +2,8 @@ import express from "express";
 import { protect } from "../middleware/AuthMiddleware.js";
 import Cart from "../models/Cart.js";
 import Product from "../models/Product.js";
+import { handleServerError } from "../utils";
+
 const cartRouter = express.Router();
 
 // helper function to get cart for guest or logged user帮助查找购物车的函数
@@ -88,8 +90,7 @@ cartRouter.post("/", async (req, res) => {
       return res.status(201).json(newCart);
     }
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: "Server Error" });
+    handleServerError(res, error);
   }
 });
 
@@ -128,8 +129,7 @@ cartRouter.put("/", async (req, res) => {
     await cart.save();
     res.status(200).json(cart);
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: "Server Error" });
+    handleServerError(res, error);
   }
 });
 
@@ -162,8 +162,7 @@ cartRouter.delete("/", async (req, res) => {
     await cart.save();
     res.status(200).json(cart);
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: "Server Error" });
+    handleServerError(res, error);
   }
 });
 
@@ -250,8 +249,7 @@ cartRouter.post("/merge", protect, async (req, res) => {
       res.status(404).json({ message: "Guest cart not found" });
     }
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: "Server Error" });
+    handleServerError(res, error);
   }
 });
 export default cartRouter;
