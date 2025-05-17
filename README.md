@@ -7,6 +7,15 @@ The React-based frontend delivers a responsive, user-friendly interface for brow
 The Express backend powers a robust API, with MongoDB for data storage and Cloudinary for image management.  
 Built with scalability and developer experience in mind, this project is ideal for businesses and developers alike.
 
+[![Node.js](https://img.shields.io/badge/Node.js-20.x-339933?logo=node.js)](https://nodejs.org/)
+[![Express](https://img.shields.io/badge/Express-5.1.0-000000?logo=express)](https://expressjs.com/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?logo=mongodb)](https://www.mongodb.com/)
+[![React](https://img.shields.io/badge/React-18.2.0-61DAFB?logo=react)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-5.0.8-646CFF?logo=vite)](https://vitejs.dev/)
+[![Redux Toolkit](https://img.shields.io/badge/Redux_Toolkit-2.8.1-764ABC?logo=redux)](https://redux-toolkit.js.org/)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.3.6-38B2AC?logo=tailwindcss)](https://tailwindcss.com/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.2.2-3178C6?logo=typescript)](https://www.typescriptlang.org/)
+
 <p align="center">
   <img src="ScreenShow.png" width="900" alt="E-Commerce Rabbit Screenshot" />
 </p>
