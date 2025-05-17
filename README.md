@@ -1,15 +1,16 @@
-# E-Commerce Rabbit
-The Link:https://www.wanyancanrui.com/
+# 🛒 E-Commerce Rabbit
 
-E-Commerce Rabbit is a full-stack e-commerce platform designed for seamless online shopping. The React-based frontend delivers a responsive, user-friendly interface for browsing products, managing carts, and processing payments via PayPal. The Express backend powers a robust API, with MongoDB for data storage and Cloudinary for image management. Built with scalability and developer experience in mind, this project is ideal for businesses and developers alike.
+🌐 [Live Demo](https://www.wanyancanrui.com/)
 
-<img
-  src="/ScreenShow.png"
-  width="1200"
-  height="600"
-  alt="E-Commerce"
-  className="object-cover"
-/>
+E-Commerce Rabbit is a full-stack e-commerce platform designed for seamless online shopping.  
+The React-based frontend delivers a responsive, user-friendly interface for browsing products, managing carts, and processing payments via PayPal.  
+The Express backend powers a robust API, with MongoDB for data storage and Cloudinary for image management.  
+Built with scalability and developer experience in mind, this project is ideal for businesses and developers alike.
+
+<p align="center">
+  <img src="ScreenShow.png" width="900" alt="E-Commerce Rabbit Screenshot" />
+</p>
+
 
 ## Table of Contents
 - [E-Commerce Rabbit](#e-commerce-rabbit)
@@ -25,53 +26,47 @@ E-Commerce Rabbit is a full-stack e-commerce platform designed for seamless onli
   - [Usage](#usage)
   - [Configuration](#configuration)
   - [Contributing](#contributing)
-  - [License](#license)
   - [Contact](#contact)
+  - [License](#license)
+
 
 ## Features
-- **Product Catalog**: Dynamic product listings with search, filter, and categorization.
-- **Shopping Cart**: Real-time cart management powered by Redux Toolkit.
-- **User Authentication**: Secure signup/login with JWT and password hashing.
-- **Payment Processing**: PayPal integration for fast, secure transactions.
-- **Image Upload**: Upload and manage product images via Cloudinary.
-- **Admin Dashboard**: Manage products, orders, and users with an intuitive interface.
-- **Responsive Design**: Optimized for desktop, tablet, and mobile devices.
-- **Notifications**: Lightweight toast notifications for user feedback.
 
-## Technologies
-### Frontend
-- **Framework**: React, TypeScript
-- **State Management**: Redux Toolkit, React Redux
-- **Routing**: React Router
-- **Styling**: Tailwind CSS
-- **Payment**: PayPal SDK
-- **HTTP Client**: Axios
-- **Icons**: React Icons
-- **Notifications**: Sonner
-- **Build Tool**: Vite
-- **Code Quality**: ESLint, Prettier
+- **🛍️ Product Catalog:** Dynamic product listings with search, filter, and category browsing.
+- **🛒 Shopping Cart:** Real-time cart management powered by Redux Toolkit for seamless user experience[6][8].
+- **🔐 User Authentication:** Secure signup/login with JWT and password hashing.
+- **💳 Payment Processing:** Integrated PayPal payments for fast, secure transactions.
+- **🖼️ Image Upload:** Upload and manage product images via Cloudinary.
+- **🧑‍💼 Admin Dashboard:** Manage products, orders, and users with an intuitive admin interface.
+- **📱 Responsive Design:** Optimized for desktop, tablet, and mobile devices.
+- **🔔 Notifications:** Lightweight toast notifications for instant user feedback.
+## Technology Stack
 
-### Backend
-- **Framework**: Express.js
-- **Database**: MongoDB, Mongoose
-- **Authentication**: JSON Web Tokens, Bcrypt
-- **File Upload**: Multer, Cloudinary
-- **Environment**: Dotenv
-- **CORS**: Enabled for frontend-backend communication
-- **Development**: Nodemon, TypeScript
+### 🖼️ Frontend
+- **Framework:** React, TypeScript
+- **State Management:** Redux Toolkit, React Redux
+- **Routing:** React Router
+- **Styling:** Tailwind CSS
+- **Payment:** PayPal SDK
+- **HTTP Client:** Axios
+- **Icons:** React Icons
+- **Notifications:** Sonner
+- **Build Tool:** Vite
+- **Code Quality:** ESLint, Prettier
 
-### Deployment
-- **Frontend**: Vercel or Netlify
-- **Backend**: AWS EC2, Heroku, or Render
+### 🔗 Backend
+- **Framework:** Express.js
+- **Database:** MongoDB, Mongoose
+- **Authentication:** JSON Web Tokens (JWT), Bcrypt
+- **File Upload:** Multer, Cloudinary
+- **Environment:** Dotenv
+- **CORS:** Enabled for frontend-backend communication
+- **Development Tools:** Nodemon, TypeScript
 
-## Installation
+### 🚀 Deployment
+- **Frontend:** Vercel or Netlify
+- **Backend:** AWS EC2, Heroku, or Render
 
-### Prerequisites
-- **Node.js**: v16 or higher
-- **MongoDB**: Local or MongoDB Atlas
-- **PayPal Account**: For API credentials
-- **Cloudinary Account**: For image storage
-- **Git**
 
 ### Steps
 1. **Clone the repository**:
@@ -125,38 +120,55 @@ E-Commerce Rabbit is a full-stack e-commerce platform designed for seamless onli
    - Frontend: `http://localhost:3000`
    - Backend API: `http://localhost:5000`
    - Admin Dashboard: `http://localhost:3000/admin`
-
 ## Usage
-- **Customers**:
-  - Browse products, add to cart, and checkout with PayPal.
-  - Register or log in to save order history.
-- **Admins**:
-  - Access `/admin` to manage products, upload images to Cloudinary, and view orders.
-- **Developers**:
+
+- **Customers**
+  - Browse products, add to cart, and checkout securely with PayPal.
+  - Register or log in to save order history and manage personal info.
+- **Admins**
+  - Access `/admin` to manage products, upload images to Cloudinary, and view/manage orders.
+- **Developers**
   - Extend frontend components in `frontend/src`.
-  - Modify API routes in `backend/routes`.
+  - Modify API routes in `backend/routes` for custom business logic.
+
+---
 
 ## Configuration
-- **Database**: Update `MONGODB_URI` in `backend/.env` for your MongoDB instance.
-- **PayPal**: Configure `PAYPAL_CLIENT_ID` for live/test transactions.
-- **Cloudinary**: Set up `CLOUDINARY_*` variables for image uploads.
-- **Frontend**: Adjust API base URL in `frontend/src` if backend runs on a different port.
 
-## Contributing
-Contributions are welcome! To contribute:
+- **Database:** Update `MONGODB_URI` in `backend/.env` with your MongoDB connection string.
+- **PayPal:** Configure `PAYPAL_CLIENT_ID` for live/test transactions.
+- **Cloudinary:** Set up `CLOUDINARY_*` variables for image uploads.
+- **Frontend:** Adjust API base URL in `frontend/src` if backend runs on a different host or port.
+
+---
+
+##  Contributing
+
+Contributions are welcome!  
+To contribute:
+
 1. Fork the repository.
 2. Create a feature branch (`git checkout -b feature/your-feature`).
-3. Commit changes (`git commit -m 'Add your feature'`).
+3. Commit your changes (`git commit -m 'Add your feature'`).
 4. Push to the branch (`git push origin feature/your-feature`).
 5. Open a Pull Request.
 
 Please adhere to the [Code of Conduct](CODE_OF_CONDUCT.md) and run `npm run lint` (frontend) before submitting.
 
+---
+
+## Contact Information
+
+- **Name:** Aaron TAO
+- **Email:** [taoaaron5@gamil.com](mailto:taoaaron5@gamil.com)
+- **GitHub:** [HAONANTAO](https://github.com/HAONANTAO)
+- **LinkedIn:** [Aaron Tao](https://www.linkedin.com/in/haonan-tao-aaron)
+
+---
+
 ## License
-This project is licensed under the ISC License - see the [LICENSE](LICENSE) file for details.
 
-## Contact
-- **GitHub**: [HAONANTAO](https://github.com/HAONANTAO)
-- **Email**: your-email@example.com (replace with your contact if desired)
+This project is licensed under the MIT License.
 
-Thank you for exploring E-Commerce Rabbit!
+Thank you for exploring **E-Commerce Rabbit**!
+
