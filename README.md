@@ -14,7 +14,6 @@ Built with scalability and developer experience in mind, this project is ideal f
 [![Vite](https://img.shields.io/badge/Vite-5.0.8-646CFF?logo=vite)](https://vitejs.dev/)
 [![Redux Toolkit](https://img.shields.io/badge/Redux_Toolkit-2.8.1-764ABC?logo=redux)](https://redux-toolkit.js.org/)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.3.6-38B2AC?logo=tailwindcss)](https://tailwindcss.com/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.2.2-3178C6?logo=typescript)](https://www.typescriptlang.org/)
 
 <p align="center">
   <img src="ScreenShow.png" width="900" alt="E-Commerce Rabbit Screenshot" />
