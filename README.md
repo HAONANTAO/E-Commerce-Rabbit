@@ -251,5 +251,3 @@ when you run the backend--> add the port 5001
 the frontend --> 5173 
 
 Then--> visit: http://localhost:5173/
-
-Then--> visit: http://localhost:5173/
