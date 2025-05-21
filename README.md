@@ -32,10 +32,10 @@ Built with scalability and developer experience in mind, this project is ideal f
   - [Usage](#usage)
   - [Configuration](#configuration)
   - [Contributing](#contributing)
-  - [Contact Information](#contact-information)
-  - [License](#license)
   - [Docker Deployment](#docker-deployment)
     - [Quick Start with Docker](#quick-start-with-docker)
+  - [Contact Information](#contact-information)
+  - [License](#license)
 
 
 ## Features
@@ -165,6 +165,21 @@ Please adhere to the [Code of Conduct](CODE_OF_CONDUCT.md) and run `npm run lint
 
 ---
 
+## Docker Deployment
+
+For detailed Docker configuration and deployment instructions, please refer to our [Docker Configuration Guide](document/docker-guide.md).
+
+### Quick Start with Docker
+
+1. Prerequisites
+- Docker Desktop installed and running
+- Docker Compose installed
+
+2. Start the application:
+```bash
+docker-compose up --build
+```
+
 ## Contact Information
 
 - **Name:** Aaron TAO
@@ -180,19 +195,4 @@ This project is licensed under the MIT License.
 
 Thank you for exploring **E-Commerce Rabbit**!
 
-
-## Docker Deployment
-
-For detailed Docker configuration and deployment instructions, please refer to our [Docker Configuration Guide](document/docker-guide.md).
-
-### Quick Start with Docker
-
-1. Prerequisites
-- Docker Desktop installed and running
-- Docker Compose installed
-
-2. Start the application:
-```bash
-docker-compose up --build
-```
 
