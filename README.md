@@ -238,5 +238,18 @@ mongo->backend->frontend
 
 when you run the backend--> add the port 5001
 the frontend --> 5173
+Or you can pull from docker hub using the Docker Desktop GUI:
+images -- pull
+haonantao/e-commerce-rabbit-frontend:latest
+haonantao/e-commerce-rabbit-backend:latest
+mongo:latest
+
+running by sequence:
+mongo->backend->frontend
+
+when you run the backend--> add the port 5001
+the frontend --> 5173 
+
+Then--> visit: http://localhost:5173/
 
 Then--> visit: http://localhost:5173/
