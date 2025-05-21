@@ -224,7 +224,6 @@ For detailed Docker configuration and deployment instructions, please refer to o
 docker-compose up --build
 ```
 
-测试 YOLO 徽章：自己合并自己的 PR 🦾
-=======
+
 
 
