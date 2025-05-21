@@ -19,8 +19,8 @@ Built with scalability and developer experience in mind, this project is ideal f
   <img src="ScreenShow.png" width="900" alt="E-Commerce Rabbit Screenshot" />
 </p>
 
-
 ## Table of Contents
+
 - [🛒 E-Commerce Rabbit](#-e-commerce-rabbit)
   - [Table of Contents](#table-of-contents)
   - [Features](#features)
@@ -37,7 +37,6 @@ Built with scalability and developer experience in mind, this project is ideal f
   - [Docker Deployment](#docker-deployment)
     - [Quick Start with Docker](#quick-start-with-docker)
 
-
 ## Features
 
 - **🛍️ Product Catalog:** Dynamic product listings with search, filter, and category browsing.
@@ -48,9 +47,11 @@ Built with scalability and developer experience in mind, this project is ideal f
 - **🧑‍💼 Admin Dashboard:** Manage products, orders, and users with an intuitive admin interface.
 - **📱 Responsive Design:** Optimized for desktop, tablet, and mobile devices.
 - **🔔 Notifications:** Lightweight toast notifications for instant user feedback.
+
 ## Technology Stack
 
 ### 🖼️ Frontend
+
 - **Framework:** React, TypeScript
 - **State Management:** Redux Toolkit, React Redux
 - **Routing:** React Router
@@ -63,6 +64,7 @@ Built with scalability and developer experience in mind, this project is ideal f
 - **Code Quality:** ESLint, Prettier
 
 ### 🔗 Backend
+
 - **Framework:** Express.js
 - **Database:** MongoDB, Mongoose
 - **Authentication:** JSON Web Tokens (JWT), Bcrypt
@@ -72,30 +74,35 @@ Built with scalability and developer experience in mind, this project is ideal f
 - **Development Tools:** Nodemon, TypeScript
 
 ### 🚀 Deployment
+
 - **Frontend:** Vercel or Netlify
 - **Backend:** AWS EC2, Heroku, or Render
 
-
 ### Steps
+
 1. **Clone the repository**:
+
    ```bash
    git clone https://github.com/HAONANTAO/E-Commerce-Rabbit.git
    cd E-Commerce-Rabbit
    ```
 
 2. **Install frontend dependencies**:
+
    ```bash
    cd frontend
    npm install
    ```
 
 3. **Install backend dependencies**:
+
    ```bash
    cd ../backend
    npm install
    ```
 
 4. **Set up environment variables**:
+
    - Create a `.env` file in the `backend` directory with:
      ```env
      MONGODB_URI=mongodb://localhost:27017/ecommerce-rabbit
@@ -108,17 +115,20 @@ Built with scalability and developer experience in mind, this project is ideal f
      ```
 
 5. **Seed the database** (optional):
+
    ```bash
    cd backend
    npm run seed
    ```
 
 6. **Start the backend**:
+
    ```bash
    npm run dev
    ```
 
 7. **Start the frontend**:
+
    ```bash
    cd ../frontend
    npm run dev
@@ -128,6 +138,7 @@ Built with scalability and developer experience in mind, this project is ideal f
    - Frontend: `http://localhost:3000`
    - Backend API: `http://localhost:5000`
    - Admin Dashboard: `http://localhost:3000/admin`
+
 ## Usage
 
 - **Customers**
@@ -150,7 +161,7 @@ Built with scalability and developer experience in mind, this project is ideal f
 
 ---
 
-##  Contributing
+## Contributing
 
 Contributions are welcome!  
 To contribute:
@@ -180,7 +191,6 @@ This project is licensed under the MIT License.
 
 Thank you for exploring **E-Commerce Rabbit**!
 
-
 ## Docker Deployment
 
 For detailed Docker configuration and deployment instructions, please refer to our [Docker Configuration Guide](document/docker-guide.md).
@@ -188,11 +198,14 @@ For detailed Docker configuration and deployment instructions, please refer to o
 ### Quick Start with Docker
 
 1. Prerequisites
+
 - Docker Desktop installed and running
 - Docker Compose installed
 
 2. Start the application:
+
 ```bash
 docker-compose up --build
 ```
 
+测试 YOLO 徽章：自己合并自己的 PR 🦾
