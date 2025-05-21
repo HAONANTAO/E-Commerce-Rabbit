@@ -1,35 +1,56 @@
-version: "3.8"
+version: "3.8" 
+# 指定 Docker Compose 文件的版本，3.8 是一个较新的版本，支持多种功能和配置
 
-services:
+services: 
+  # 定义一组服务，这里有 frontend、backend 和 mongodb 三个服务
+
   frontend:
     build:
-      context: ./frontend
-      dockerfile: Dockerfile
+      context: ./frontend 
+      # 指定构建镜像时的上下文路径，Docker 会以 ./frontend 文件夹为基础构建镜像
+      dockerfile: Dockerfile 
+      # 指定在 ./frontend 文件夹中使用名为 Dockerfile 的文件来构建镜像
     ports:
-      - "5173:5173"
+      - "5173:5173" 
+      # 映射端口，格式为 宿主机端口:容器端口
+      # 宿主机的5173端口会映射到容器的5173端口，方便在浏览器访问前端服务
     environment:
-      - VITE_BACKEND_URL=http://backend:5000
+      - VITE_BACKEND_URL=http://backend:5000 
+      # 设置环境变量，告诉前端项目后端接口地址是 http://backend:5000
+      # 这里的 backend 是指 Compose 内定义的服务名，Docker Compose 会自动解析服务名为对应容器地址
     depends_on:
-      - backend
+      - backend 
+      # 声明 frontend 服务依赖 backend，docker-compose 会保证 backend 先启动
 
   backend:
     build:
-      context: ./backend
-      dockerfile: Dockerfile
+      context: ./backend 
+      # 构建上下文路径为 ./backend 文件夹
+      dockerfile: Dockerfile 
+      # 使用 ./backend 里的 Dockerfile 来构建镜像
     ports:
-      - "5001:5000" # 将宿主机端口改为5001
+      - "5001:5000" 
+      # 将宿主机的 5001 端口映射到容器的 5000 端口
+      # 这样你访问本机的5001端口实际上是访问容器内监听的5000端口
     environment:
-      - MONGODB_URI=mongodb://mongodb:27017/ecommerce-rabbit
-      - PORT=5000
+      - MONGODB_URI=mongodb://mongodb:27017/ecommerce-rabbit 
+      # 后端连接 MongoDB 的数据库地址，mongodb 是服务名，会自动解析到mongodb容器
+      - PORT=5000 
+      # 设置后端应用监听端口为5000，跟 Dockerfile 和端口映射保持一致
     depends_on:
-      - mongodb
+      - mongodb 
+      # 声明后端服务依赖 mongodb，保证 mongodb 先启动
 
   mongodb:
-    image: mongo:latest
+    image: mongo:latest 
+    # 使用官方 mongo 最新版本镜像作为数据库服务
     ports:
-      - "27017:27017"
+      - "27017:27017" 
+      # 映射宿主机的27017端口到容器的27017端口，方便本机访问数据库
     volumes:
-      - mongodb_data:/data/db
+      - mongodb_data:/data/db 
+      # 持久化数据卷，将容器的 /data/db 目录映射到宿主机的卷 mongodb_data，保证数据库数据不会因容器重启丢失
 
 volumes:
-  mongodb_data:
+  mongodb_data: 
+  # 声明一个名为 mongodb_data 的数据卷，用来持久化 mongodb 数据
