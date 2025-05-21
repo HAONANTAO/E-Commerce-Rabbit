@@ -36,6 +36,8 @@ Built with scalability and developer experience in mind, this project is ideal f
     - [Quick Start with Docker](#quick-start-with-docker)
   - [Contact Information](#contact-information)
   - [License](#license)
+  - [Docker Deployment](#docker-deployment-1)
+    - [Quick Start with Docker](#quick-start-with-docker-1)
 
 ## Features
 
@@ -183,10 +185,12 @@ For detailed Docker configuration and deployment instructions, please refer to o
 ### Quick Start with Docker
 
 1. Prerequisites
+
 - Docker Desktop installed and running
 - Docker Compose installed
 
 2. Start the application:
+
 ```bash
 docker-compose up --build
 ```
@@ -206,7 +210,6 @@ This project is licensed under the MIT License.
 
 Thank you for exploring **E-Commerce Rabbit**!
 
-
 ## Docker Deployment
 
 For detailed Docker configuration and deployment instructions, please refer to our [Docker Configuration Guide](document/docker-guide.md).
@@ -224,6 +227,16 @@ For detailed Docker configuration and deployment instructions, please refer to o
 docker-compose up --build
 ```
 
+Or you can pull from docker hub using the Docker Desktop GUI:
+images -- pull
+haonantao/e-commerce-rabbit-frontend:latest
+haonantao/e-commerce-rabbit-backend:latest
+mongo:latest
 
+running by sequence:
+mongo->backend->frontend
 
+when you run the backend--> add the port 5001
+the frontend --> 5173
 
+Then--> visit: http://localhost:5173/
