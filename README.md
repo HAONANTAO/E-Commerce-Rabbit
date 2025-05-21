@@ -21,21 +21,21 @@ Built with scalability and developer experience in mind, this project is ideal f
 
 
 ## Table of Contents
-- [E-Commerce Rabbit](#e-commerce-rabbit)
+- [🛒 E-Commerce Rabbit](#-e-commerce-rabbit)
   - [Table of Contents](#table-of-contents)
   - [Features](#features)
-  - [Technologies](#technologies)
-    - [Frontend](#frontend)
-    - [Backend](#backend)
-    - [Deployment](#deployment)
-  - [Installation](#installation)
-    - [Prerequisites](#prerequisites)
+  - [Technology Stack](#technology-stack)
+    - [🖼️ Frontend](#️-frontend)
+    - [🔗 Backend](#-backend)
+    - [🚀 Deployment](#-deployment)
     - [Steps](#steps)
   - [Usage](#usage)
   - [Configuration](#configuration)
   - [Contributing](#contributing)
-  - [Contact](#contact)
+  - [Contact Information](#contact-information)
   - [License](#license)
+  - [Docker Deployment](#docker-deployment)
+    - [Quick Start with Docker](#quick-start-with-docker)
 
 
 ## Features
@@ -179,4 +179,20 @@ Please adhere to the [Code of Conduct](CODE_OF_CONDUCT.md) and run `npm run lint
 This project is licensed under the MIT License.
 
 Thank you for exploring **E-Commerce Rabbit**!
+
+
+## Docker Deployment
+
+For detailed Docker configuration and deployment instructions, please refer to our [Docker Configuration Guide](document/docker-guide.md).
+
+### Quick Start with Docker
+
+1. Prerequisites
+- Docker Desktop installed and running
+- Docker Compose installed
+
+2. Start the application:
+```bash
+docker-compose up --build
+```
 
